@@ -1,16 +1,21 @@
 export default function Navbar(){
 
-  return (
-    <nav className="navbar">
+return(
 
-      <h2>Zentra</h2>
+<nav className="navbar">
 
-      <div className="links">
-        <span>Tools</span>
-        <span>Pricing</span>
-        <span>Login</span>
-      </div>
+<h2>Zentra</h2>
 
-    </nav>
-  )
+<div className="nav-links">
+
+<a>Tools</a>
+<a>Pricing</a>
+<a>Login</a>
+
+</div>
+
+</nav>
+
+)
+
 }
