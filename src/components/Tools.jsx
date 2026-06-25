@@ -1,35 +1,35 @@
-export default function Tools(){
-
-const tools=[
-{
-name:"AI Chat",
-img:"https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
-},
-{
-name:"AI Writer",
-img:"https://cdn-icons-png.flaticon.com/512/906/906334.png"
-},
-{
-name:"AI Image",
-img:"https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
-},
-{
-name:"AI Resume",
-img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-},
-{
-name:"AI Summary",
-img:"https://cdn-icons-png.flaticon.com/512/2920/2920277.png"
-},
-{
-name:"AI Study",
-img:"https://cdn-icons-png.flaticon.com/512/3976/3976625.png"
-}
+const tools = [
+  {
+    name: "AI Chat",
+    desc: "Chat with advanced AI assistant",
+    image: "https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
+  },
+  {
+    name: "AI Writer",
+    desc: "Create content faster with AI",
+    image: "https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+  },
+  {
+    name: "AI Image",
+    desc: "Generate amazing AI images",
+    image: "https://cdn-icons-png.flaticon.com/512/11498/11498758.png"
+  },
+  {
+    name: "AI Resume",
+    desc: "Build professional resumes",
+    image: "https://cdn-icons-png.flaticon.com/512/942/942748.png"
+  },
+  {
+    name: "AI Summary",
+    desc: "Summarize anything instantly",
+    image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+  }
 ];
 
 
-return(
+export default function Tools(){
 
+return(
 <section className="tools">
 
 <h2>Powerful AI Tools</h2>
@@ -40,11 +40,12 @@ return(
 
 <div className="tool-card" key={index}>
 
-<img src={tool.img}/>
+<img src={tool.image}/>
 
+<div>
 <h3>{tool.name}</h3>
-
-<p>Create faster with Zentra AI</p>
+<p>{tool.desc}</p>
+</div>
 
 </div>
 
@@ -53,7 +54,6 @@ return(
 </div>
 
 </section>
-
 )
 
 }
