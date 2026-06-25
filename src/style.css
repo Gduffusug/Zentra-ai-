@@ -168,9 +168,61 @@ width:500px;
 height:500px;
 
 background:#0066ff;
+  
 
 filter:blur(180px);
 
 opacity:.35;
+
+}
+.navbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:25px 40px;
+
+position:relative;
+
+z-index:5;
+
+}
+
+
+.navbar h2{
+
+font-size:32px;
+
+margin:0;
+
+}
+
+
+.nav-links{
+
+display:flex;
+
+gap:35px;
+
+}
+
+
+.nav-links a{
+
+color:#aaa;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+
+.nav-links a:hover{
+
+color:white;
 
 }
