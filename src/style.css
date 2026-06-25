@@ -1,24 +1,33 @@
-.tools{
-padding:60px 20px;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#050505;
+color:white;
 }
+
+
+.tools{
+padding:80px 20px;
+}
+
 
 .tools h2{
 font-size:45px;
 text-align:center;
+margin-bottom:50px;
 }
 
 
 .tool-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:40px;
+gap:30px;
 }
 
 
 .tool-card{
 
-background:linear-gradient(145deg,#111,#1f1f1f);
+background:linear-gradient(145deg,#111,#1c1c1c);
 
 border:1px solid #333;
 
@@ -32,36 +41,33 @@ align-items:center;
 
 gap:20px;
 
+box-shadow:0 0 20px rgba(0,0,0,.5);
+
 transition:.3s;
 
 }
 
 
 .tool-card:hover{
-
-transform:translateY(-8px);
-
+transform:translateY(-10px);
+border-color:#00d9ff;
 }
 
 
 .tool-card img{
 
-width:80px;
+width:90px;
+height:90px;
 
-height:80px;
-
-object-fit:cover;
-
-border-radius:18px;
+object-fit:contain;
 
 }
 
 
 .tool-card h3{
 
-font-size:22px;
-
-margin:0;
+color:white;
+font-size:24px;
 
 }
 
