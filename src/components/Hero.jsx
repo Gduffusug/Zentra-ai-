@@ -1,22 +1,35 @@
 export default function Hero(){
 
-  return (
-    <section className="hero">
+return(
 
-      <h1>
-        Build Faster With
-        <span> Zentra AI</span>
-      </h1>
+<section className="hero">
 
-      <p>
-        Your all-in-one AI workspace for creators,
-        students and businesses.
-      </p>
+<div className="hero-content">
 
-      <button>
-        Start Creating
-      </button>
+<h1>
+Build Faster With
+<span> Zentra AI</span>
+</h1>
 
-    </section>
-  )
+<p>
+Your all-in-one AI workspace for creators,
+students and businesses.
+</p>
+
+
+<button>
+Start Creating
+</button>
+
+
+</div>
+
+
+<div className="hero-glow"></div>
+
+
+</section>
+
+)
+
 }
