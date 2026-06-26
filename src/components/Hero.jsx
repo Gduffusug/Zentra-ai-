@@ -33,3 +33,4 @@ Start Creating
 )
 
 }
+<Pricing />
