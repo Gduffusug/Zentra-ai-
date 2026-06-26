@@ -1,71 +1,22 @@
 import { useState } from "react";
 
-function Chat() {
+function Chat(){
 
-  const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("");
+const [text,setText]=useState("");
 
-  const sendMessage = async () => {
+return (
+<div>
+<h1>Zentra AI 🤖</h1>
 
-    try {
+<input
+value={text}
+onChange={(e)=>setText(e.target.value)}
+placeholder="Type"
+/>
 
-      setReply("Thinking...");
-
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-          message: message
-        })
-      });
-
-      const data = await res.json();
-
-      setReply(data.reply);
-
-    } catch(error){
-
-      setReply("Error connecting AI");
-
-    }
-
-  };
-
-
-  return (
-
-    <div className="chat-container">
-
-      <h1>Zentra AI 🤖</h1>
-
-      <div className="chat-box">
-        {reply}
-      </div>
-
-
-      <input
-
-        placeholder="Ask anything..."
-
-        value={message}
-
-        onChange={(e)=>setMessage(e.target.value)}
-
-      />
-
-
-      <button onClick={sendMessage}>
-        Send
-      </button>
-
-
-    </div>
-
-  );
+</div>
+)
 
 }
-
 
 export default Chat;
