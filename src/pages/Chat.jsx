@@ -7,7 +7,7 @@ const [reply,setReply]=useState("");
 
 async function sendMessage(){
 
-setReply("AI soch raha hai...");
+setReply("AI is thinking...");
 
 const res = await fetch("/api/chat",{
 method:"POST",
