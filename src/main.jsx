@@ -31,3 +31,4 @@ createRoot(
 ).render(
   <App />
 );
+import Pricing from "./components/Pricing";
