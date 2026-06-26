@@ -38,7 +38,11 @@ return(
 
 {tools.map((tool,index)=>(
 
-<div className="tool-card" key={index}>
+<div 
+ className="tool-card" 
+ key={index}
+ onClick={() => alert(tool.name + " coming soon")}
+>
 
 <img src={tool.image}/>
 
