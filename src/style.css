@@ -255,3 +255,12 @@ color:white;
   color:#aaa;
   font-size:18px;
 }
+.tool-card{
+ cursor:pointer;
+ transition:0.3s;
+}
+
+.tool-card:hover{
+ transform:translateY(-8px);
+ border-color:#00d9ff;
+}
