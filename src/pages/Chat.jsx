@@ -1,46 +1,82 @@
 import { useState } from "react";
-import { useState } from "react";
 
-function Chat(){
+export default function Chat(){
 
-const [message,setMessage]=useState("");
-const [reply,setReply]=useState("");
+const [message,setMessage] = useState("");
+const [reply,setReply] = useState("");
+const [loading,setLoading] = useState(false);
 
-const sendMessage = async()=>{
 
-const res = await fetch("/api/chat",{
+async function sendMessage(){
+
+setLoading(true);
+
+try{
+
+const res = await fetch(
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+import.meta.env.VITE_GEMINI_API_KEY,
+{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
 body:JSON.stringify({
-message
+contents:[
+{
+parts:[
+{
+text:message
+}
+]
+}
+]
 })
-});
+}
+);
 
 
 const data = await res.json();
 
-setReply(data.reply);
-
-};
+setReply(data.candidates[0].content.parts[0].text);
 
 
-return (
+}catch(e){
+
+setReply("Error");
+
+}
+
+
+setLoading(false);
+
+}
+
+
+
+return(
+
 <div className="chat-container">
 
 <h1>Zentra AI 🤖</h1>
 
+
 <div className="chat-box">
-{reply}
+
+{loading ? "AI thinking..." : reply}
+
 </div>
 
 
 <input
-placeholder="Message..."
+
+placeholder="Ask anything..."
+
 value={message}
+
 onChange={(e)=>setMessage(e.target.value)}
+
 />
+
 
 <button onClick={sendMessage}>
 Send
@@ -48,8 +84,7 @@ Send
 
 
 </div>
-);
+
+)
 
 }
-
-export default Chat;
