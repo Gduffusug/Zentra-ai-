@@ -8,33 +8,31 @@ export default function Chat() {
   async function sendMessage() {
     if (!message) return;
 
-    // User message add karo
-    const userMsg = { text: message, user: true };
-    setMessages(prev => [...prev, userMsg]);
+    setMessages(prev => [...prev, { text: message, user: true }]);
     setMessage("");
     setLoading(true);
 
     try {
-      // API call karo
-      const res = await fetch("/api/chat", {
+      const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=TUMHARI_API_KEY_YAHAN", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: message }] }]
+        })
       });
 
       const data = await res.json();
+      const reply = data.candidates[0].content.parts[0].text;
 
-      // AI reply add karo
-      setMessages(prev => [...prev, { text: data.reply, user: false }]);
+      setMessages(prev => [...prev, { text: reply, user: false }]);
 
     } catch (error) {
-      setMessages(prev => [...prev, { text: "Error aa gaya, dobara try karo!", user: false }]);
+      setMessages(prev => [...prev, { text: "Error aa gaya!", user: false }]);
     }
 
     setLoading(false);
   }
 
-  // Enter key se bhi send ho
   function handleKeyDown(e) {
     if (e.key === "Enter") sendMessage();
   }
