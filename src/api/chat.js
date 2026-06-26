@@ -48,3 +48,4 @@ reply:"Server error"
 }
 
 }
+key=${process.env.GEMINI_API_KEY}
