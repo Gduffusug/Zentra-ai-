@@ -1,90 +1,71 @@
 import { useState } from "react";
 
-export default function Chat(){
+function Chat() {
 
-const [message,setMessage] = useState("");
-const [reply,setReply] = useState("");
-const [loading,setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [reply, setReply] = useState("");
 
+  const sendMessage = async () => {
 
-async function sendMessage(){
+    try {
 
-setLoading(true);
+      setReply("Thinking...");
 
-try{
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          message: message
+        })
+      });
 
-const res = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="+import.meta.env.VITE_GEMINI_API_KEY,
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-contents:[
-{
-parts:[
-{
-text:message
-}
-]
-}
-]
-})
-}
-);
+      const data = await res.json();
 
+      setReply(data.reply);
 
-const data = await res.json();
+    } catch(error){
 
-setReply(data.candidates[0].content.parts[0].text);
+      setReply("Error connecting AI");
+
+    }
+
+  };
 
 
-}catch(e){
+  return (
 
-setReply("Error");
+    <div className="chat-container">
 
-}
+      <h1>Zentra AI 🤖</h1>
 
-
-setLoading(false);
-
-}
-
+      <div className="chat-box">
+        {reply}
+      </div>
 
 
-return(
+      <input
 
-<div className="chat-container">
+        placeholder="Ask anything..."
 
-<h1>Zentra AI 🤖</h1>
+        value={message}
 
+        onChange={(e)=>setMessage(e.target.value)}
 
-<div className="chat-box">
-
-{loading ? "AI thinking..." : reply}
-
-</div>
+      />
 
 
-<input
-
-placeholder="Ask anything..."
-
-value={message}
-
-onChange={(e)=>setMessage(e.target.value)}
-
-/>
+      <button onClick={sendMessage}>
+        Send
+      </button>
 
 
-<button onClick={sendMessage}>
-Send
-</button>
+    </div>
 
-
-</div>
-
-)
+  );
 
 }
+
+
+export default Chat;
