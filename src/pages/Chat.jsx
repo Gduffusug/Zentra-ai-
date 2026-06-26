@@ -1,105 +1,68 @@
 import { useState } from "react";
 
+export default function Chat() {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-export default function Chat(){
+  async function sendMessage() {
+    if (!message) return;
 
-const [message,setMessage] = useState("");
+    // User message add karo
+    const userMsg = { text: message, user: true };
+    setMessages(prev => [...prev, userMsg]);
+    setMessage("");
+    setLoading(true);
 
-const [messages,setMessages] = useState([]);
+    try {
+      // API call karo
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
 
+      const data = await res.json();
 
-function sendMessage(){
+      // AI reply add karo
+      setMessages(prev => [...prev, { text: data.reply, user: false }]);
 
-if(!message) return;
+    } catch (error) {
+      setMessages(prev => [...prev, { text: "Error aa gaya, dobara try karo!", user: false }]);
+    }
 
-
-setMessages([
-...messages,
-{
-text:message,
-user:true
-}
-]);
-
-
-setMessage("");
-
-}
-
-
-return(
-
-<div className="chat-page">
-
-
-<h1>Zentra AI Chat 🤖</h1>
-
-
-<div className="chat-box">
-
-
-{messages.map((msg,index)=>(
-
-<p key={index}>
-
-{msg.text}
-
-</p>
-
-))}
-
-
-</div>
-
-
-<div className="chat-input">
-
-
-<input
-
-value={message}
-
-onChange={(e)=>setMessage(e.target.value)}
-
-placeholder="Ask anything..."
-
-/>
-
-
-<button onClick={sendMessage}>
-Send
-</button>
-
-
-</div>
-
-
-</div>
-
-)
-
-}
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-export default async function handler(req, res) {
-
-  if(req.method !== "POST"){
-    return res.status(405).json({error:"Method not allowed"});
+    setLoading(false);
   }
 
-  const {message} = req.body;
+  // Enter key se bhi send ho
+  function handleKeyDown(e) {
+    if (e.key === "Enter") sendMessage();
+  }
 
-  const model = genAI.getGenerativeModel({
-    model:"gemini-1.5-flash"
-  });
+  return (
+    <div className="chat-page">
+      <h1>Zentra AI Chat 🤖</h1>
 
-  const result = await model.generateContent(message);
+      <div className="chat-box">
+        {messages.map((msg, index) => (
+          <p key={index} style={{ textAlign: msg.user ? "right" : "left" }}>
+            <strong>{msg.user ? "You" : "AI"}:</strong> {msg.text}
+          </p>
+        ))}
+        {loading && <p>AI soch raha hai... ⏳</p>}
+      </div>
 
-  const reply = result.response.text();
-
-  res.json({
-    reply
-  });
+      <div className="chat-input">
+        <input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Ask anything..."
+        />
+        <button onClick={sendMessage} disabled={loading}>
+          {loading ? "..." : "Send"}
+        </button>
+      </div>
+    </div>
+  );
 }
