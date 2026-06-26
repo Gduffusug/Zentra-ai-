@@ -5,32 +5,27 @@ import "./style.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tools from "./components/Tools";
-import Pricing from "./components/Pricing";
 
 
 function App(){
 
-  return (
+return(
+<div>
 
-    <div>
+<Navbar />
 
-      <Navbar />
+<Hero />
 
-      <Hero />
+<Tools />
 
-      <Tools />
-
-      <Pricing />
-
-    </div>
-
-  )
+</div>
+)
 
 }
 
 
 createRoot(
-  document.getElementById("root")
+document.getElementById("root")
 ).render(
-  <App />
+<App />
 );
