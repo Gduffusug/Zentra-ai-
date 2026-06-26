@@ -1,60 +1,50 @@
 import { useState } from "react";
 
-export default function Chat() {
+export default function Chat(){
 
-  const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("");
+const [message,setMessage]=useState("");
+const [reply,setReply]=useState("");
 
-  async function sendMessage(){
+async function sendMessage(){
 
-    try {
+setReply("AI soch raha hai...");
 
-      const res = await fetch("/api/chat", {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-          message
-        })
-      });
-
-      const data = await res.json();
-
-      setReply(data.reply);
-
-    } catch(error){
-
-      setReply("Error aa gaya");
-
-    }
-
-  }
+const res = await fetch("/api/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+message
+})
+});
 
 
-  return (
+const data = await res.json();
 
-    <div className="chat-page">
+setReply(data.reply);
 
-      <h1>Zentra AI Chat 🤖</h1>
-
-      <p>{reply}</p>
+}
 
 
-      <input
-      value={message}
-      onChange={(e)=>setMessage(e.target.value)}
-      placeholder="Ask anything..."
-      />
+return(
+<div className="chat-page">
 
+<h1>Zentra AI Chat 🤖</h1>
 
-      <button onClick={sendMessage}>
-        Send
-      </button>
+<p>{reply}</p>
 
+<input
+placeholder="Ask anything..."
+value={message}
+onChange={(e)=>setMessage(e.target.value)}
+/>
 
-    </div>
+<button onClick={sendMessage}>
+Send
+</button>
 
-  );
+</div>
+)
 
 }
