@@ -7,7 +7,7 @@ const tools = [
   {
     name: "AI Writer",
     desc: "Create content faster with AI",
-    image: "https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+    image: "https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
   },
   {
     name: "AI Image",
