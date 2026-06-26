@@ -1,50 +1,26 @@
-import { useState } from "react";
-
-export default function Chat(){
-
-const [message,setMessage]=useState("");
-const [reply,setReply]=useState("");
-
-async function sendMessage(){
-
-setReply("AI is thinking...");
-
-const res = await fetch("/api/chat",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-message
-})
-});
-
-
-const data = await res.json();
-
-setReply(data.reply);
-
-}
-
-
 return(
-<div className="chat-page">
+<div className="chat-container">
 
-<h1>Zentra AI Chat 🤖</h1>
+<h1>Zentra AI 🤖</h1>
 
+<div className="chat-box">
 <p>{reply}</p>
+</div>
+
+
+<div className="input-area">
 
 <input
-placeholder="Ask anything..."
+placeholder="Message Zentra AI..."
 value={message}
 onChange={(e)=>setMessage(e.target.value)}
 />
 
 <button onClick={sendMessage}>
-Send
+➤
 </button>
 
 </div>
-)
 
-}
+</div>
+)
