@@ -1,57 +1,50 @@
-export default async function handler(req, res) {
+export default async function handler(req,res){
 
-  if(req.method !== "POST"){
-    return res.status(405).json({error:"Method not allowed"});
-  }
+try{
 
-  try {
+const {message}=req.body;
 
-    const {message} = req.body;
-
-    console.log("MESSAGE:", message);
-    console.log("KEY:", process.env.GEMINI_API_KEY ? "YES" : "NO");
-
-
-    const apiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          contents:[
-            {
-              parts:[
-                {
-                  text:message
-                }
-              ]
-            }
-          ]
-        })
-      }
-    );
+const response = await fetch(
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+contents:[
+{
+parts:[
+{
+text:message
+}
+]
+}
+]
+})
+}
+);
 
 
-    const data = await apiResponse.json();
-
-    console.log("GEMINI:",data);
+const data = await response.json();
 
 
-    res.status(200).json({
-      reply:data.candidates?.[0]?.content?.parts?.[0]?.text || "No reply"
-    });
+console.log(data);
 
 
-  } catch(error){
+res.status(200).json({
+reply:data.candidates[0].content.parts[0].text
+});
 
-    console.log("ERROR:",error);
 
-    res.status(500).json({
-      reply:"Backend error"
-    });
+}catch(error){
 
-  }
+console.log(error);
+
+res.status(500).json({
+reply:error.message
+});
+
+}
 
 }
