@@ -1,59 +1,55 @@
-export default async function handler(req, res) {
+export default async function handler(req,res){
 
-  try {
+try{
 
-    const { message } = req.body;
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: message
-                }
-              ]
-            }
-          ]
-        })
-      }
-    );
+const {message}=req.body;
 
 
-    const data = await response.json();
+const response = await fetch(
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`,
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+contents:[
+{
+parts:[
+{
+text:message
+}
+]
+}
+]
+})
+}
+);
 
-    console.log("Gemini Response:", data);
+
+const data = await response.json();
+
+console.log(data);
 
 
-    if (!data.candidates) {
-
-      return res.status(200).json({
-        reply: "Gemini Error: " + JSON.stringify(data)
-      });
-
-    }
+if(!data.candidates){
+return res.status(200).json({
+reply:"Gemini Error: "+JSON.stringify(data)
+});
+}
 
 
-    res.status(200).json({
-      reply:data.candidates?.[0]?.content?.parts?.[0]?.text || "No response"
+return res.status(200).json({
+reply:data.candidates[0].content.parts[0].text
+});
 
 
-  } catch (error) {
+}catch(error){
 
-    console.log(error);
+return res.status(500).json({
+reply:error.message
+});
 
-    res.status(500).json({
-      reply: error.message
-    });
-
-  }
+}
 
 }
