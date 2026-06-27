@@ -17,9 +17,19 @@ model:"openai/gpt-oss-120b",
 messages:[
 {
 role:"user",
+body:JSON.stringify({
+model:"openai/gpt-oss-120b",
+messages:[
+{
+role:"system",
+content:"You are Zentra AI. Always answer clearly using bullet points, numbered lists, headings and short paragraphs when needed. Format answers like ChatGPT."
+},
+{
+role:"user",
 content:message
 }
 ]
+})
 })
 }
 );
