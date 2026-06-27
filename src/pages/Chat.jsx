@@ -16,7 +16,7 @@ function Chat() {
 
     setMessage("");
 
-    const res = await fetch("/api/chat", {
+    const res = await fetch("/api/chat.js", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
