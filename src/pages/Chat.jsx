@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "./Chat.css";
 
-function Chat() {
+function Chat(){
 
 const [message,setMessage] = useState("");
 const [chat,setChat] = useState([]);
@@ -14,25 +15,35 @@ if(!message.trim()) return;
 
 const userMessage = message;
 
+
 setChat(old=>[
 ...old,
-{role:"user", text:userMessage}
+{
+role:"user",
+text:userMessage
+}
 ]);
+
 
 setMessage("");
 setLoading(true);
 
 
+
 try{
 
 const res = await fetch("/api/chat",{
+
 method:"POST",
+
 headers:{
 "Content-Type":"application/json"
 },
+
 body:JSON.stringify({
 message:userMessage
 })
+
 });
 
 
@@ -48,13 +59,15 @@ text:data.reply
 ]);
 
 
-}catch(error){
+}
+
+catch{
 
 setChat(old=>[
 ...old,
 {
 role:"ai",
-text:"Error connecting AI"
+text:"Connection error"
 }
 ]);
 
@@ -67,13 +80,26 @@ setLoading(false);
 
 
 
+
 return(
 
-<div className="chat-container">
+<div className="app">
 
-<h1>
-Zentra AI 🤖
+
+<h1 className="logo">
+✨ Zentra AI 🤖
 </h1>
+
+
+{
+chat.length===0 &&
+
+<h2 className="welcome">
+Welcome to our chat ✨
+</h2>
+
+}
+
 
 
 <div className="chat-box">
@@ -87,9 +113,18 @@ key={index}
 className={msg.role}
 >
 
-<b>
-{msg.role==="user"?"You":"Zentra"}
-</b>
+<div className="name">
+
+{
+msg.role==="user"
+?
+"You"
+:
+"Zentra"
+}
+
+</div>
+
 
 <p>
 {msg.text}
@@ -102,12 +137,14 @@ className={msg.role}
 }
 
 
+
 {
 loading &&
 
-<div className="ai">
-<b>Zentra</b>
-<p>Thinking...</p>
+<div className="ai typing">
+
+Zentra is thinking...
+
 </div>
 
 }
@@ -118,6 +155,7 @@ loading &&
 
 
 <div className="input-area">
+
 
 <input
 
@@ -137,15 +175,20 @@ sendMessage();
 />
 
 
+
 <button onClick={sendMessage}>
-Send
+
+➤
+
 </button>
 
 
+
 </div>
 
 
 </div>
+
 
 )
 
