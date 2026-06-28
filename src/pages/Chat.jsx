@@ -61,13 +61,18 @@ text:data.reply
 
 }
 
-catch{
+catch(error){
 
-setChat(old=>[
-...old,
+console.log(error);
+
+setMessages(prev=>[
+...prev,
 {
-role:"ai",
-text:"Connection error"
+text:error.message,
+user:false
+}
+]);
+
 }
 ]);
 
