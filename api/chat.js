@@ -10,6 +10,13 @@ export default async function handler(req, res) {
 
     const { message } = req.body;
 
+    if (!message) {
+      return res.status(400).json({
+        error: "Message missing"
+      });
+    }
+
+
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
@@ -28,17 +35,7 @@ export default async function handler(req, res) {
             {
               role:"system",
               content:
-              `
-              You are Zentra AI 🤖✨
-
-              Rules:
-              - Reply like ChatGPT
-              - Use emojis naturally
-              - Use clean formatting
-              - Use bullet points
-              - Reply in Hinglish
-              - Be helpful and professional
-              `
+              "You are Zentra AI 🤖✨. Reply in Hinglish. Use emojis naturally. Give clean answers."
             },
 
             {
@@ -55,9 +52,21 @@ export default async function handler(req, res) {
     const data = await response.json();
 
 
-    return res.status(200).json({
+    if (!response.ok) {
 
-      reply:data.choices[0].message.content
+      console.log(data);
+
+      return res.status(500).json({
+        error:data
+      });
+
+    }
+
+
+    res.status(200).json({
+
+      reply:
+      data.choices[0].message.content
 
     });
 
@@ -66,9 +75,9 @@ export default async function handler(req, res) {
 
     console.log(error);
 
-    return res.status(500).json({
+    res.status(500).json({
 
-      error:error.message
+      error:"Server error"
 
     });
 
