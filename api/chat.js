@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+npm install react-markdown
 export default async function handler(req,res){
 
 try{
