@@ -41,7 +41,7 @@ headers:{
 },
 
 body:JSON.stringify({
-message:userMessage
+message:userText
 })
 
 });
