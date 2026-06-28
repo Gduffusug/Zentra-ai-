@@ -1,86 +1,23 @@
-export default async function handler(req, res) {
+export default async function handler(req,res){
 
-  if (req.method !== "POST") {
-    return res.status(405).json({
-      error: "Method not allowed"
-    });
-  }
+try{
 
-  try {
+console.log("API START");
 
-    const { message } = req.body;
-
-    if (!message) {
-      return res.status(400).json({
-        error: "Message missing"
-      });
-    }
+console.log("KEY:", process.env.GROQ_API_KEY ? "FOUND" : "MISSING");
 
 
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
-        },
-
-        body: JSON.stringify({
-
-          model: "llama-3.3-70b-versatile",
-
-          messages: [
-            {
-              role:"system",
-              content:
-              "You are Zentra AI 🤖✨. Reply in Hinglish. Use emojis naturally. Give clean answers."
-            },
-
-            {
-              role:"user",
-              content: message
-            }
-          ]
-
-        })
-      }
-    );
+return res.status(200).json({
+reply:"Backend working ✅"
+});
 
 
-    const data = await response.json();
+}catch(error){
 
+return res.status(500).json({
+error:error.message
+});
 
-    if (!response.ok) {
-
-      console.log(data);
-
-      return res.status(500).json({
-        error:data
-      });
-
-    }
-
-
-    res.status(200).json({
-
-      reply:
-      data.choices[0].message.content
-
-    });
-
-
-  } catch(error){
-
-    console.log(error);
-
-    res.status(500).json({
-
-      error:"Server error"
-
-    });
-
-  }
+}
 
 }
