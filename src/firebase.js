@@ -7,8 +7,7 @@ const firebaseConfig = {
   projectId: "zentra-ai-a9bdd",
   storageBucket: "zentra-ai-a9bdd.firebasestorage.app",
   messagingSenderId: "381054970940",
-  appId: "1:381054970940:web:b54dc23e2275d9fdc0e739",
-  measurementId: "G-XMHMEWLVWV"
+  appId: "1:381054970940:web:b54dc23e2275d9fdc0e739"
 };
 
 const app = initializeApp(firebaseConfig);
