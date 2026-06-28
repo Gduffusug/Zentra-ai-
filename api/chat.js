@@ -76,11 +76,8 @@ catch(error){
 console.log(error);
 
 res.status(500).json({
-
-reply:"Connection error 😔"
-
+reply:error.message
 });
-
 }
 
 }
