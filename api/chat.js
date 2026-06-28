@@ -2,20 +2,63 @@ export default async function handler(req,res){
 
 try{
 
-console.log("API START");
-
-console.log("KEY:", process.env.GROQ_API_KEY ? "FOUND" : "MISSING");
+const {message}=req.body;
 
 
-return res.status(200).json({
-reply:"Backend working ✅"
+const response = await fetch(
+"https://api.groq.com/openai/v1/chat/completions",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"Authorization":`Bearer ${process.env.GROQ_API_KEY}`
+},
+
+body:JSON.stringify({
+
+model:"llama-3.1-8b-instant",
+
+messages:[
+
+{
+role:"system",
+content:
+"You are Zentra AI 🤖. Reply like ChatGPT. Use emojis naturally. Reply in Hinglish unless user uses English. Keep answers clean and helpful."
+},
+
+{
+role:"user",
+content:message
+}
+
+]
+
+})
+
 });
 
 
-}catch(error){
+const data = await response.json();
 
-return res.status(500).json({
-error:error.message
+
+res.status(200).json({
+
+reply:data.choices[0].message.content
+
+});
+
+
+}
+
+catch(error){
+
+console.log(error);
+
+res.status(500).json({
+
+reply:"Server error ❌"
+
 });
 
 }
