@@ -4,7 +4,6 @@ try{
 
 const { message } = req.body;
 
-
 const response = await fetch(
 "https://api.groq.com/openai/v1/chat/completions",
 {
@@ -17,7 +16,7 @@ headers:{
 
 body:JSON.stringify({
 
-model:"llama-3.3-70b-versatile"
+model:"llama-3.3-70b-versatile",
 
 messages:[
 
@@ -32,7 +31,7 @@ Rules:
 - Use clean formatting.
 - Use bullet points.
 - Use numbered steps.
-- Never use ##, ** or HTML tags.
+- Never use markdown symbols like ## or **.
 - Reply in Hinglish unless user uses English.
 - Keep answers professional and easy to understand.
 `
@@ -51,6 +50,8 @@ content:message
 
 
 const data = await response.json();
+
+console.log(data);
 
 
 if(!data.choices){
