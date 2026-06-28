@@ -73,11 +73,14 @@ reply:data.choices[0].message.content
 
 catch(error){
 
-console.log(error);
+console.log("ERROR:", error);
 
 res.status(500).json({
-reply:error.message
+
+reply:"ERROR: " + error.message
+
 });
+
 }
 
 }
