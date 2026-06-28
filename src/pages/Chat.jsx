@@ -29,7 +29,6 @@ setMessage("");
 setLoading(true);
 
 
-
 try{
 
 const res = await fetch("/api/chat",{
@@ -41,7 +40,7 @@ headers:{
 },
 
 body:JSON.stringify({
-message:userText
+message:userMessage
 })
 
 });
@@ -54,7 +53,7 @@ setChat(old=>[
 ...old,
 {
 role:"ai",
-text:data.reply
+text:data.reply || "No reply"
 }
 ]);
 
@@ -65,14 +64,11 @@ catch(error){
 
 console.log(error);
 
-setMessages(prev=>[
-...prev,
+setChat(old=>[
+...old,
 {
-text:error.message,
-user:false
-}
-]);
-
+role:"ai",
+text:"Error: "+error.message
 }
 ]);
 
@@ -82,7 +78,6 @@ user:false
 setLoading(false);
 
 }
-
 
 
 
@@ -98,11 +93,9 @@ return(
 
 {
 chat.length===0 &&
-
 <h2 className="welcome">
 Welcome to our chat ✨
 </h2>
-
 }
 
 
@@ -113,10 +106,7 @@ Welcome to our chat ✨
 {
 chat.map((msg,index)=>(
 
-<div 
-key={index}
-className={msg.role}
->
+<div key={index} className={msg.role}>
 
 <div className="name">
 
@@ -131,9 +121,7 @@ msg.role==="user"
 </div>
 
 
-<p>
-{msg.text}
-</p>
+<p>{msg.text}</p>
 
 
 </div>
@@ -145,13 +133,9 @@ msg.role==="user"
 
 {
 loading &&
-
 <div className="ai typing">
-
-Zentra is thinking...
-
+Zentra is thinking... ⏳
 </div>
-
 }
 
 
@@ -182,9 +166,7 @@ sendMessage();
 
 
 <button onClick={sendMessage}>
-
 ➤
-
 </button>
 
 
@@ -193,7 +175,6 @@ sendMessage();
 
 
 </div>
-
 
 )
 
