@@ -1,68 +1,67 @@
-import "./styles/Dashboard.css";
-import "./Styles/Dashboard.css";
+import "./Dashboard.css";
 
 function Dashboard() {
+
+  const user = localStorage.getItem("user") || "User";
+
   return (
     <div className="dashboard">
 
       <div className="hero">
-        <div>
-          <h1>
-            Welcome back,👋
-          </h1>
 
-          <p>
-            Create, analyze and build with advanced AI.
-          </p>
+        <h1>
+          Welcome back, {user} 👋
+        </h1>
 
-          <button>
-            Start AI Chat →
-          </button>
+        <p>
+          Create, analyze and build with advanced AI.
+        </p>
+
+
+        <div className="cards">
+
+          <div className="card">
+            <h2>🤖 AI Chat</h2>
+            <p>
+              Talk with your personal AI assistant.
+            </p>
+
+            <button>
+              Start Chat →
+            </button>
+          </div>
+
+
+          <div className="card">
+            <h2>🎨 Image AI</h2>
+            <p>
+              Generate creative AI images.
+            </p>
+
+            <button>
+              Create →
+            </button>
+          </div>
+
+
+          <div className="card">
+            <h2>📁 Projects</h2>
+            <p>
+              Manage your AI projects.
+            </p>
+
+            <button>
+              Open →
+            </button>
+          </div>
+
         </div>
-
-        <div className="robot">
-          🤖
-        </div>
-
-      </div>
-
-
-      <h2>AI Tools</h2>
-
-      <div className="tools">
-
-        <div className="card">
-          🤖
-          <h3>AI Chat</h3>
-          <p>Chat with powerful AI</p>
-        </div>
-
-
-        <div className="card">
-          🎨
-          <h3>Image AI</h3>
-          <p>Create AI images</p>
-        </div>
-
-
-        <div className="card">
-          💻
-          <h3>Code AI</h3>
-          <p>Generate code faster</p>
-        </div>
-
-
-        <div className="card">
-          🎙️
-          <h3>Voice AI</h3>
-          <p>Convert speech</p>
-        </div>
-
 
       </div>
 
     </div>
   );
 }
+
 
 export default Dashboard;
