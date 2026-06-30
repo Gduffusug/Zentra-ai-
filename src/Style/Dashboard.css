@@ -1,0 +1,139 @@
+.dashboard-page {
+  min-height: 100vh;
+  background: #050505;
+  color: white;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.dashboard-title {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.dashboard-title span {
+  color: #00e5ff;
+}
+
+.search-box {
+  background: #111;
+  border: 1px solid #333;
+  padding: 14px 20px;
+  border-radius: 30px;
+  color: white;
+  width: 250px;
+}
+
+.welcome-card {
+  background: linear-gradient(135deg,#0b2a55,#101010);
+  border-radius: 30px;
+  padding: 45px;
+  box-shadow: 0 20px 60px rgba(0,229,255,0.15);
+  margin-bottom: 35px;
+}
+
+.welcome-card h1 {
+  font-size: 45px;
+}
+
+.welcome-card span {
+  color:#00e5ff;
+}
+
+.ai-btn {
+  margin-top:20px;
+  padding:15px 30px;
+  border:none;
+  border-radius:30px;
+  background:#00e5ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+
+.tools-title {
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+
+.tools-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
+}
+
+
+.tool-card {
+  background:#111;
+  border:1px solid #222;
+  border-radius:25px;
+  padding:30px;
+  transition:.3s;
+}
+
+
+.tool-card:hover {
+  transform:translateY(-8px);
+  box-shadow:0 15px 40px rgba(0,229,255,.2);
+}
+
+
+.tool-icon {
+  font-size:40px;
+}
+
+
+.tool-card h2 {
+  margin-top:20px;
+}
+
+
+.tool-card p {
+  color:#aaa;
+}
+
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+.dashboard-page{
+ padding:20px;
+}
+
+.dashboard-top{
+ flex-direction:column;
+ gap:20px;
+}
+
+.dashboard-title{
+ font-size:32px;
+}
+
+.search-box{
+ width:90%;
+}
+
+.welcome-card{
+ padding:25px;
+}
+
+.welcome-card h1{
+ font-size:32px;
+}
+
+.tools-grid{
+ grid-template-columns:1fr;
+}
+
+}
