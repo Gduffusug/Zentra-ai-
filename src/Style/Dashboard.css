@@ -1,128 +1,120 @@
-.dashboard{
-padding:40px;
-color:white;
-}
+.dashboard {
 
+  min-height:100vh;
 
-.hero{
+  background:#050505;
 
-background:linear-gradient(135deg,#082b55,#06101f);
-border-radius:30px;
-padding:50px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  color:white;
+
+  padding:40px;
 
 }
+
 
 
 .hero h1{
-font-size:50px;
+
+  font-size:48px;
+
+  margin-bottom:20px;
+
 }
 
-
-.hero span{
-color:#00eaff;
-}
 
 
 .hero p{
-font-size:20px;
-color:#bbb;
-}
 
+  font-size:22px;
 
-.hero button{
-
-padding:15px 30px;
-border-radius:30px;
-border:none;
-background:white;
-font-size:18px;
-cursor:pointer;
-
-}
-
-
-.robot{
-
-font-size:120px;
+  color:#aaa;
 
 }
 
 
 
-.tools{
+.cards{
 
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:25px;
+  display:flex;
+
+  gap:25px;
+
+  margin-top:50px;
+
+  flex-wrap:wrap;
 
 }
+
 
 
 .card{
 
-background:#111;
-border:1px solid #333;
-border-radius:25px;
-padding:30px;
-font-size:25px;
+  background:#111;
+
+  border:1px solid #222;
+
+  border-radius:20px;
+
+  padding:30px;
+
+  width:280px;
+
+  transition:0.3s;
 
 }
 
 
-.card h3{
 
-font-size:22px;
+.card:hover{
+
+  transform:translateY(-8px);
+
+  border-color:#00e5ff;
 
 }
+
+
+
+.card h2{
+
+  font-size:25px;
+
+}
+
 
 
 .card p{
 
-font-size:16px;
-color:#aaa;
+  font-size:16px;
+
+  color:#aaa;
 
 }
 
 
 
-@media(max-width:700px){
+button{
 
-.hero{
+  margin-top:20px;
 
-flex-direction:column;
-text-align:center;
+  padding:12px 25px;
 
-}
+  border:none;
 
+  border-radius:30px;
 
-.hero h1{
+  background:#00e5ff;
 
-font-size:35px;
+  color:black;
 
-}
+  font-weight:bold;
 
-
-.robot{
-
-font-size:80px;
+  cursor:pointer;
 
 }
 
 
-.tools{
+button:hover{
 
-grid-template-columns:1fr;
-
-}
-
-
-.dashboard{
-
-padding:15px;
-
-}
+  opacity:0.8;
 
 }
