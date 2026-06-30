@@ -1,175 +1,42 @@
-import { useState } from "react";
-import "./Chat.css";
+import React from "react";
+import "../style.css";
+
 
 function Chat(){
 
-const [message,setMessage] = useState("");
-const [chat,setChat] = useState([]);
-const [loading,setLoading] = useState(false);
-
-
-async function sendMessage(){
-
-if(!message.trim()) return;
-
-
-const userMessage = message;
-
-
-setChat(old=>[
-...old,
-{
-role:"user",
-text:userMessage
-}
-]);
-
-
-setMessage("");
-setLoading(true);
-
-
-try{
-
-const res = await fetch("/api/chat",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-message:userMessage
-})
-
-});
-
-
-const data = await res.json();
-
-
-setChat(old=>[
-...old,
-{
-role:"ai",
-text:data.reply || "No reply"
-}
-]);
-
-
-}
-
-catch(error){
-
-console.log(error);
-
-setChat(old=>[
-...old,
-{
-role:"ai",
-text:"Error: "+error.message
-}
-]);
-
-}
-
-
-setLoading(false);
-
-}
-
-
-
 return(
 
-<div className="app">
+<div className="chat">
 
 
-<h1 className="logo">
-✨ Zentra AI 🤖
+<h1>
+🤖 Zentra AI Chat
 </h1>
 
 
-{
-chat.length===0 &&
-<h2 className="welcome">
-Welcome to our chat ✨
-</h2>
-}
+<div className="chatbox">
 
+<p>
+Hello Jeet 👋
+</p>
 
-
-<div className="chat-box">
-
-
-{
-chat.map((msg,index)=>(
-
-<div key={index} className={msg.role}>
-
-<div className="name">
-
-{
-msg.role==="user"
-?
-"You"
-:
-"Zentra"
-}
-
-</div>
-
-
-<p>{msg.text}</p>
-
-
-</div>
-
-))
-}
-
-
-
-{
-loading &&
-<div className="ai typing">
-Zentra is thinking... ⏳
-</div>
-}
+<p>
+How can I help you today?
+</p>
 
 
 </div>
 
 
 
-<div className="input-area">
+<div className="input">
+
+<input placeholder="Ask AI anything..." />
 
 
-<input
-
-value={message}
-
-placeholder="Ask Zentra AI..."
-
-onChange={(e)=>setMessage(e.target.value)}
-
-onKeyDown={(e)=>{
-
-if(e.key==="Enter")
-sendMessage();
-
-}}
-
-/>
-
-
-
-<button onClick={sendMessage}>
+<button>
 ➤
 </button>
-
-
 
 </div>
 
