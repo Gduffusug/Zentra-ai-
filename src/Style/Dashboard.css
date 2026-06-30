@@ -1,32 +1,27 @@
-.dashboard {
+.dashboard{
 
-  min-height:100vh;
+min-height:100vh;
+background:#050505;
+color:white;
+padding:40px;
 
-  background:#050505;
-
-  color:white;
-
-  padding:40px;
-
-}
-
-
-
-.hero h1{
-
-  font-size:48px;
-
-  margin-bottom:20px;
+font-family:Arial, sans-serif;
 
 }
 
 
+.dashboard h1{
 
-.hero p{
+font-size:45px;
+margin-bottom:10px;
 
-  font-size:22px;
+}
 
-  color:#aaa;
+
+.subtitle{
+
+font-size:20px;
+color:#aaa;
 
 }
 
@@ -34,13 +29,10 @@
 
 .cards{
 
-  display:flex;
-
-  gap:25px;
-
-  margin-top:50px;
-
-  flex-wrap:wrap;
+display:flex;
+gap:25px;
+margin-top:40px;
+flex-wrap:wrap;
 
 }
 
@@ -48,73 +40,69 @@
 
 .card{
 
-  background:#111;
+background:#151515;
+border:1px solid #333;
 
-  border:1px solid #222;
+padding:25px;
 
-  border-radius:20px;
+width:260px;
 
-  padding:30px;
+border-radius:20px;
 
-  width:280px;
-
-  transition:0.3s;
+transition:.3s;
 
 }
-
 
 
 .card:hover{
 
-  transform:translateY(-8px);
+transform:translateY(-8px);
 
-  border-color:#00e5ff;
-
-}
-
-
-
-.card h2{
-
-  font-size:25px;
+border-color:#00e5ff;
 
 }
 
 
 
-.card p{
+.card button,
+.pro-box button{
 
-  font-size:16px;
 
-  color:#aaa;
+background:#00e5ff;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
 
 }
 
 
 
-button{
+.pro-box{
 
-  margin-top:20px;
+margin-top:40px;
 
-  padding:12px 25px;
+background:#111;
 
-  border:none;
+padding:30px;
 
-  border-radius:30px;
+border-radius:20px;
 
-  background:#00e5ff;
+max-width:500px;
 
-  color:black;
-
-  font-weight:bold;
-
-  cursor:pointer;
 
 }
 
 
-button:hover{
+.pro-box h2{
 
-  opacity:0.8;
+font-size:30px;
 
 }
