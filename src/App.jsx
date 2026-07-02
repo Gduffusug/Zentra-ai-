@@ -1,218 +1,203 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
+function App() {
+  const navigate = useNavigate();
 
-function App(){
+  return (
+    <div className="app">
 
-const navigate = useNavigate();
+      {/* Sidebar */}
+      <aside className="sidebar">
 
+        <div className="logo">
+          ⚡ Zentra AI
+        </div>
 
-return(
+        <div className="menu">
 
-<div className="dashboard">
+          <div className="menu-item active">
+            🏠 Dashboard
+          </div>
 
+          <div
+            className="menu-item"
+            onClick={() => navigate("/chat")}
+          >
+            🤖 AI Chat
+          </div>
 
-<aside className="sidebar">
+          <div className="menu-item">
+            🎨 Image AI
+          </div>
 
-<h1 className="logo">⚡ Zentra AI</h1>
+          <div className="menu-item">
+            💻 Code AI
+          </div>
 
+          <div className="menu-item">
+            📁 Projects
+          </div>
 
-<div className="menu">
+          <div className="menu-item">
+            ⚙ Settings
+          </div>
 
-<p>🏠 Dashboard</p>
+        </div>
 
-<p onClick={()=>navigate("/chat")}>
-🤖 AI Chat
-</p>
+        <div className="upgrade-card">
 
-<p>🎨 Image AI</p>
+          <h3>Upgrade Pro</h3>
 
-<p>📁 Projects</p>
+          <p>
+            Unlock all premium AI tools.
+          </p>
 
-<p>⚙ Settings</p>
+          <button className="upgrade-btn">
+            Upgrade
+          </button>
 
-</div>
+        </div>
 
+      </aside>
 
-<div className="upgrade">
+      {/* Main */}
+      <main className="main">
 
-<h3>Upgrade Pro</h3>
+        {/* Topbar */}
 
-<p>
-Unlock premium AI tools
-</p>
+        <header className="topbar">
 
-<button>
-Upgrade
-</button>
+          <input
+            className="search"
+            placeholder="Search..."
+          />
 
-</div>
+          <div className="top-actions">
 
+            <button className="pro-btn">
+              PRO
+            </button>
 
-</aside>
+            <div className="user">
 
+              👤 Jeet
 
+            </div>
 
-<main className="main">
+          </div>
 
+        </header>
 
-<header className="topbar">
+        {/* Hero */}
 
-<input placeholder="Search anything..." />
+        <section className="hero">
 
-<button className="pro">
-Upgrade
-</button>
+          <div>
 
+            <h1>
+              Welcome back,
+              <br />
+              <span>Jeet 👋</span>
+            </h1>
 
-<span>
-👤 Jeet
-</span>
+            <p>
+              Build faster with Zentra AI.
+              Chat, generate images and code
+              in one workspace.
+            </p>
 
+            <button
+              className="start-btn"
+              onClick={() => navigate("/chat")}
+            >
+              Start AI Chat →
+            </button>
 
-</header>
+          </div>
 
+          <div className="hero-icon">
 
+            🤖
 
+          </div>
 
-<section className="hero-dashboard">
+        </section>
 
+        {/* AI Tools */}
 
-<div>
+        <h2 className="section-title">
+          AI Tools
+        </h2>
 
-<h1>
-Welcome back,
-<span>
- Jeet 👋
-</span>
-</h1>
+        <div className="cards">
 
+          <div
+            className="card"
+            onClick={() => navigate("/chat")}
+          >
 
-<p>
-Create, analyze and build with advanced AI.
-</p>
+            <div className="emoji">
+              🤖
+            </div>
 
+            <h3>AI Chat</h3>
 
-<button className="start"
-onClick={()=>navigate("/chat")}
->
-Start AI Chat →
-</button>
+            <p>
+              Ask anything instantly.
+            </p>
 
+          </div>
 
-</div>
+          <div className="card">
 
+            <div className="emoji">
+              🎨
+            </div>
 
-<div className="robot">
-🤖
-</div>
+            <h3>Image AI</h3>
 
+            <p>
+              Generate amazing images.
+            </p>
 
-</section>
+          </div>
 
+          <div className="card">
 
+            <div className="emoji">
+              💻
+            </div>
 
+            <h3>Code AI</h3>
 
-<h2>
-AI Tools
-</h2>
+            <p>
+              Generate clean code.
+            </p>
 
+          </div>
 
+          <div className="card">
 
-<div className="cards">
+            <div className="emoji">
+              🎙
+            </div>
 
+            <h3>Voice AI</h3>
 
+            <p>
+              Voice assistant coming soon.
+            </p>
 
-<div className="card"
-onClick={()=>navigate("/chat")}
->
+          </div>
 
-<h2>
-🤖
-</h2>
+        </div>
 
-<h3>
-AI Chat
-</h3>
+      </main>
 
-<p>
-Chat with powerful AI
-</p>
-
-</div>
-
-
-
-
-<div className="card">
-
-<h2>
-🎨
-</h2>
-
-<h3>
-Image Generator
-</h3>
-
-<p>
-Create AI images
-</p>
-
-</div>
-
-
-
-
-<div className="card">
-
-<h2>
-💻
-</h2>
-
-<h3>
-Code AI
-</h3>
-
-<p>
-Generate code faster
-</p>
-
-</div>
-
-
-
-
-<div className="card">
-
-<h2>
-🎙
-</h2>
-
-<h3>
-Voice AI
-</h3>
-
-<p>
-Convert speech
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</main>
-
-
-</div>
-
-
-)
-
+    </div>
+  );
 }
-
 
 export default App;
