@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import "../style.css";
-
+import "./Chat.css";
 
 function Chat(){
 
 const [user,setUser] = useState(null);
 const [message,setMessage] = useState("");
 const [chat,setChat] = useState([]);
+const messagesEndRef = useRef(null);
+const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
 
-onAuthStateChanged(auth,(currentUser)=>{
+  return () => unsubscribe();
+}, []);
 
 if(currentUser){
 setUser(currentUser);
@@ -92,7 +99,11 @@ chat.map((item,index)=>(
 ))
 }
 
-
+useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({
+    behavior: "smooth",
+  });
+}, [chat]);
 </div>
 
 
