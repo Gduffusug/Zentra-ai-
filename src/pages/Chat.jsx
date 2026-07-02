@@ -1,143 +1,135 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import "./Chat.css";
 
-function Chat(){
+function Chat() {
 
-const [user,setUser] = useState(null);
-const [message,setMessage] = useState("");
-const [chat,setChat] = useState([]);
-const messagesEndRef = useRef(null);
-const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
 
-  return () => unsubscribe();
-}, []);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
 
-if(currentUser){
-setUser(currentUser);
-}
+    return () => unsubscribe();
 
-});
+  }, []);
 
+  useEffect(() => {
 
-const sendMessage = async()=>{
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth"
+    });
 
-if(!message) return;
+  }, [chat]);
 
+  const sendMessage = () => {
 
-setChat([
-...chat,
-{
-type:"user",
-text:message
-}
-]);
+    if (!message.trim()) return;
 
+    const userMessage = {
+      type: "user",
+      text: message
+    };
 
-setMessage("");
+    setChat(prev => [...prev, userMessage]);
 
+    setMessage("");
 
-// temporary AI reply
-setTimeout(()=>{
+    setLoading(true);
 
-setChat(prev=>[
-...prev,
-{
-type:"ai",
-text:"I am Zentra AI 🤖. AI system will be connected soon."
-}
-]
+    setTimeout(() => {
 
-)
+      setChat(prev => [
+        ...prev,
+        {
+          type: "ai",
+          text: "🤖 AI API will be connected in the next step."
+        }
+      ]);
 
-},700);
+      setLoading(false);
 
+    }, 1000);
 
-}
+  };
 
+  return (
 
+    <div className="chat-page">
 
-return(
+      <h1 className="chat-title">
+        🤖 Zentra AI
+      </h1>
 
-<div className="chat">
+      <div className="chat-box">
 
+        {chat.map((item, index) => (
 
-<h1>
-🤖 Zentra AI Chat
-</h1>
+          <div
+            key={index}
+            className={
+              item.type === "user"
+                ? "message user-msg"
+                : "message ai-msg"
+            }
+          >
+            {item.text}
+          </div>
 
+        ))}
 
-<h2>
-Hello {user?.displayName || user?.email || "User"} 👋
-</h2>
+        {loading && (
 
+          <div className="message ai-msg">
+            Typing...
+          </div>
 
-<div className="chatbox">
+        )}
 
+        <div ref={messagesEndRef}></div>
 
-{
-chat.map((item,index)=>(
+      </div>
 
-<p key={index}>
+      <div className="chat-input-area">
 
-<b>
-{item.type==="user" ? "You: " : "AI: "}
-</b>
+        <input
 
-{item.text}
+          value={message}
 
-</p>
+          placeholder={
+            "Message Zentra AI..."
+          }
 
+          onChange={(e) =>
+            setMessage(e.target.value)
+          }
 
-))
-}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              sendMessage();
+            }
+          }}
 
-useEffect(() => {
-  messagesEndRef.current?.scrollIntoView({
-    behavior: "smooth",
-  });
-}, [chat]);
-</div>
+        />
 
+        <button onClick={sendMessage}>
+          ➤
+        </button>
 
+      </div>
 
-<div className="input">
+    </div>
 
-
-<input
-
-value={message}
-
-onChange={(e)=>setMessage(e.target.value)}
-
-placeholder="Ask AI anything..."
-
-/>
-
-
-<button onClick={sendMessage}>
-
-➤
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-)
+  );
 
 }
-
 
 export default Chat;
