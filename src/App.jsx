@@ -1,143 +1,203 @@
-<div className="cards">
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
 
-  {[
-    {
-      icon:"🤖",
-      title:"AI Chat",
-      desc:"Chat with powerful AI.",
-      active:true
-    },
+function App() {
+  const navigate = useNavigate();
 
-    {
-      icon:"📝",
-      title:"Resume Builder",
-      desc:"Create ATS-friendly resumes."
-    },
+  return (
+    <div className="app">
 
-    {
-      icon:"📄",
-      title:"PDF Tools",
-      desc:"Merge, split and convert PDFs."
-    },
+      {/* Sidebar */}
+      <aside className="sidebar">
 
-    {
-      icon:"🔳",
-      title:"QR Generator",
-      desc:"Generate beautiful QR codes."
-    },
+        <div className="logo">
+          ⚡ Zentra AI
+        </div>
 
-    {
-      icon:"🔑",
-      title:"Password Generator",
-      desc:"Create secure passwords."
-    },
+        <div className="menu">
 
-    {
-      icon:"📝",
-      title:"Text Tools",
-      desc:"Useful writing utilities."
-    },
+          <div className="menu-item active">
+            🏠 Dashboard
+          </div>
 
-    {
-      icon:"🖼️",
-      title:"Image Converter",
-      desc:"Convert image formats."
-    },
+          <div
+            className="menu-item"
+            onClick={() => navigate("/chat")}
+          >
+            🤖 AI Chat
+          </div>
 
-    {
-      icon:"🗜️",
-      title:"Image Compressor",
-      desc:"Compress images instantly."
-    },
+          <div className="menu-item">
+            🎨 Image AI
+          </div>
 
-    {
-      icon:"🎂",
-      title:"Age Calculator",
-      desc:"Calculate your exact age."
-    },
+          <div className="menu-item">
+            💻 Code AI
+          </div>
 
-    {
-      icon:"💰",
-      title:"EMI Calculator",
-      desc:"Calculate monthly EMI."
-    },
+          <div className="menu-item">
+            📁 Projects
+          </div>
 
-    {
-      icon:"🧾",
-      title:"GST Calculator",
-      desc:"GST calculations made easy."
-    },
+          <div className="menu-item">
+            ⚙ Settings
+          </div>
 
-    {
-      icon:"📊",
-      title:"Word Counter",
-      desc:"Count words and characters."
-    },
+        </div>
 
-    {
-      icon:"📧",
-      title:"AI Email Writer",
-      desc:"Generate professional emails."
-    },
+        <div className="upgrade-card">
 
-    {
-      icon:"📄",
-      title:"AI Summarizer",
-      desc:"Summarize long documents."
-    },
+          <h3>Upgrade Pro</h3>
 
-    {
-      icon:"🌍",
-      title:"AI Translator",
-      desc:"Translate into multiple languages."
-    }
+          <p>
+            Unlock all premium AI tools.
+          </p>
 
-  ].map((tool,index)=>(
+          <button className="upgrade-btn">
+            Upgrade
+          </button>
 
-    <div
+        </div>
 
-      key={index}
+      </aside>
 
-      className={`card ${tool.active ? "active-card" : ""}`}
+      {/* Main */}
+      <main className="main">
 
-      onClick={()=>{
-        if(tool.title==="AI Chat"){
-          navigate("/chat");
-        }
-      }}
+        {/* Topbar */}
 
-    >
+        <header className="topbar">
 
-      <div className="emoji">
+          <input
+            className="search"
+            placeholder="Search..."
+          />
 
-        {tool.icon}
+          <div className="top-actions">
 
-      </div>
+            <button className="pro-btn">
+              PRO
+            </button>
 
-      <h3>
+            <div className="user">
 
-        {tool.title}
+              👤 Jeet
 
-      </h3>
+            </div>
 
-      <p>
+          </div>
 
-        {tool.desc}
+        </header>
 
-      </p>
+        {/* Hero */}
 
-      {!tool.active && (
+        <section className="hero">
 
-        <span className="coming-soon">
+          <div>
 
-          Coming Soon
+            <h1>
+              Welcome back,
+              <br />
+              <span>Jeet 👋</span>
+            </h1>
 
-        </span>
+            <p>
+              Build faster with Zentra AI.
+              Chat, generate images and code
+              in one workspace.
+            </p>
 
-      )}
+            <button
+              className="start-btn"
+              onClick={() => navigate("/chat")}
+            >
+              Start AI Chat →
+            </button>
+
+          </div>
+
+          <div className="hero-icon">
+
+            🤖
+
+          </div>
+
+        </section>
+
+        {/* AI Tools */}
+
+        <h2 className="section-title">
+          AI Tools
+        </h2>
+
+        <div className="cards">
+
+          <div
+            className="card"
+            onClick={() => navigate("/chat")}
+          >
+
+            <div className="emoji">
+              🤖
+            </div>
+
+            <h3>AI Chat</h3>
+
+            <p>
+              Ask anything instantly.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <div className="emoji">
+              🎨
+            </div>
+
+            <h3>Image AI</h3>
+
+            <p>
+              Generate amazing images.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <div className="emoji">
+              💻
+            </div>
+
+            <h3>Code AI</h3>
+
+            <p>
+              Generate clean code.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <div className="emoji">
+              🎙
+            </div>
+
+            <h3>Voice AI</h3>
+
+            <p>
+              Voice assistant coming soon.
+            </p>
+
+          </div>
+
+        </div>
+
+      </main>
 
     </div>
+  );
+}
 
-  ))}
-
-</div>
+export default App;
