@@ -99,7 +99,7 @@ function App() {
             <h1>
               Welcome back,
               <br />
-              <span>Jeet 👋</span>
+              <span>user 👋</span>
             </h1>
 
             <p>
