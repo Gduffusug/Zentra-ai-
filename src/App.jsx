@@ -133,65 +133,97 @@ function App() {
 
         <div className="cards">
 
-          <div
-            className="card"
-            onClick={() => navigate("/chat")}
-          >
+  <div className="card" onClick={() => navigate("/chat")}>
+    <div className="emoji">🤖</div>
+    <h3>AI Chat</h3>
+    <p>Chat with powerful AI assistant.</p>
+  </div>
 
-            <div className="emoji">
-              🤖
-            </div>
+  <div className="card">
+    <div className="emoji">📝</div>
+    <h3>Resume Builder</h3>
+    <p>Create professional resumes with AI.</p>
+  </div>
 
-            <h3>AI Chat</h3>
+  <div className="card">
+    <div className="emoji">📄</div>
+    <h3>PDF Tools</h3>
+    <p>Merge, split and convert PDF files.</p>
+  </div>
 
-            <p>
-              Ask anything instantly.
-            </p>
+  <div className="card">
+    <div className="emoji">🔳</div>
+    <h3>QR Generator</h3>
+    <p>Create QR codes instantly.</p>
+  </div>
 
-          </div>
+  <div className="card">
+    <div className="emoji">🔑</div>
+    <h3>Password Generator</h3>
+    <p>Generate strong secure passwords.</p>
+  </div>
 
-          <div className="card">
+  <div className="card">
+    <div className="emoji">📝</div>
+    <h3>Text Tools</h3>
+    <p>Useful writing and editing tools.</p>
+  </div>
 
-            <div className="emoji">
-              🎨
-            </div>
+  <div className="card">
+    <div className="emoji">🖼️</div>
+    <h3>Image Converter</h3>
+    <p>Convert images into multiple formats.</p>
+  </div>
 
-            <h3>Image AI</h3>
+  <div className="card">
+    <div className="emoji">🗜️</div>
+    <h3>Image Compressor</h3>
+    <p>Compress images without losing quality.</p>
+  </div>
 
-            <p>
-              Generate amazing images.
-            </p>
+  <div className="card">
+    <div className="emoji">🎂</div>
+    <h3>Age Calculator</h3>
+    <p>Calculate your exact age instantly.</p>
+  </div>
 
-          </div>
+  <div className="card">
+    <div className="emoji">💰</div>
+    <h3>EMI Calculator</h3>
+    <p>Calculate monthly loan EMI easily.</p>
+  </div>
 
-          <div className="card">
+  <div className="card">
+    <div className="emoji">🧾</div>
+    <h3>GST Calculator</h3>
+    <p>Fast and accurate GST calculations.</p>
+  </div>
 
-            <div className="emoji">
-              💻
-            </div>
+  <div className="card">
+    <div className="emoji">📊</div>
+    <h3>Word Counter</h3>
+    <p>Count words and characters instantly.</p>
+  </div>
 
-            <h3>Code AI</h3>
+  <div className="card">
+    <div className="emoji">📧</div>
+    <h3>AI Email Writer</h3>
+    <p>Write professional emails with AI.</p>
+  </div>
 
-            <p>
-              Generate clean code.
-            </p>
+  <div className="card">
+    <div className="emoji">📄</div>
+    <h3>AI Summarizer</h3>
+    <p>Summarize long articles in seconds.</p>
+  </div>
 
-          </div>
+  <div className="card">
+    <div className="emoji">🌍</div>
+    <h3>AI Translator</h3>
+    <p>Translate text into multiple languages.</p>
+  </div>
 
-          <div className="card">
-
-            <div className="emoji">
-              🎙
-            </div>
-
-            <h3>Voice AI</h3>
-
-            <p>
-              Voice assistant coming soon.
-            </p>
-
-          </div>
-
+</div>
         </div>
 
       </main>
