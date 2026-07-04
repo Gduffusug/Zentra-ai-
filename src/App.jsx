@@ -82,7 +82,7 @@ function App() {
 
             <div className="user">
 
-              👤 Jeet
+              👤 user
 
             </div>
 
