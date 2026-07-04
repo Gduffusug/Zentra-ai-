@@ -224,12 +224,15 @@ function App() {
   </div>
 
 </div>
-        </div>
 
-      </main>
+</main>
 
-    </div>
-  );
+</div>
+
+);
+}
+
+export default App;      </;
 }
 
 export default App;
