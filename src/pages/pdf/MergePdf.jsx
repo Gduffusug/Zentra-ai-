@@ -1,56 +1,190 @@
-
-import { useState } from "react"; 
-import "./MergePdf.css"
+import React, { useRef, useState } from "react";
+import "./MergePdf.css";
 
 function MergePdf() {
   const [files, setFiles] = useState([]);
+  const [dragActive, setDragActive] = useState(false);
 
-  const handleFiles = (e) => {
-    const selected = Array.from(e.target.files);
-    setFiles(selected);
+  const fileInputRef = useRef(null);
+
+  // Select Files
+  const handleFiles = (selectedFiles) => {
+    const newFiles = Array.from(selectedFiles);
+
+    const filtered = newFiles.filter((file) => {
+      return (
+        file.type === "application/pdf" ||
+        file.type === "image/png" ||
+        file.type === "image/jpeg" ||
+        file.type === "image/webp"
+      );
+    });
+
+    setFiles((prev) => [...prev, ...filtered]);
   };
+
+  const handleInputChange = (e) => {
+    handleFiles(e.target.files);
+  };
+
+  // Drag Events
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragActive(false);
+
+    if (e.dataTransfer.files) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  const removeFile = (index) => {
+    setFiles(files.filter((_, i) => i !== index));
+  };
+
+  const totalSize = files.reduce(
+    (total, file) => total + file.size,
+    0
+  );
 
   return (
     <div className="merge-page">
 
-      <h1>📄 Merge PDF</h1>
+      {/* Animated Background */}
+      <div className="bg bg1"></div>
+      <div className="bg bg2"></div>
+      <div className="bg bg3"></div>
 
-      <p>Combine multiple PDF files into one.</p>
+      <div className="merge-container">
 
-      <label className="upload-box">
-        <input
-          type="file"
-          multiple
-          accept=".pdf"
-          onChange={handleFiles}
-          hidden
-        />
+        <h1>📄 PDF Studio</h1>
 
-        <h2>⬆ Upload PDFs</h2>
+        <p>
+          Merge PDFs or convert images into one PDF.
+        </p>
 
-        <span>Select multiple PDF files</span>
+        {/* Upload Area */}
 
-      </label>
+        <div
+          className={`upload-box ${
+            dragActive ? "active" : ""
+          }`}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragActive(true);
+          }}
+          onDragLeave={() => setDragActive(false)}
+          onDrop={handleDrop}
+        >
 
-      <div className="file-list">
-
-        {files.map((file, index) => (
-
-          <div className="file-card" key={index}>
-
-            📄 {file.name}
-
+          <div className="upload-icon">
+            📂
           </div>
 
-        ))}
+          <h2>Drag & Drop Files</h2>
+
+          <p>
+            PDF, PNG, JPG, JPEG, WEBP
+          </p>
+
+          <button
+            className="browse-btn"
+            onClick={() =>
+              fileInputRef.current.click()
+            }
+          >
+            Browse Files
+          </button>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            hidden
+            multiple
+            accept=".pdf,.png,.jpg,.jpeg,.webp"
+            onChange={handleInputChange}
+          />
+
+        </div>
+
+        {/* Stats */}
+
+        {files.length > 0 && (
+          <div className="stats">
+
+            <div>
+              Files
+              <strong>{files.length}</strong>
+            </div>
+
+            <div>
+              Size
+              <strong>
+                {(totalSize / 1024 / 1024).toFixed(2)} MB
+              </strong>
+            </div>
+
+          </div>
+        )}
+
+        {/* File List */}
+
+        <div className="file-list">
+
+          {files.map((file, index) => (
+
+            <div
+              className="file-card"
+              key={index}
+            >
+
+              <div className="file-left">
+
+                <div className="file-icon">
+
+                  {file.type ===
+                  "application/pdf"
+                    ? "📄"
+                    : "🖼️"}
+
+                </div>
+
+                <div>
+
+                  <h4>{file.name}</h4>
+
+                  <p>
+                    {(file.size / 1024 / 1024).toFixed(2)} MB
+                  </p>
+
+                </div>
+
+              </div>
+
+              <button
+                className="delete-btn"
+                onClick={() =>
+                  removeFile(index)
+                }
+              >
+                ✕
+              </button>
+
+            </div>
+
+          ))}
+
+        </div>
+
+        {/* Merge Button */}
+
+        <button
+          className="merge-btn"
+          disabled={files.length < 2}
+        >
+          ⚡ Create PDF
+        </button>
 
       </div>
-
-      <button className="merge-btn">
-
-        Merge PDFs
-
-      </button>
 
     </div>
   );
