@@ -9,7 +9,8 @@
 body{
   background:#050505;
   color:#fff;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 .chat-page{
@@ -18,7 +19,6 @@ body{
   display:flex;
   background:#080808;
   position:relative;
-  overflow:hidden;
 }
 
 /* Animated Background */
