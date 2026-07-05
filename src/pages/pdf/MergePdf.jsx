@@ -1,5 +1,6 @@
-import "./MergePdf.css";
+
 import { useState } from "react"; 
+import "./MergePdf.css"
 
 function MergePdf() {
   const [files, setFiles] = useState([]);
