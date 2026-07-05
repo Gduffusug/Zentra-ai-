@@ -145,11 +145,14 @@ function App() {
     <p>Create professional resumes with AI.</p>
   </div>
 
-  <div className="card">
-    <div className="emoji">📄</div>
-    <h3>PDF Tools</h3>
-    <p>Merge, split and convert PDF files.</p>
-  </div>
+  <div
+  className="card"
+  onClick={() => navigate("/merge-pdf")}
+>
+  <div className="emoji">📄</div>
+  <h3>PDF Tools</h3>
+  <p>Merge, split and convert PDF files.</p>
+</div>
 
   <div className="card">
     <div className="emoji">🔳</div>
