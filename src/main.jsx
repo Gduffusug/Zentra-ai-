@@ -1,34 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-BrowserRouter,
-Routes,
-Route
-}
-from "react-router-dom";
-
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 import App from "./App";
 import Chat from "./pages/Chat";
-
+import MergePdf from "./pages/MergePdf";
 
 ReactDOM.createRoot(
-document.getElementById("root")
-)
-.render(
+  document.getElementById("root")
+).render(
+  <BrowserRouter>
+    <Routes>
 
-<BrowserRouter>
+      <Route path="/" element={<App />} />
 
-<Routes>
+      <Route path="/chat" element={<Chat />} />
 
-<Route path="/" element={<App/>}/>
+      <Route
+        path="/merge-pdf"
+        element={<MergePdf />}
+      />
 
-<Route path="/chat" element={<Chat/>}/>
-
-</Routes>
-
-
-</BrowserRouter>
-
-
+    </Routes>
+  </BrowserRouter>
 );
