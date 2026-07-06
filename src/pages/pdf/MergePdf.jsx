@@ -8,8 +8,8 @@ function MergePdf() {
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
   const [loading, setLoading] = useState(false);
-  usestate(false);
-const [outputName, setOutputName] = useState("ZentraAI-Merged");
+  const [outputName, setOutputName] = useState("ZentraAI-Merged");
+
   const imageTypes = [
     "image/png",
     "image/jpeg",
@@ -22,209 +22,270 @@ const [outputName, setOutputName] = useState("ZentraAI-Merged");
   ];
 
   const handleFiles = (selectedFiles) => {
-  const list = Array.from(selectedFiles);
 
-  if (list.length === 0) return;
-
-  setFiles((prev) => [...prev, ...list]);
-};
     const list = Array.from(selectedFiles);
 
     if (list.length === 0) return;
 
     setFiles((prev) => [...prev, ...list]);
+
   };
 
   const handleInputChange = (e) => {
+
     handleFiles(e.target.files);
+
   };
 
   const removeFile = (index) => {
-    setFiles(files.filter((_, i) => i !== index));
+
+    setFiles(
+      files.filter((_, i) => i !== index)
+    );
+
   };
 
   const clearFiles = () => {
+
     setFiles([]);
+
   };
-const createPDF = async () => {
-    if (files.length === 0) {
-      alert("Please select files first.");
-      return;
-    }
+  const createPDF = async () => {
 
-    setLoading(true);
+  if (files.length === 0) {
+    alert("Please select files first.");
+    return;
+  }
 
-    try {
-      const mergedPdf = await PDFDocument.create();
+  setLoading(true);
 
-      for (const file of files) {
+  try {
 
-        // ---------- PDF ----------
-        if (pdfTypes.includes(file.type)) {
+    const mergedPdf = await PDFDocument.create();
 
-          const bytes = await file.arrayBuffer();
-          const pdf = await PDFDocument.load(bytes);
+    for (const file of files) {
 
-          const pages = await mergedPdf.copyPages(
-            pdf,
-            pdf.getPageIndices()
-          );
+      // ================= PDF =================
 
-          pages.forEach((page) => {
-            mergedPdf.addPage(page);
-          });
-        }
+      if (pdfTypes.includes(file.type)) {
 
-        // ---------- Images ----------
-        else if (imageTypes.includes(file.type)) {
+        const bytes = await file.arrayBuffer();
 
-          const bytes = await file.arrayBuffer();
+        const pdf = await PDFDocument.load(bytes);
 
-          const imgPdf = new jsPDF({
-            orientation: "portrait",
-            unit: "pt",
-            format: "a4"
-          });
+        const copiedPages = await mergedPdf.copyPages(
+          pdf,
+          pdf.getPageIndices()
+        );
 
-          const img = new Image();
+        copiedPages.forEach((page) => {
+          mergedPdf.addPage(page);
+        });
 
-          const imageData = await new Promise((resolve) => {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-              img.onload = () => {
-                resolve({
-                  image: img,
-                  src: e.target.result
-                });
-              };
-
-              img.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-          });
-
-          const pageWidth = 595;
-          const pageHeight = 842;
-
-          const ratio = Math.min(
-            pageWidth / imageData.image.width,
-            pageHeight / imageData.image.height
-          );
-
-          const width = imageData.image.width * ratio;
-          const height = imageData.image.height * ratio;
-
-          const x = (pageWidth - width) / 2;
-          const y = (pageHeight - height) / 2;
-
-          imgPdf.addImage(
-            imageData.src,
-            "JPEG",
-            x,
-            y,
-            width,
-            height
-          );
-
-          const imgBytes = imgPdf.output("arraybuffer");
-
-          const tempPdf = await PDFDocument.load(imgBytes);
-
-          const pages = await mergedPdf.copyPages(
-            tempPdf,
-            tempPdf.getPageIndices()
-          );
-
-          pages.forEach((page) => {
-            mergedPdf.addPage(page);
-          });
-        }
       }
 
-      const mergedBytes = await mergedPdf.save();
+      // ================= IMAGE =================
 
-      const blob = new Blob(
-        [mergedBytes],
-        {
-          type: "application/pdf"
-        }
-      );
+      else if (imageTypes.includes(file.type)) {
 
-      const url = URL.createObjectURL(blob);
+        const reader = new FileReader();
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "ZentraAI-Merged.pdf";
-      a.click();
+        const imageData = await new Promise((resolve) => {
 
-      URL.revokeObjectURL(url);
+          reader.onload = (e) => {
 
-      alert("✅ PDF created successfully!");
+            resolve(e.target.result);
 
-    } catch (err) {
-      console.error(err);
-      alert("❌ Failed to create PDF.");
+          };
+
+          reader.readAsDataURL(file);
+
+        });
+
+        const imagePdf = new jsPDF({
+          orientation: "portrait",
+          unit: "pt",
+          format: "a4"
+        });
+
+        const img = new Image();
+
+        await new Promise((resolve) => {
+
+          img.onload = resolve;
+
+          img.src = imageData;
+
+        });
+
+        const pageWidth = 595;
+        const pageHeight = 842;
+
+        const ratio = Math.min(
+          pageWidth / img.width,
+          pageHeight / img.height
+        );
+
+        const width = img.width * ratio;
+        const height = img.height * ratio;
+
+        const x = (pageWidth - width) / 2;
+        const y = (pageHeight - height) / 2;
+
+        const format =
+          file.type === "image/png"
+            ? "PNG"
+            : "JPEG";
+
+        imagePdf.addImage(
+          imageData,
+          format,
+          x,
+          y,
+          width,
+          height
+        );
+
+        const pdfBytes = imagePdf.output("arraybuffer");
+
+        const tempPdf = await PDFDocument.load(pdfBytes);
+
+        const copiedPages = await mergedPdf.copyPages(
+          tempPdf,
+          tempPdf.getPageIndices()
+        );
+
+        copiedPages.forEach((page) => {
+          mergedPdf.addPage(page);
+        });
+
+      }
+
     }
 
-    setLoading(false);
-  };
-return (
-    <div className="merge-page">
+    const finalPdf = await mergedPdf.save();
 
-      <div className="merge-container">
+    const blob = new Blob(
+      [finalPdf],
+      {
+        type: "application/pdf"
+      }
+    );
 
-        <h1>📄 Merge PDF</h1>
+    const url = URL.createObjectURL(blob);
 
-        <p className="subtitle">
-          Merge PDF files and Images into one PDF
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download = `${outputName}.pdf`;
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+    alert("✅ PDF created successfully!");
+
+  }
+
+  catch (err) {
+
+    console.error(err);
+
+    alert("❌ Failed to create PDF.");
+
+  }
+
+  setLoading(false);
+
+};
+  return (
+
+  <div className="merge-page">
+
+    <div className="merge-container">
+
+      <h1>📄 Merge PDF</h1>
+
+      <p className="subtitle">
+        Merge PDF files and Images into one PDF
+      </p>
+
+      <label
+        className={`upload-box ${dragActive ? "active" : ""}`}
+
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragActive(true);
+        }}
+
+        onDragLeave={() => {
+          setDragActive(false);
+        }}
+
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragActive(false);
+          handleFiles(e.dataTransfer.files);
+        }}
+      >
+
+        <input
+          type="file"
+          multiple
+          accept=".pdf,.png,.jpg,.jpeg,.webp"
+          hidden
+          onChange={handleInputChange}
+        />
+
+        <div className="upload-icon">
+          📂
+        </div>
+
+        <h3>
+          Select your files
+        </h3>
+
+        <p>
+          Drag & Drop PDF / Images here
         </p>
 
-        <label
-          className={`upload-box ${dragActive ? "active" : ""}`}
-          onDragOver={(e) => {
-            e.preventDefault();
-            setDragActive(true);
-          }}
-          onDragLeave={() => setDragActive(false)}
-          onDrop={(e) => {
-            e.preventDefault();
-            setDragActive(false);
-            handleFiles(e.dataTransfer.files);
-          }}
-        >
+        <span className="upload-btn">
+          Browse Files
+        </span>
 
-          <input
-            type="file"
-            multiple
-            accept=".pdf,.png,.jpg,.jpeg,.webp"
-            onChange={handleInputChange}
-            hidden
-          />
+      </label>
 
-          <div className="upload-icon">📂</div>
+      {files.length > 0 && (
 
-          <h3>Choose Files</h3>
+        <>
 
-          <p>
-            Drag & Drop PDF / Images here
-          </p>
+          <div className="output-box">
 
-          <span className="upload-btn">
-            Select Files
-          </span>
+            <label>
+              Output PDF Name
+            </label>
 
-        </label>
+            <input
+              type="text"
+              value={outputName}
+              placeholder="Enter file name"
 
-        {files.length > 0 && (
+              onChange={(e) =>
+                setOutputName(e.target.value)
+              }
+
+            />
+
+          </div>
 
           <div className="file-list">
 
             <h3>
-              Selected Files ({files.length})
-            </h3>
 
+              Selected Files ({files.length})
+
+            </h3>
             {files.map((file, index) => (
 
               <div
@@ -232,49 +293,83 @@ return (
                 key={index}
               >
 
-                <span>
-                  📄 {file.name}
-                </span>
+                <div className="file-left">
+
+                  <div className="file-icon">
+
+                    {file.type === "application/pdf"
+                      ? "📄"
+                      : "🖼️"}
+
+                  </div>
+
+                  <div className="file-info">
+
+                    <h4>
+
+                      {file.name}
+
+                    </h4>
+
+                    <p>
+
+                      {(file.size / 1024 / 1024).toFixed(2)} MB
+
+                    </p>
+
+                  </div>
+
+                </div>
 
                 <button
+                  className="remove-btn"
                   onClick={() => removeFile(index)}
                 >
+
                   ✕
+
                 </button>
 
               </div>
 
             ))}
 
-            <div className="actions">
+          </div>
 
-              <button
-                className="clear-btn"
-                onClick={clearFiles}
-              >
-                Clear
-              </button>
+          <div className="actions">
 
-              <button
-                className="merge-btn"
-                onClick={createPDF}
-                disabled={loading}
-              >
-                {loading
-                  ? "Creating..."
-                  : "Create PDF"}
-              </button>
+            <button
+              className="clear-btn"
+              onClick={clearFiles}
+            >
 
-            </div>
+              Clear All
+
+            </button>
+
+            <button
+              className="merge-btn"
+              onClick={createPDF}
+              disabled={loading}
+            >
+
+              {loading
+                ? "Creating PDF..."
+                : "Create PDF"}
+
+            </button>
 
           </div>
 
-        )}
+        </>
 
-      </div>
-
-    </div>
-  );
+      )}
 }
 
 export default MergePdf;
+    </div>
+
+  </div>
+);
+  
+  
