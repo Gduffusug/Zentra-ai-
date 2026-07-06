@@ -22,6 +22,12 @@ const [outputName, setOutputName] = useState("ZentraAI-Merged");
   ];
 
   const handleFiles = (selectedFiles) => {
+  const list = Array.from(selectedFiles);
+
+  if (list.length === 0) return;
+
+  setFiles((prev) => [...prev, ...list]);
+};
     const list = Array.from(selectedFiles);
 
     if (list.length === 0) return;
