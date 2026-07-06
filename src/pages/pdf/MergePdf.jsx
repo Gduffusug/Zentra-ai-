@@ -8,7 +8,8 @@ function MergePdf() {
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  usestate(false);
+const [outputName, setOutputName] = useState("ZentraAI-Merged");
   const imageTypes = [
     "image/png",
     "image/jpeg",
