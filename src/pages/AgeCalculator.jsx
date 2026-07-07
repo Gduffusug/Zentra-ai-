@@ -51,7 +51,17 @@ const [totalSeconds, setTotalSeconds] = useState(0);
       months,
       days
     });
+const diff = today - dob;
 
+const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+const hoursTotal = Math.floor(diff / (1000 * 60 * 60));
+const minutesTotal = Math.floor(diff / (1000 * 60));
+const secondsTotal = Math.floor(diff / 1000);
+
+setTotalDays(daysTotal);
+setTotalHours(hoursTotal);
+setTotalMinutes(minutesTotal);
+setTotalSeconds(secondsTotal);
   };
 
   return (
