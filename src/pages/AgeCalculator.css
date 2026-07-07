@@ -64,5 +64,169 @@ function AgeCalculator() {
   );
 
 }
+/* =========================
+        GLASS CARD
+========================= */
 
+.glass-card{
+
+width:100%;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.10);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.25);
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+/* =========================
+          LABEL
+========================= */
+
+.glass-card label{
+
+font-size:15px;
+
+font-weight:600;
+
+color:#E5E7EB;
+
+text-align:left;
+
+}
+
+/* =========================
+      PREMIUM INPUT
+========================= */
+
+.date-input{
+
+width:100%;
+
+height:60px;
+
+padding:0 20px;
+
+font-size:17px;
+
+color:#fff;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:18px;
+
+outline:none;
+
+transition:.35s;
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+}
+
+.date-input:hover{
+
+border-color:#4F46E5;
+
+}
+
+.date-input:focus{
+
+border-color:#06B6D4;
+
+box-shadow:
+
+0 0 0 4px rgba(6,182,212,.15),
+
+0 0 30px rgba(6,182,212,.25);
+
+}
+
+.date-input::-webkit-calendar-picker-indicator{
+
+cursor:pointer;
+
+filter:invert(1);
+
+opacity:.85;
+
+transition:.3s;
+
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover{
+
+transform:scale(1.15);
+
+}
+
+/* =========================
+      CALCULATE BUTTON
+========================= */
+
+.calculate-btn{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:17px;
+
+font-weight:700;
+
+color:#fff;
+
+cursor:pointer;
+
+background:linear-gradient(
+135deg,
+#4F46E5,
+#06B6D4
+);
+
+box-shadow:
+0 15px 35px rgba(79,70,229,.35);
+
+transition:.3s;
+
+}
+
+.calculate-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 20px 45px rgba(6,182,212,.35);
+
+}
+
+.calculate-btn:active{
+
+transform:scale(.98);
+
+}
 export default AgeCalculator;
