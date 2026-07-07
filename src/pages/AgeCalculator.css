@@ -227,6 +227,139 @@ box-shadow:
 .calculate-btn:active{
 
 transform:scale(.98);
+  /* =========================
+        RESULT SECTION
+========================= */
+
+.result-section{
+
+margin-top:35px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:18px;
+
+animation:fadeUp .5s ease;
+
+}
+
+/* =========================
+        RESULT CARD
+========================= */
+
+.result-card{
+
+position:relative;
+
+padding:28px 20px;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+overflow:hidden;
+
+transition:.35s;
+
+cursor:default;
+
+}
+
+.result-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:4px;
+
+background:linear-gradient(
+90deg,
+#4F46E5,
+#06B6D4
+);
+
+}
+
+.result-card:hover{
+
+transform:translateY(-6px);
+
+border-color:#06B6D4;
+
+box-shadow:
+
+0 20px 45px rgba(6,182,212,.18);
+
+}
+
+.result-card h2{
+
+font-size:42px;
+
+font-weight:800;
+
+color:#fff;
+
+margin-bottom:8px;
+
+}
+
+.result-card span{
+
+display:block;
+
+font-size:15px;
+
+font-weight:600;
+
+color:#B7BED1;
+
+letter-spacing:.5px;
+
+}
+
+/* =========================
+        RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+.result-section{
+
+grid-template-columns:1fr;
+
+gap:15px;
+
+}
+
+.result-card{
+
+padding:24px;
+
+}
+
+.result-card h2{
+
+font-size:36px;
+
+}
+
+}
 
 }
 export default AgeCalculator;
