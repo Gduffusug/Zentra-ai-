@@ -9,15 +9,53 @@ function AgeCalculator() {
 
   const calculateAge = () => {
 
-    // Logic will be added in Part 3
+    if (!birthDate) {
+      alert("Please select your Date of Birth.");
+      return;
+    }
+
+    const today = new Date();
+    const dob = new Date(birthDate);
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if (days < 0) {
+
+      months--;
+
+      const previousMonth = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        0
+      );
+
+      days += previousMonth.getDate();
+
+    }
+
+    if (months < 0) {
+
+      years--;
+
+      months += 12;
+
+    }
+
+    setResult({
+
+      years,
+      months,
+      days
+
+    });
 
   };
 
   return (
 
     <div className="age-page">
-
-      {/* Background Glow */}
 
       <div className="bg-circle bg1"></div>
       <div className="bg-circle bg2"></div>
@@ -43,71 +81,57 @@ function AgeCalculator() {
 
           <input
             type="date"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
             className="date-input"
+            value={birthDate}
+            onChange={(e) =>
+              setBirthDate(e.target.value)
+            }
+          />
 
-            const calculateAge = () => {
+          <button
+            className="calculate-btn"
+            onClick={calculateAge}
+          >
+            ✨ Calculate Age
+          </button>
+          {result && (
 
-  if (!birthDate) {
+            <div className="result-section">
 
-    alert("Please select your Date of Birth.");
+              <div className="result-card">
 
-    return;
+                <h2>{result.years}</h2>
 
-  }
+                <span>Years</span>
 
-  const today = new Date();
+              </div>
 
-  const dob = new Date(birthDate);
+              <div className="result-card">
 
-  let years = today.getFullYear() - dob.getFullYear();
+                <h2>{result.months}</h2>
 
-  let months = today.getMonth() - dob.getMonth();
+                <span>Months</span>
 
-  let days = today.getDate() - dob.getDate();
+              </div>
 
-  if (days < 0) {
+              <div className="result-card">
 
-    months--;
+                <h2>{result.days}</h2>
 
-    const previousMonth = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      0
-    );
+                <span>Days</span>
 
-    days += previousMonth.getDate();
+              </div>
 
-  }
+            </div>
 
-  if (months < 0) {
+          )}
 
-    years--;
-
-    months += 12;
-
-  }
-
-  setResult({
-
-    years,
-
-    months,
-
-    days
-
-  });
-
-};
         </div>
 
       </div>
-
-    </div>
-
-  );
+);
 
 }
 
 export default AgeCalculator;
+    </div>
