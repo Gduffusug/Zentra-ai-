@@ -5,6 +5,10 @@ function AgeCalculator() {
 
   const [birthDate, setBirthDate] = useState("");
   const [result, setResult] = useState(null);
+  const [totalDays, setTotalDays] = useState(0);
+const [totalHours, setTotalHours] = useState(0);
+const [totalMinutes, setTotalMinutes] = useState(0);
+const [totalSeconds, setTotalSeconds] = useState(0);
 
   const calculateAge = () => {
 
