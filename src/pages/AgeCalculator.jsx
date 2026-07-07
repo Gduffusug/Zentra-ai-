@@ -53,6 +53,28 @@ function AgeCalculator() {
             onClick={calculateAge}
           >
             Calculate Age
+{result && (
+
+<div className="result-section">
+
+<div className="result-card">
+<h2>{result.years}</h2>
+<span>Years</span>
+</div>
+
+<div className="result-card">
+<h2>{result.months}</h2>
+<span>Months</span>
+</div>
+
+<div className="result-card">
+<h2>{result.days}</h2>
+<span>Days</span>
+</div>
+
+</div>
+
+)}
           </button>
 
         </div>
