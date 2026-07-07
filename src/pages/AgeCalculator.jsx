@@ -121,7 +121,33 @@ setTotalSeconds(secondsTotal);
               </div>
 
             </div>
+</div>   // ← Line 123 (result-section end)
 
+      <div className="extra-results">
+
+        <div className="extra-card">
+          <h3>{totalDays.toLocaleString()}</h3>
+          <p>Total Days</p>
+        </div>
+
+        <div className="extra-card">
+          <h3>{totalHours.toLocaleString()}</h3>
+          <p>Total Hours</p>
+        </div>
+
+        <div className="extra-card">
+          <h3>{totalMinutes.toLocaleString()}</h3>
+          <p>Total Minutes</p>
+        </div>
+
+        <div className="extra-card">
+          <h3>{totalSeconds.toLocaleString()}</h3>
+          <p>Total Seconds</p>
+        </div>
+
+      </div>
+
+    )}
           )}
 
         </div>
