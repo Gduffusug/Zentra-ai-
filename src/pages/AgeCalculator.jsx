@@ -4,7 +4,6 @@ import "./AgeCalculator.css";
 function AgeCalculator() {
 
   const [birthDate, setBirthDate] = useState("");
-
   const [result, setResult] = useState(null);
 
   const calculateAge = () => {
@@ -44,11 +43,9 @@ function AgeCalculator() {
     }
 
     setResult({
-
       years,
       months,
       days
-
     });
 
   };
@@ -75,17 +72,13 @@ function AgeCalculator() {
 
         <div className="glass-card">
 
-          <label>
-            Date of Birth
-          </label>
+          <label>Date of Birth</label>
 
           <input
             type="date"
             className="date-input"
             value={birthDate}
-            onChange={(e) =>
-              setBirthDate(e.target.value)
-            }
+            onChange={(e) => setBirthDate(e.target.value)}
           />
 
           <button
@@ -99,34 +92,25 @@ function AgeCalculator() {
             <div className="result-section">
 
               <div className="result-card">
-
                 <h2>{result.years}</h2>
-
                 <span>Years</span>
-
               </div>
 
               <div className="result-card">
-
                 <h2>{result.months}</h2>
-
                 <span>Months</span>
-
               </div>
 
               <div className="result-card">
-
                 <h2>{result.days}</h2>
-
                 <span>Days</span>
-
               </div>
 
             </div>
 
           )}
 
-       </div>
+        </div>
 
       </div>
 
@@ -137,4 +121,3 @@ function AgeCalculator() {
 }
 
 export default AgeCalculator;
-      
