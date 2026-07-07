@@ -1,365 +1,255 @@
-import React, { useState } from "react";
-import "./AgeCalculator.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function AgeCalculator() {
+import App from "./App";
+import Chat from "./pages/Chat";
+import MergePdf from "./pages/pdf/MergePdf";
+import AgeCalculator from "./pages/AgeCalculator";
 
-  const [birthDate, setBirthDate] = useState("");
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
 
-  const [result, setResult] = useState(null);
+        <Route path="/" element={<App />} />
 
-  const calculateAge = () => {
+        <Route path="/chat" element={<Chat />} />
 
-    // Logic will be added in Part 3
+        <Route path="/merge-pdf" element={<MergePdf />} />
 
-  };
+        <Route
+          path="/age-calculator"
+          element={<AgeCalculator />}
+        />
 
-  return (
-
-    <div className="age-page">
-
-      {/* Background Glow */}
-
-      <div className="bg-circle bg1"></div>
-      <div className="bg-circle bg2"></div>
-      <div className="bg-circle bg3"></div>
-
-      <div className="age-container">
-
-        <div className="page-icon">
-          🎂
-        </div>
-
-        <h1>Age Calculator</h1>
-
-        <p className="subtitle">
-          Calculate your exact age instantly
-        </p>
-
-        <div className="glass-card">
-
-          <label>
-            Date of Birth
-          </label>
-
-          <input
-            type="date"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-            className="date-input"
-          />
-
-          <button
-            className="calculate-btn"
-            onClick={calculateAge}
-          >
-            Calculate Age
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  );
-
-}
-/* =========================
-        GLASS CARD
-========================= */
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+);
+                   /* =========================================
+   GLASS CARD
+========================================= */
 
 .glass-card{
-
-width:100%;
-
-padding:30px;
-
-border-radius:24px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.10);
-
-backdrop-filter:blur(20px);
-
--webkit-backdrop-filter:blur(20px);
-
-box-shadow:
-0 15px 40px rgba(0,0,0,.25);
-
-display:flex;
-
-flex-direction:column;
-
-gap:18px;
-
+  width:100%;
+  padding:35px;
+  border-radius:28px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
-
-/* =========================
-          LABEL
-========================= */
 
 .glass-card label{
-
-font-size:15px;
-
-font-weight:600;
-
-color:#E5E7EB;
-
-text-align:left;
-
+  color:#ffffff;
+  font-size:16px;
+  font-weight:600;
+  text-align:left;
 }
 
-/* =========================
-      PREMIUM INPUT
-========================= */
+/* =========================================
+   DATE INPUT
+========================================= */
 
 .date-input{
-
-width:100%;
-
-height:60px;
-
-padding:0 20px;
-
-font-size:17px;
-
-color:#fff;
-
-background:rgba(255,255,255,.08);
-
-border:1px solid rgba(255,255,255,.15);
-
-border-radius:18px;
-
-outline:none;
-
-transition:.35s;
-
-backdrop-filter:blur(20px);
-
--webkit-backdrop-filter:blur(20px);
-
+  width:100%;
+  height:60px;
+  padding:0 20px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:17px;
+  outline:none;
+  transition:.35s;
 }
 
 .date-input:hover{
-
-border-color:#4F46E5;
-
+  border-color:#4F46E5;
 }
 
 .date-input:focus{
-
-border-color:#06B6D4;
-
-box-shadow:
-
-0 0 0 4px rgba(6,182,212,.15),
-
-0 0 30px rgba(6,182,212,.25);
-
+  border-color:#06B6D4;
+  box-shadow:
+    0 0 0 4px rgba(6,182,212,.15),
+    0 0 30px rgba(6,182,212,.25);
 }
 
 .date-input::-webkit-calendar-picker-indicator{
-
-cursor:pointer;
-
-filter:invert(1);
-
-opacity:.85;
-
-transition:.3s;
-
+  filter:invert(1);
+  cursor:pointer;
 }
 
-.date-input::-webkit-calendar-picker-indicator:hover{
-
-transform:scale(1.15);
-
-}
-
-/* =========================
-      CALCULATE BUTTON
-========================= */
+/* =========================================
+   BUTTON
+========================================= */
 
 .calculate-btn{
-
-width:100%;
-
-height:60px;
-
-border:none;
-
-border-radius:18px;
-
-font-size:17px;
-
-font-weight:700;
-
-color:#fff;
-
-cursor:pointer;
-
-background:linear-gradient(
-135deg,
-#4F46E5,
-#06B6D4
-);
-
-box-shadow:
-0 15px 35px rgba(79,70,229,.35);
-
-transition:.3s;
-
+  width:100%;
+  height:60px;
+  border:none;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(135deg,#3B82F6,#EC4899);
+  transition:.35s;
+  box-shadow:0 15px 35px rgba(59,130,246,.35);
 }
 
 .calculate-btn:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-
-0 20px 45px rgba(6,182,212,.35);
-
+  transform:translateY(-3px);
+  box-shadow:0 20px 45px rgba(236,72,153,.35);
 }
 
 .calculate-btn:active{
-
-transform:scale(.98);
-  /* =========================
-        RESULT SECTION
-========================= */
+  transform:scale(.98);
+  /* =========================================
+   RESULT SECTION
+========================================= */
 
 .result-section{
-
-margin-top:35px;
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:18px;
-
-animation:fadeUp .5s ease;
-
+  margin-top:35px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  animation:fadeUp .5s ease;
 }
 
-/* =========================
-        RESULT CARD
-========================= */
-
 .result-card{
-
-position:relative;
-
-padding:28px 20px;
-
-border-radius:22px;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.12);
-
-backdrop-filter:blur(20px);
-
--webkit-backdrop-filter:blur(20px);
-
-overflow:hidden;
-
-transition:.35s;
-
-cursor:default;
-
+  position:relative;
+  padding:28px 20px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  overflow:hidden;
+  transition:.35s;
 }
 
 .result-card::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:4px;
-
-background:linear-gradient(
-90deg,
-#4F46E5,
-#06B6D4
-);
-
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(
+    90deg,
+    #3B82F6,
+    #EC4899
+  );
 }
 
 .result-card:hover{
-
-transform:translateY(-6px);
-
-border-color:#06B6D4;
-
-box-shadow:
-
-0 20px 45px rgba(6,182,212,.18);
-
+  transform:translateY(-6px);
+  border-color:#3B82F6;
+  box-shadow:0 20px 45px rgba(59,130,246,.25);
 }
 
 .result-card h2{
-
-font-size:42px;
-
-font-weight:800;
-
-color:#fff;
-
-margin-bottom:8px;
-
+  font-size:44px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:8px;
 }
 
 .result-card span{
+  display:block;
+  font-size:15px;
+  font-weight:600;
+  color:#B7BED1;
+  letter-spacing:.5px;
+}
 
-display:block;
+/* =========================================
+   ANIMATION
+========================================= */
 
-font-size:15px;
+@keyframes fadeUp{
 
-font-weight:600;
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
 
-color:#B7BED1;
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-letter-spacing:.5px;
+}
+  /* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width:900px){
+
+  .age-container h1{
+    font-size:44px;
+  }
+
+  .subtitle{
+    font-size:18px;
+  }
 
 }
 
-/* =========================
-        RESPONSIVE
-========================= */
+@media (max-width:768px){
 
-@media(max-width:700px){
+  .glass-card{
+    padding:28px;
+  }
 
-.result-section{
+  .result-section{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
 
-grid-template-columns:1fr;
+  .result-card{
+    padding:24px;
+  }
 
-gap:15px;
-
-}
-
-.result-card{
-
-padding:24px;
-
-}
-
-.result-card h2{
-
-font-size:36px;
+  .result-card h2{
+    font-size:38px;
+  }
 
 }
 
-}
+@media (max-width:480px){
+
+  .page-icon{
+    width:75px;
+    height:75px;
+    font-size:34px;
+  }
+
+  .age-container h1{
+    font-size:34px;
+  }
+
+  .subtitle{
+    font-size:15px;
+    margin-bottom:25px;
+  }
+
+  .glass-card{
+    padding:20px;
+    border-radius:20px;
+  }
+
+  .date-input,
+  .calculate-btn{
+    height:54px;
+    font-size:15px;
+  }
 
 }
-export default AgeCalculator;
+}
