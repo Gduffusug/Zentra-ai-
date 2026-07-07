@@ -53,6 +53,8 @@ function AgeCalculator() {
             onClick={calculateAge}
           >
             Calculate Age
+           {
+          </button>
 {result && (
 
 <div className="result-section">
@@ -75,8 +77,6 @@ function AgeCalculator() {
 </div>
 
 )}
-          </button>
-
         </div>
 
       </div>
