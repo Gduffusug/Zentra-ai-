@@ -126,12 +126,15 @@ function AgeCalculator() {
 
           )}
 
-        </div>
+       </div>
 
       </div>
-);
+
+    </div>
+
+  );
 
 }
 
 export default AgeCalculator;
-    </div>
+      
