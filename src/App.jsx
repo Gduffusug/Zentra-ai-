@@ -184,11 +184,14 @@ function App() {
     <p>Compress images without losing quality.</p>
   </div>
 
-  <div className="card">
-    <div className="emoji">🎂</div>
-    <h3>Age Calculator</h3>
-    <p>Calculate your exact age instantly.</p>
-  </div>
+  <div
+  className="card"
+  onClick={() => navigate("/age-calculator")}
+>
+  <div className="emoji">🎂</div>
+  <h3>Age Calculator</h3>
+  <p>Calculate your exact age instantly.</p>
+</div>
 
   <div className="card">
     <div className="emoji">💰</div>
