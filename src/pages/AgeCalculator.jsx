@@ -46,37 +46,60 @@ function AgeCalculator() {
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
             className="date-input"
-          />
 
-          <button
-            className="calculate-btn"
-            onClick={calculateAge}
-          >
-            Calculate Age
-           {
-          </button>
-{result && (
+            const calculateAge = () => {
 
-<div className="result-section">
+  if (!birthDate) {
 
-<div className="result-card">
-<h2>{result.years}</h2>
-<span>Years</span>
-</div>
+    alert("Please select your Date of Birth.");
 
-<div className="result-card">
-<h2>{result.months}</h2>
-<span>Months</span>
-</div>
+    return;
 
-<div className="result-card">
-<h2>{result.days}</h2>
-<span>Days</span>
-</div>
+  }
 
-</div>
+  const today = new Date();
 
-)}
+  const dob = new Date(birthDate);
+
+  let years = today.getFullYear() - dob.getFullYear();
+
+  let months = today.getMonth() - dob.getMonth();
+
+  let days = today.getDate() - dob.getDate();
+
+  if (days < 0) {
+
+    months--;
+
+    const previousMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    );
+
+    days += previousMonth.getDate();
+
+  }
+
+  if (months < 0) {
+
+    years--;
+
+    months += 12;
+
+  }
+
+  setResult({
+
+    years,
+
+    months,
+
+    days
+
+  });
+
+};
         </div>
 
       </div>
