@@ -146,7 +146,6 @@ setTotalSeconds(secondsTotal);
 </div>
 
     )}
-          )}
 
         </div>
 
