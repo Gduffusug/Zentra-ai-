@@ -80,11 +80,13 @@ function App() {
               PRO
             </button>
 
-            <div className="user">
-
-              👤 user
-
-            </div>
+        <div
+  className="user"
+  onClick={() => navigate("/login")}
+  style={{ cursor: "pointer" }}
+>
+  👤 Login
+</div>
 
           </div>
 
