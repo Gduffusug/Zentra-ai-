@@ -6,6 +6,7 @@ import App from "./App";
 import Chat from "./pages/Chat";
 import MergePdf from "./pages/pdf/MergePdf";
 import AgeCalculator from "./pages/AgeCalculator";
+import Login from "./components/Login";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
