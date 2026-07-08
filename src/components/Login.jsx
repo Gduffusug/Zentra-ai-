@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-
+import { FcGoogle } from "react-icons/fc";
 import { auth } from "../firebase";
 
 import {
