@@ -102,7 +102,7 @@ setTotalSeconds(secondsTotal);
             ✨ Calculate Age
           </button>
           {result && (
-
+            <>
             <div className="result-section">
 
               <div className="result-card">
@@ -144,7 +144,7 @@ setTotalSeconds(secondsTotal);
   </div>
 
 </div>
-
+    </>
     )}
 
         </div>
