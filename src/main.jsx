@@ -23,7 +23,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           path="/age-calculator"
           element={<AgeCalculator />}
         />
-
+<Route
+  path="/login"
+  element={<Login />}
+/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
