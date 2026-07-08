@@ -32,11 +32,19 @@ const signup = async () => {
   setLoading(false);
 };
 
-const login=()=>{
- signInWithEmailAndPassword(auth,email,password)
- .then(()=>alert("Login successful"))
- .catch(e=>alert(e.message));
-}
+  const login = async () => {
+  setLoading(true);
+  setError("");
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    navigate("/");
+  } catch (e) {
+    setError(e.message);
+  }
+
+  setLoading(false);
+};
 
 
 return(
