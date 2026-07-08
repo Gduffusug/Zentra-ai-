@@ -18,11 +18,19 @@ const [error, setError] = useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 
-const signup=()=>{
- createUserWithEmailAndPassword(auth,email,password)
- .then(()=>alert("Account created"))
- .catch(e=>alert(e.message));
-}
+const signup = async () => {
+  setLoading(true);
+  setError("");
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    navigate("/");
+  } catch (e) {
+    setError(e.message);
+  }
+
+  setLoading(false);
+};
 
 const login=()=>{
  signInWithEmailAndPassword(auth,email,password)
