@@ -10,6 +10,7 @@
     "pdf-lib": "^1.17.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^5.7.0",
     "react-router-dom": "^7.10.1",
     "vite": "latest"
   }
