@@ -1,23 +1,27 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
-import { FcGoogle } from "react-icons/fc";
 
-import { auth } from "../firebase";
+import "./Login.css";
+
+import { auth, googleProvider } from "../firebase";
+
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signInWithPopup
 } from "firebase/auth";
-export default function Login(){
-const navigate = useNavigate();
 
-const [loading, setLoading] = useState(false);
+import { FcGoogle } from "react-icons/fc";
 
-const [error, setError] = useState("");
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+export default function Login() {
 
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 const signup = async () => {
   setLoading(true);
   setError("");
@@ -25,48 +29,104 @@ const signup = async () => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     navigate("/");
-  } catch (e) {
-    setError(e.message);
+  } catch (err) {
+    setError(err.message);
   }
 
   setLoading(false);
 };
 
-  const login = async () => {
+const login = async () => {
   setLoading(true);
   setError("");
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
     navigate("/");
-  } catch (e) {
-    setError(e.message);
+  } catch (err) {
+    setError(err.message);
   }
 
   setLoading(false);
 };
 
+const googleLogin = async () => {
+  setLoading(true);
+  setError("");
 
-return(
-<div>
-<h2>Zentra AI Login</h2>
+  try {
+    await signInWithPopup(auth, googleProvider);
+    navigate("/");
+  } catch (err) {
+    setError(err.message);
+  }
 
-<input 
-placeholder="Email"
-onChange={e=>setEmail(e.target.value)}
-/>
+  setLoading(false);
+};
+return (
+  <div className="login-page">
 
-<input 
-placeholder="Password"
-type="password"
-onChange={e=>setPassword(e.target.value)}
-/>
+    <div className="login-box">
 
-<button onClick={signup}>Create Account</button>
+      <h1 className="login-title">
+        Zentra AI
+      </h1>
 
-<button onClick={login}>Login</button>
+      <p className="login-subtitle">
+        Welcome Back 👋
+      </p>
 
+      {error && (
+        <p className="error">
+          {error}
+        </p>
+      )}
+
+      <input
+        className="login-input"
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e)=>setEmail(e.target.value)}
+      />
+
+      <input
+        className="login-input"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
+      />
+
+      <button
+        className="login-btn"
+        onClick={login}
+        disabled={loading}
+      >
+        {loading ? "Please Wait..." : "Login"}
+      </button>
+
+      <button
+        className="login-btn"
+        onClick={signup}
+        disabled={loading}
+      >
+        Create Account
+      </button>
+
+      <button
+        className="login-btn google-btn"
+        onClick={googleLogin}
+        disabled={loading}
+      >
+        <FcGoogle />
+        Continue with Google
+      </button>
 </div>
-)
+
+  </div>
+);
 
 }
+
+
