@@ -64,7 +64,7 @@ function Chat() {
     });
 
   }, [chat]);
-const sendMessage = () => {
+const sendMessage = async () => {
 
     if (!message.trim()) return;
 
@@ -89,29 +89,50 @@ const sendMessage = () => {
 
     setLoading(true);
 
-    setTimeout(() => {
+    try {
 
-      const aiMessage = {
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: userMessage.text
+    })
+  });
 
-        id: Date.now() + 1,
+  const data = await response.json();
 
-        type: "ai",
+  const aiMessage = {
+    id: Date.now() + 1,
+    type: "ai",
+    text: data.reply,
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    })
+  };
 
-        text:
-          "🤖 Groq API will be connected in the next step. This is a demo response from Zentra AI.",
+  setChat(prev => [...prev, aiMessage]);
 
-        time: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
+} catch (err) {
 
-      };
+  setChat(prev => [
+    ...prev,
+    {
+      id: Date.now() + 1,
+      type: "ai",
+      text: "❌ AI server is unavailable.",
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+    }
+  ]);
 
-      setChat(prev => [...prev, aiMessage]);
+}
 
-      setLoading(false);
-
-    }, 1200);
+setLoading(false);
 
   };
 
