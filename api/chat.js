@@ -41,11 +41,20 @@ content:message
 
 const data = await response.json();
 
+if (!response.ok) {
+
+  return res.status(response.status).json({
+    reply: data.error?.message || "Groq API Error"
+  });
+
+}
+
+const reply =
+  data.choices?.[0]?.message?.content ||
+  "⚠️ No response received.";
 
 res.status(200).json({
-
-reply:data.choices[0].message.content
-
+  reply
 });
 
 
