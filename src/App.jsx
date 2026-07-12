@@ -106,13 +106,27 @@ const handleLogout = async () => {
               PRO
             </button>
 
-        <div
-  className="user"
-  onClick={() => navigate("/login")}
-  style={{ cursor: "pointer" }}
->
-  👤 Login
-</div>
+     {user ? (
+
+  <div
+    className="user"
+    onClick={handleLogout}
+    style={{ cursor: "pointer" }}
+  >
+    🚪 Logout
+  </div>
+
+) : (
+
+  <div
+    className="user"
+    onClick={() => navigate("/login")}
+    style={{ cursor: "pointer" }}
+  >
+    👤 Login
+  </div>
+
+)}
 
           </div>
 
