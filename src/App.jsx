@@ -141,11 +141,14 @@ function App() {
     <p>Chat with powerful AI assistant.</p>
   </div>
 
-  <div className="card">
-    <div className="emoji">📝</div>
-    <h3>Resume Builder</h3>
-    <p>Create professional resumes with AI.</p>
-  </div>
+  <div
+  className="card"
+  onClick={() => navigate("/resume-builder")}
+>
+  <div className="emoji">📝</div>
+  <h3>Resume Builder</h3>
+  <p>Create professional resumes with AI.</p>
+</div>
 
   <div
   className="card"
