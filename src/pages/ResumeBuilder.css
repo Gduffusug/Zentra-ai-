@@ -1,0 +1,82 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+.resume-page{
+  min-height:100vh;
+  background:linear-gradient(135deg,#050816,#0b1029);
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.resume-header{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.resume-header h1{
+  color:#fff;
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.resume-header p{
+  color:#c7d2fe;
+  font-size:17px;
+}
+
+.resume-form{
+  width:100%;
+  max-width:700px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 0 30px rgba(0,255,255,.15);
+}
+
+.resume-form input,
+.resume-form textarea{
+  width:100%;
+  margin-bottom:18px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  outline:none;
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:16px;
+}
+
+.resume-form input::placeholder,
+.resume-form textarea::placeholder{
+  color:#bbb;
+}
+
+.resume-form textarea{
+  resize:vertical;
+}
+
+.generate-btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(90deg,#5b4dff,#00d4ff);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.generate-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 25px #00d4ff;
+}
