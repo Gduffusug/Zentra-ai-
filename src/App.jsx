@@ -11,6 +11,25 @@ import "./style.css";
 
 function App() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+useEffect(() => {
+
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
+
+  return () => unsubscribe();
+
+}, []);
+
+const handleLogout = async () => {
+
+  await signOut(auth);
+
+  navigate("/login");
+
+};
 
   return (
     <div className="app">
