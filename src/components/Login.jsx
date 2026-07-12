@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 import "./Login.css";
 
@@ -41,8 +43,26 @@ const login = async () => {
   setError("");
 
   try {
-    await signInWithEmailAndPassword(auth, email, password);
-    navigate("/");
+
+    const userCredential =
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user = userCredential.user;
+
+    const profile = await getDoc(
+      doc(db, "users", user.uid)
+    );
+
+    if (profile.exists()) {
+      navigate("/");
+    } else {
+      navigate("/profile-setup");
+    }
+
   } catch (err) {
     setError(err.message);
   }
