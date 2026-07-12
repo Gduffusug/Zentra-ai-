@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { auth } from "./firebase";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "firebase/auth";
 import "./style.css";
 
 function App() {
