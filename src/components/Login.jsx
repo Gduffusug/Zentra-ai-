@@ -75,8 +75,25 @@ const googleLogin = async () => {
   setError("");
 
   try {
-    await signInWithPopup(auth, googleProvider);
-    navigate("/");
+
+    const userCredential =
+      await signInWithPopup(
+        auth,
+        googleProvider
+      );
+
+    const user = userCredential.user;
+
+    const profile = await getDoc(
+      doc(db, "users", user.uid)
+    );
+
+    if (profile.exists()) {
+      navigate("/");
+    } else {
+      navigate("/profile-setup");
+    }
+
   } catch (err) {
     setError(err.message);
   }
