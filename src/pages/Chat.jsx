@@ -113,7 +113,39 @@ const sendMessage = async () => {
     })
   };
 
-  setChat(prev => [...prev, aiMessage]);
+  let currentText = "";
+
+const typingMessage = {
+  ...aiMessage,
+  text: ""
+};
+
+setChat(prev => [...prev, typingMessage]);
+
+const words = data.reply.split(" ");
+
+for (let i = 0; i < words.length; i++) {
+
+  currentText += words[i] + " ";
+
+  await new Promise(resolve =>
+    setTimeout(resolve, 20)
+  );
+
+  setChat(prev => {
+
+    const updated = [...prev];
+
+    updated[updated.length - 1] = {
+      ...typingMessage,
+      text: currentText
+    };
+
+    return updated;
+
+  });
+
+}
 
 } catch (err) {
 
