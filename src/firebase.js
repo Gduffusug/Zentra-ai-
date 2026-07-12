@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCSUfc9FAfxhbOloYr3m2Vr60NbcBkpaes",
   authDomain: "zentra-ai-a9bdd.firebaseapp.com",
