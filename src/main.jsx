@@ -8,6 +8,7 @@ import MergePdf from "./pages/pdf/MergePdf";
 import AgeCalculator from "./pages/AgeCalculator";
 import Login from "./components/Login";
 import ResumeBuilder from "./pages/ResumeBuilder";
+import ProfileSetup from "./pages/ProfileSetup";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,6 +28,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 <Route
   path="/login"
   element={<Login />}
+/>
+        <Route
+  path="/profile-setup"
+  element={<ProfileSetup />}
 />
         <Route
   path="/resume-builder"
