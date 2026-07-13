@@ -37,7 +37,27 @@ export default function ResumeBuilder() {
     });
 
   };
+const [step, setStep] = useState(1);
+  
+  const nextStep = () => {
 
+  if (step < 5) {
+
+    setStep(step + 1);
+
+  }
+
+};
+
+const prevStep = () => {
+
+  if (step > 1) {
+
+    setStep(step - 1);
+
+  }
+
+};
   return (
 
     <div className="resume-page">
