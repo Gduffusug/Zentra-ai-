@@ -10,7 +10,9 @@ export default function ResumeBuilder() {
         <p>Create a professional ATS-friendly resume in minutes.</p>
       </div>
 
-      <div className="resume-form">
+      <div className="resume-container">
+
+<div className="resume-form">
 
         <input type="text" placeholder="Full Name" />
 
@@ -78,7 +80,9 @@ export default function ResumeBuilder() {
         </button>
 
       </div>
-
+        
+      </div>
+      
     </div>
   );
 }
