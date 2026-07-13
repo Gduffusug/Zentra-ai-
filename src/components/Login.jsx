@@ -64,15 +64,7 @@ const login = async () => {
 
     const user = userCredential.user;
 
-    const profile = await getDoc(
-      doc(db, "users", user.uid)
-    );
-
-    if (profile.exists()) {
-      navigate("/");
-    } else {
-      navigate("/profile-setup");
-    }
+    navigate("/");
 
   } catch (err) {
     setError(err.message);
