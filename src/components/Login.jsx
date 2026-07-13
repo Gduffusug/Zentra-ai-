@@ -25,17 +25,28 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 const signup = async () => {
+
   setLoading(true);
   setError("");
 
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    navigate("/");
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    navigate("/profile-setup");
+
   } catch (err) {
+
     setError(err.message);
+
   }
 
   setLoading(false);
+
 };
 
 const login = async () => {
