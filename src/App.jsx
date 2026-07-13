@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./firebase";
 import { auth } from "./firebase";
 
 import {
@@ -12,16 +13,37 @@ import "./style.css";
 function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-
+  const [userName, setUserName] = useState("User");
+  
 useEffect(() => {
 
-  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  const unsubscribe = onAuthStateChanged(
+    auth,
+    async (currentUser) => {
+
+      setUser(currentUser);
+
+      if (currentUser) {
+
+        const profile = await getDoc(
+          doc(db, "users", currentUser.uid)
+        );
+
+        if (profile.exists()) {
+
+          setUserName(profile.data().name);
+
+        }
+
+      }
+
+    }
+  );
 
   return () => unsubscribe();
 
 }, []);
+
 
 const handleLogout = async () => {
 
@@ -141,7 +163,7 @@ const handleLogout = async () => {
             <h1>
               Welcome back,
               <br />
-              <span>user 👋</span>
+              <span>{userName} 👋</span>
             </h1>
 
             <p>
