@@ -1,8 +1,28 @@
 import React from "react";
 import "./ResumeBuilder.css";
+import { useState } from "react";
 
 export default function ResumeBuilder() {
   return (
+    const [resume, setResume] = useState({
+
+  fullName:"",
+  jobTitle:"",
+  email:"",
+  phone:"",
+  address:"",
+  linkedin:"",
+  github:"",
+  portfolio:"",
+  education:"",
+  skills:"",
+  experience:"",
+  projects:"",
+  certificates:"",
+  languages:"",
+  achievements:""
+
+});
     <div className="resume-page">
 
       <div className="resume-header">
@@ -12,6 +32,17 @@ export default function ResumeBuilder() {
 
       <div className="resume-container">
 
+        const handleChange = (e)=>{
+
+setResume({
+
+...resume,
+
+[e.target.name]:e.target.value
+
+});
+
+};
 <div className="resume-form">
 
         <input type="text" placeholder="Full Name" />
