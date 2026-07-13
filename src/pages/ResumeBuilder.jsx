@@ -58,6 +58,66 @@ const prevStep = () => {
   }
 
 };
+  const generateResume = async () => {
+
+  try {
+
+    const prompt = `
+Generate a professional ATS-friendly resume.
+
+Name: ${resume.fullName}
+Job Title: ${resume.jobTitle}
+Email: ${resume.email}
+Phone: ${resume.phone}
+Address: ${resume.address}
+
+Education:
+${resume.education}
+
+Skills:
+${resume.skills}
+
+Experience:
+${resume.experience}
+
+Projects:
+${resume.projects}
+
+Certificates:
+${resume.certificates}
+
+Languages:
+${resume.languages}
+
+Achievements:
+${resume.achievements}
+
+Write ONLY a professional summary.
+`;
+
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: prompt,
+      }),
+    });
+
+    const data = await response.json();
+
+    setResume((prev) => ({
+      ...prev,
+      summary: data.reply,
+    }));
+
+  } catch (error) {
+    console.error(error);
+    alert("AI generation failed.");
+  }
+
+};
   return (
 
     <div className="resume-page">
@@ -221,11 +281,12 @@ const prevStep = () => {
             onChange={handleChange}
           />
 
-          <button className="generate-btn">
-
-            ✨ Generate AI Resume
-
-          </button>
+          <button
+  className="generate-btn"
+  onClick={generateResume}
+>
+  ✨ Generate AI Resume
+</button>
           </div>
 
         <div className="resume-preview">
