@@ -19,6 +19,25 @@ export default function ResumeBuilder() {
         <input type="text" placeholder="Phone Number" />
 
         <input type="text" placeholder="Address" />
+        <input
+  type="text"
+  placeholder="Job Title"
+/>
+
+<input
+  type="text"
+  placeholder="LinkedIn URL"
+/>
+
+<input
+  type="text"
+  placeholder="GitHub URL"
+/>
+
+<input
+  type="text"
+  placeholder="Portfolio Website"
+/>
 
         <textarea
           placeholder="Education"
@@ -39,6 +58,20 @@ export default function ResumeBuilder() {
           placeholder="Projects"
           rows="4"
         />
+        <textarea
+  placeholder="Certificates"
+  rows="3"
+/>
+
+<textarea
+  placeholder="Languages"
+  rows="2"
+/>
+
+<textarea
+  placeholder="Achievements"
+  rows="3"
+/>
 
         <button className="generate-btn">
           ✨ Generate Resume
