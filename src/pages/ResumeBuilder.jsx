@@ -126,12 +126,18 @@ Return only JSON.
       }),
     });
 
-    const data = await response.json();
+const data = await response.json();
 
-    setResume((prev) => ({
-      ...prev,
-      summary: data.reply,
-    }));
+const aiResume = JSON.parse(data.reply);
+
+setResume((prev) => ({
+  ...prev,
+  summary: aiResume.summary || prev.summary,
+  skills: aiResume.skills || prev.skills,
+  experience: aiResume.experience || prev.experience,
+  projects: aiResume.projects || prev.projects,
+  achievements: aiResume.achievements || prev.achievements,
+}));
 
   } catch (error) {
     console.error(error);
