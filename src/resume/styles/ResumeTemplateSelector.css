@@ -1,58 +1,181 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 .resume-template-page{
 
-min-height:100vh;
+  min-height:100vh;
 
-padding:40px;
+  background:#0f172a;
 
-background:#0f172a;
+  color:white;
 
-color:#ffffff;
+  padding:50px;
 
 }
 
 .resume-template-header{
 
-text-align:center;
+  text-align:center;
 
-margin-bottom:60px;
+  margin-bottom:50px;
 
 }
 
 .resume-template-header h1{
 
-font-size:44px;
+  font-size:42px;
 
-margin-bottom:15px;
-
-font-weight:700;
+  margin-bottom:12px;
 
 }
 
 .resume-template-header p{
 
-font-size:18px;
+  color:#94a3b8;
 
-opacity:.8;
-
-}
-
-.free-template-section{
-
-margin-top:40px;
+  font-size:18px;
 
 }
 
-.premium-template-section{
+.section-title{
 
-margin-top:70px;
+  font-size:30px;
+
+  margin:40px 0 25px;
 
 }
 
-.free-template-section h2,
-.premium-template-section h2{
+.premium-title{
 
-font-size:30px;
+  margin-top:70px;
 
-margin-bottom:25px;
+}
+
+.template-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+  gap:25px;
+
+}
+
+.template-card{
+
+  background:#1e293b;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  transition:.3s;
+
+  border:1px solid rgba(255,255,255,.08);
+
+}
+
+.template-card:hover{
+
+  transform:translateY(-8px);
+
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.template-preview{
+
+  height:280px;
+
+  border-radius:12px;
+
+  margin-bottom:18px;
+
+  background:white;
+
+}
+
+.premium-preview{
+
+  background:linear-gradient(135deg,#111827,#374151);
+
+}
+
+.template-card h3{
+
+  margin-bottom:15px;
+
+  font-size:22px;
+
+}
+
+.use-template-btn{
+
+  width:100%;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#2563eb;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+}
+
+.use-template-btn:hover{
+
+  background:#1d4ed8;
+
+}
+
+.premium-btn{
+
+  width:100%;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#f59e0b;
+
+  color:black;
+
+  font-weight:bold;
+
+  cursor:not-allowed;
+
+}
+
+@media(max-width:768px){
+
+.resume-template-page{
+
+padding:20px;
+
+}
+
+.resume-template-header h1{
+
+font-size:32px;
+
+}
+
+.template-preview{
+
+height:220px;
+
+}
 
 }
