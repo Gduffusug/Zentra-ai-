@@ -63,18 +63,33 @@ const prevStep = () => {
   try {
 
     const prompt = `
-Generate a professional ATS-friendly resume.
+You are a world-class ATS Resume Writer.
+
+Create a professional ATS-friendly resume using the user's information.
+
+Return ONLY valid JSON.
+
+Format:
+
+{
+  "summary": "...",
+  "skills": "...",
+  "experience": "...",
+  "projects": "...",
+  "achievements": "..."
+}
+
+User Information:
 
 Name: ${resume.fullName}
-Job Title: ${resume.jobTitle}
-Email: ${resume.email}
-Phone: ${resume.phone}
-Address: ${resume.address}
+
+Target Job:
+${resume.jobTitle}
 
 Education:
 ${resume.education}
 
-Skills:
+Current Skills:
 ${resume.skills}
 
 Experience:
@@ -92,7 +107,13 @@ ${resume.languages}
 Achievements:
 ${resume.achievements}
 
-Write ONLY a professional summary.
+Improve everything professionally.
+
+Do NOT return markdown.
+
+Do NOT return explanations.
+
+Return only JSON.
 `;
 
     const response = await fetch("/api/chat", {
