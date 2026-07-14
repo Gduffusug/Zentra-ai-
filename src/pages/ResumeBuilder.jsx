@@ -311,24 +311,21 @@ setResume((prev) => ({
             value={resume.achievements}
             onChange={handleChange}
           />
-          <div className="resume-actions">
 
-  <button
-    className="next-button"
-  >
-    Next →
-  </button>
+  <div className="resume-actions">
+<div className="resume-actions">
+    <button
+        className="next-button"
+        onClick={nextStep}
+    >
+        Next →
+    </button>
+</div>
 
 </div>
-          
-          </div>
 
-        </div>
+</div>
 
-      </div>
-      
-      </div>
-
-  );
-
-}
+</div>        
+    
+      }
