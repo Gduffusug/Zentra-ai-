@@ -142,30 +142,7 @@ setResume((prev) => ({
   languages: data.languages || "",
   achievements: data.achievements || "",
 }));
-
-try {
-
-  const aiResume = JSON.parse(data.reply);
-
-  setResume((prev) => ({
-    ...prev,
-    summary: aiResume.summary || prev.summary,
-    skills: aiResume.skills || prev.skills,
-    experience: aiResume.experience || prev.experience,
-    projects: aiResume.projects || prev.projects,
-    achievements: aiResume.achievements || prev.achievements,
-  }));
-
-} catch (error) {
-
-  console.error("Invalid AI JSON:", error);
-
-  setResume((prev) => ({
-    ...prev,
-    summary: data.reply || prev.summary,
-  }));
-
-}
+    
   } catch (error) {
     console.error(error);
     alert("AI generation failed.");
