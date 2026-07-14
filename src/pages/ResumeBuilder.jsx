@@ -116,17 +116,32 @@ Do NOT return explanations.
 Return only JSON.
 `;
 
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: prompt,
-      }),
-    });
+   const result = await response.json();
 
-    const data = await response.json();
+const text =
+  result.reply ||
+  result.message ||
+  result.response ||
+  result.text;
+
+const cleanText = text
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+const data = JSON.parse(cleanText);
+
+setResume((prev) => ({
+  ...prev,
+  summary: data.summary || "",
+  education: data.education || "",
+  skills: data.skills || "",
+  experience: data.experience || "",
+  projects: data.projects || "",
+  certificates: data.certificates || "",
+  languages: data.languages || "",
+  achievements: data.achievements || "",
+}));
 
 try {
 
