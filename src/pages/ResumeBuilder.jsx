@@ -325,7 +325,5 @@ setResume((prev) => ({
 </div>
 
 </div>
-
-</div>        
     
       }
