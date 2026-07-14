@@ -311,13 +311,6 @@ setResume((prev) => ({
             value={resume.achievements}
             onChange={handleChange}
           />
-
-          <button
-  className="generate-btn"
-  onClick={generateResume}
->
-  ✨ Generate AI Resume
-</button>
           </div>
 
         <div className="resume-preview">
