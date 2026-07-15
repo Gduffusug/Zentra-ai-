@@ -54,7 +54,7 @@ export default function ResumeBuilder() {
       {step === 1 && (
         <>
           <h2>Personal Information</h2>
-
+          <div className="input-group">
           <input
             type="text"
             name="fullName"
@@ -62,7 +62,9 @@ export default function ResumeBuilder() {
             value={resume.fullName}
             onChange={handleChange}
           />
+          </div>
 
+          <div className="input-group">
           <input
             type="text"
             name="jobTitle"
@@ -70,7 +72,9 @@ export default function ResumeBuilder() {
             value={resume.jobTitle}
             onChange={handleChange}
           />
-
+          </div>
+          
+          <div className="input-group">
           <input
             type="email"
             name="email"
@@ -78,7 +82,9 @@ export default function ResumeBuilder() {
             value={resume.email}
             onChange={handleChange}
           />
-
+          </div>
+          
+       <div className="input-group">
           <input
             type="text"
             name="phone"
@@ -86,7 +92,9 @@ export default function ResumeBuilder() {
             value={resume.phone}
             onChange={handleChange}
           />
-
+       </div>
+          
+        <div className="input-group">
           <input
             type="text"
             name="address"
@@ -94,7 +102,9 @@ export default function ResumeBuilder() {
             value={resume.address}
             onChange={handleChange}
           />
-
+        </div>
+          
+       <div className="input-group">
           <input
             type="text"
             name="linkedin"
@@ -102,7 +112,9 @@ export default function ResumeBuilder() {
             value={resume.linkedin}
             onChange={handleChange}
           />
-
+       </div>
+          
+         <div className="input-group">
           <input
             type="text"
             name="github"
@@ -110,7 +122,9 @@ export default function ResumeBuilder() {
             value={resume.github}
             onChange={handleChange}
           />
+         </div>
 
+          <div className="input-group">
           <input
             type="text"
             name="portfolio"
@@ -118,6 +132,7 @@ export default function ResumeBuilder() {
             value={resume.portfolio}
             onChange={handleChange}
           />
+          </div>
 
           <div className="resume-actions">
             <button
