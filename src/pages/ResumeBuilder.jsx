@@ -39,6 +39,24 @@ export default function ResumeBuilder() {
   const prevStep = () => {
     if (step > 1) setStep(step - 1);
   };
+  const handlePhotoUpload = (e) => {
+
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    setResume((prev) => ({
+      ...prev,
+      photo: reader.result,
+    }));
+  };
+
+  reader.readAsDataURL(file);
+
+};
 
   return (
     <div className="resume-page">
