@@ -147,7 +147,8 @@ export default function ResumeBuilder() {
       {step === 2 && (
         <>
           <h2>Professional Details</h2>
-
+          
+        <div className="input-group">
           <textarea
             name="summary"
             placeholder="Professional Summary"
@@ -155,7 +156,9 @@ export default function ResumeBuilder() {
             value={resume.summary}
             onChange={handleChange}
           />
-
+        </div>
+          
+           <div className="input-group">
           <textarea
             name="education"
             placeholder="Education"
@@ -163,7 +166,9 @@ export default function ResumeBuilder() {
             value={resume.education}
             onChange={handleChange}
           />
+           </div>
 
+          <div className="input-group">
           <textarea
             name="skills"
             placeholder="Skills"
@@ -171,7 +176,10 @@ export default function ResumeBuilder() {
             value={resume.skills}
             onChange={handleChange}
           />
+          </div>
+          
 
+          <div className="input-group">
           <textarea
             name="experience"
             placeholder="Experience"
@@ -179,7 +187,9 @@ export default function ResumeBuilder() {
             value={resume.experience}
             onChange={handleChange}
           />
+          </div>
 
+          <div className="input-group">
           <textarea
             name="projects"
             placeholder="Projects"
@@ -187,7 +197,9 @@ export default function ResumeBuilder() {
             value={resume.projects}
             onChange={handleChange}
           />
+          </div>
 
+          <div className="input-group">
           <textarea
             name="certificates"
             placeholder="Certificates"
@@ -195,7 +207,10 @@ export default function ResumeBuilder() {
             value={resume.certificates}
             onChange={handleChange}
           />
+          </div>
+          
 
+          <div className="input-group">
           <textarea
             name="languages"
             placeholder="Languages"
@@ -203,7 +218,9 @@ export default function ResumeBuilder() {
             value={resume.languages}
             onChange={handleChange}
           />
+          </div>
 
+          <div className="input-group">
           <textarea
             name="achievements"
             placeholder="Achievements"
@@ -211,6 +228,7 @@ export default function ResumeBuilder() {
             value={resume.achievements}
             onChange={handleChange}
           />
+          </div>
 
           <div className="resume-actions">
             <button className="back-button" onClick={prevStep}>
