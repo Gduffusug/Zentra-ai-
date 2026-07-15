@@ -152,6 +152,42 @@ export default function ResumeBuilder() {
             onChange={handleChange}
           />
           </div>
+          <div className="photo-upload-section">
+
+  <label className="photo-upload-box">
+
+    {resume.photo ? (
+
+      <img
+        src={resume.photo}
+        alt="Resume"
+        className="uploaded-photo"
+      />
+
+    ) : (
+
+      <div className="upload-placeholder">
+
+        <div className="upload-icon">📷</div>
+
+        <h4>Upload Profile Photo</h4>
+
+        <p>PNG • JPG • JPEG</p>
+
+      </div>
+
+    )}
+
+    <input
+      type="file"
+      accept="image/*"
+      hidden
+      onChange={handlePhotoUpload}
+    />
+
+  </label>
+
+</div>
 
           <div className="resume-actions">
             <button
