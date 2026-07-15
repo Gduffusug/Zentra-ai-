@@ -13,6 +13,7 @@ export default function ResumeBuilder() {
     linkedin: "",
     github: "",
     portfolio: "",
+    photo: "",
 
     summary: "",
     education: "",
