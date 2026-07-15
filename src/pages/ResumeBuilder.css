@@ -1048,11 +1048,150 @@ padding:14px;
 /* Luxury Shadow */
 
 .luxury-shadow{
+   
 
 box-shadow:
 
 0 10px 30px rgba(0,0,0,.45),
 
 0 0 40px rgba(255,0,0,.08);
+
+}
+/* ===========================
+   PHOTO UPLOAD
+=========================== */
+
+.photo-upload-section{
+margin-top:24px;
+margin-bottom:24px;
+}
+
+.photo-upload-box{
+
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+width:100%;
+min-height:220px;
+
+cursor:pointer;
+
+border-radius:22px;
+
+padding:2px;
+
+overflow:hidden;
+
+background:#171d33;
+
+transition:.35s;
+
+}
+
+.photo-upload-box::before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+border-radius:22px;
+
+background:linear-gradient(
+90deg,
+#ff003c,
+#ff4d4d,
+#ff003c,
+#ff7070,
+#ff003c
+);
+
+background-size:300% 300%;
+
+animation:borderRotate 3s linear infinite;
+
+z-index:0;
+
+}
+
+.photo-upload-box>*{
+
+position:relative;
+z-index:2;
+
+}
+
+.upload-placeholder{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+width:calc(100% - 4px);
+height:calc(100% - 4px);
+
+background:#171d33;
+
+border-radius:20px;
+
+color:white;
+
+text-align:center;
+
+}
+
+.upload-icon{
+
+font-size:60px;
+margin-bottom:15px;
+
+}
+
+.upload-placeholder h4{
+
+font-size:22px;
+margin-bottom:8px;
+
+}
+
+.upload-placeholder p{
+
+color:#9aa3c2;
+font-size:15px;
+
+}
+
+.uploaded-photo{
+
+width:180px;
+height:180px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:4px solid white;
+
+box-shadow:
+0 0 30px rgba(255,0,0,.45);
+
+}
+
+.photo-upload-box:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 0 35px rgba(255,0,0,.35);
+
+}
+
+.photo-upload-box:hover::before{
+
+animation-duration:1.3s;
 
 }
