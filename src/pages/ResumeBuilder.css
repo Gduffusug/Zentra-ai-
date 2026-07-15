@@ -1,168 +1,107 @@
-
+/* ===========================
+   AI Resume Builder Pro
+   Part 1
+=========================== */
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Inter",sans-serif;
 }
 
+html,
 body{
-
-  background:#06091a;
-
+  width:100%;
+  min-height:100%;
+  background:#05091d;
+  font-family:Inter,sans-serif;
+  color:#fff;
 }
 
 .resume-page{
-
-  width:100%;
   min-height:100vh;
-
+  width:100%;
   padding:40px 20px 80px;
-
   background:
-  radial-gradient(circle at top,#10183b 0%,#06091a 45%,#03040d 100%);
-
+  radial-gradient(circle at top,#14204d 0%,#05091d 65%);
 }
 
 .resume-header{
-
   text-align:center;
-
-  margin-bottom:45px;
-
+  margin-bottom:40px;
 }
 
 .resume-header h1{
-
-  color:#ffffff;
-
-  font-size:42px;
-
+  font-size:52px;
   font-weight:800;
-
-  letter-spacing:.5px;
-
+  color:#fff;
 }
 
 .resume-header p{
-
-  margin-top:10px;
-
-  color:#9aa6c6;
-
-  font-size:17px;
-
-  line-height:1.6;
-
+  margin-top:14px;
+  color:#9ca6c8;
+  font-size:18px;
 }
 
+.resume-container{
+  max-width:900px;
+  margin:auto;
+}
+
+.resume-card{
+  position:relative;
+  overflow:hidden;
+  background:#13182d;
+  border-radius:28px;
+  padding:35px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:
+  0 0 40px rgba(0,0,0,.45);
+}
 /* ===========================
-   Layout
+   PART 2
+   Premium Animated Red Border
 =========================== */
 
-.resume-container{
-
-  width:100%;
-
-  max-width:1500px;
-
-  margin:auto;
-
-  display:grid;
-
-  grid-template-columns:1fr;
-
-  gap:35px;
-
-}
-
-@media(min-width:1200px){
-
-.resume-container{
-
-grid-template-columns:650px 1fr;
-
-align-items:flex-start;
-
-}
-
-}
-
-
-.resume-form{
-
-position:relative;
-
-overflow:hidden;
-
-background:rgba(18,23,45,.88);
-
-backdrop-filter:blur(20px);
-
-border-radius:26px;
-
-padding:35px;
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:
-0 20px 60px rgba(0,0,0,.45);
-
-transition:.35s;
-
-}
-
-/* Animated Border */
-
-.resume-form::before{
-
+.resume-card::before{
 content:"";
-
 position:absolute;
-
 inset:-2px;
-
-border-radius:28px;
-
+border-radius:30px;
 padding:2px;
 
-background:
-linear-gradient(
+background:linear-gradient(
 90deg,
-#ff003c,
-#ff4040,
-#ff6b00,
-#ff003c
+#ff1e1e,
+#ff5b5b,
+#ff0000,
+#ff8a8a,
+#ff1e1e
 );
 
 background-size:300% 300%;
 
-animation:redBorderRotate 5s linear infinite;
+animation:borderRotate 4s linear infinite;
 
 -webkit-mask:
 linear-gradient(#fff 0 0) content-box,
 linear-gradient(#fff 0 0);
 
 -webkit-mask-composite:xor;
-
 mask-composite:exclude;
 
-opacity:0;
-
 pointer-events:none;
-
-transition:.35s;
-
 }
 
-.resume-form:hover::before{
+.resume-card:hover{
+transform:translateY(-4px);
 
-opacity:1;
-
+box-shadow:
+0 0 18px rgba(255,0,0,.22),
+0 0 55px rgba(255,0,0,.12);
 }
 
-@keyframes redBorderRotate{
+@keyframes borderRotate{
 
 0%{
 background-position:0% 50%;
@@ -172,244 +111,247 @@ background-position:0% 50%;
 background-position:300% 50%;
 }
 
-/* Section Title */
+}
 
-.resume-form h2{
+/* ---------- Glass Effect ---------- */
 
-color:white;
+.resume-card{
 
-font-size:26px;
+backdrop-filter:blur(20px);
 
-margin-bottom:25px;
+-webkit-backdrop-filter:blur(20px);
 
-font-weight:700;
+transition:
+transform .35s ease,
+box-shadow .35s ease;
 
 }
 
-/* Inputs */
+/* ---------- Titles ---------- */
 
-.resume-form input,
-.resume-form textarea{
+.resume-card h2{
+
+font-size:34px;
+
+font-weight:800;
+
+margin-bottom:28px;
+
+color:#ffffff;
+
+letter-spacing:.5px;
+
+}
+/* ===========================
+   PART 3
+   Premium Input Fields
+=========================== */
+
+.input-group{
+position:relative;
+margin-bottom:22px;
+border-radius:18px;
+padding:2px;
+overflow:hidden;
+}
+
+.input-group::before{
+content:"";
+position:absolute;
+inset:0;
+
+background:linear-gradient(
+90deg,
+#ff0000,
+#ff4d4d,
+#ff0000,
+#ff7b7b,
+#ff0000
+);
+
+background-size:300% 300%;
+animation:borderRotate 3.5s linear infinite;
+z-index:0;
+}
+
+.input-group input,
+.input-group textarea{
+
+position:relative;
+z-index:2;
 
 width:100%;
+border:none;
+outline:none;
 
-padding:17px 18px;
+background:#1a2037;
 
-margin-bottom:18px;
+color:#fff;
+
+font-size:16px;
+
+padding:16px 18px;
 
 border-radius:16px;
 
-border:1px solid rgba(255,255,255,.08);
-
-background:#222943;
-
-color:white;
-
-font-size:15px;
+resize:none;
 
 transition:.3s;
 
 }
 
-.resume-form textarea{
+.input-group textarea{
 
-resize:none;
-
-min-height:130px;
+min-height:140px;
 
 }
 
-.resume-form input::placeholder,
-.resume-form textarea::placeholder{
+.input-group input::placeholder,
+.input-group textarea::placeholder{
 
-color:#98a2c3;
+color:#8d94b2;
 
 }
 
-.resume-form input:focus,
-.resume-form textarea:focus{
+.input-group:hover input,
+.input-group:hover textarea{
 
-outline:none;
-
-border-color:#ff3b3b;
-
-background:#2b3353;
+background:#202744;
 
 box-shadow:
-0 0 18px rgba(255,60,60,.28);
-
-}
-/* ===========================================
-   BUTTONS + PROGRESS
-   PART 3
-=========================================== */
-
-/* Step Indicator */
-
-.resume-progress{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:12px;
-
-margin-bottom:35px;
+0 0 20px rgba(255,0,0,.15);
 
 }
 
-.progress-dot{
+.input-group input:focus,
+.input-group textarea:focus{
 
-width:14px;
+background:#252d4f;
 
-height:14px;
-
-border-radius:50%;
-
-background:#3a4265;
-
-transition:.35s;
+box-shadow:
+0 0 25px rgba(255,0,0,.35);
 
 }
-
-.progress-dot.active{
-
-background:#ff2d2d;
-
-box-shadow:0 0 18px rgba(255,50,50,.7);
-
-transform:scale(1.15);
-
-}
-
-/* Buttons */
+/* ===========================
+   PART 4
+   Premium Buttons
+=========================== */
 
 .resume-actions{
 
 display:flex;
-
 justify-content:space-between;
-
-align-items:center;
-
-margin-top:35px;
-
-gap:15px;
+gap:16px;
+margin-top:32px;
 
 }
 
-.back-button,
-.next-button{
+.resume-actions button{
 
 position:relative;
 
 overflow:hidden;
 
-padding:15px 32px;
-
 border:none;
 
-border-radius:15px;
+outline:none;
+
+cursor:pointer;
+
+padding:15px 30px;
 
 font-size:16px;
 
 font-weight:700;
 
-cursor:pointer;
+color:#fff;
+
+background:#181f36;
+
+border-radius:16px;
 
 transition:.35s;
 
-}
-
-/* Back */
-
-.back-button{
-
-background:#222943;
-
-color:white;
-
-border:1px solid rgba(255,255,255,.08);
+z-index:1;
 
 }
 
-.back-button:hover{
-
-transform:translateY(-3px);
-
-background:#2d3556;
-
-box-shadow:
-
-0 15px 30px rgba(0,0,0,.35);
-
-}
-
-/* Next */
-
-.next-button{
-
-background:linear-gradient(
-90deg,
-#ff2d2d,
-#ff4d4d,
-#ff7a00
-);
-
-background-size:250%;
-
-color:white;
-
-}
-
-.next-button:hover{
-
-background-position:right;
-
-transform:translateY(-3px);
-
-box-shadow:
-
-0 18px 35px rgba(255,60,60,.45);
-
-}
-
-/* Ripple */
-
-.back-button::after,
-.next-button::after{
+.resume-actions button::before{
 
 content:"";
 
 position:absolute;
 
-left:-120%;
+inset:0;
 
-top:0;
+padding:2px;
 
-width:100%;
+border-radius:16px;
 
-height:100%;
-
-background:
-
-linear-gradient(
+background:linear-gradient(
 90deg,
-transparent,
-rgba(255,255,255,.35),
-transparent
+#ff0000,
+#ff4d4d,
+#ff0000,
+#ff8c8c,
+#ff0000
 );
 
-transition:.7s;
+background-size:300% 300%;
+
+animation:borderRotate 3.5s linear infinite;
+
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+
+-webkit-mask-composite:xor;
+
+mask-composite:exclude;
+
+pointer-events:none;
 
 }
 
-.back-button:hover::after,
-.next-button:hover::after{
+.resume-actions button:hover{
 
-left:120%;
+transform:translateY(-3px);
+
+background:#202744;
+
+box-shadow:
+0 0 18px rgba(255,0,0,.35),
+0 0 45px rgba(255,0,0,.20);
+
+}
+
+.resume-actions button:active{
+
+transform:scale(.97);
+
+}
+
+.next-button{
+
+flex:1;
+
+}
+
+.back-button{
+
+flex:1;
+
+}
+
+.preview-button{
+
+flex:1;
+
+}
+
+.continue-button{
+
+flex:1;
 
 }
 
@@ -423,8 +365,7 @@ flex-direction:column;
 
 }
 
-.back-button,
-.next-button{
+.resume-actions button{
 
 width:100%;
 
@@ -432,61 +373,190 @@ width:100%;
 
 }
 /* ===========================================
-   PART 4
-   PREMIUM FINISH
+   PART 5
+   Premium UI Polish
 =========================================== */
 
-/* Template Selection */
+/* ---------- Labels ---------- */
 
-.template-selection-page{
+.resume-card label{
 
-width:100%;
+display:block;
 
-text-align:center;
+margin-bottom:10px;
 
-}
+font-size:15px;
 
-.template-selection-page h2{
+font-weight:700;
 
-font-size:32px;
+color:#ffffff;
 
-color:#fff;
-
-margin-bottom:15px;
+letter-spacing:.3px;
 
 }
 
-.template-selection-page p{
+/* ---------- Smooth Animation ---------- */
 
-color:#9aa6c6;
+.resume-card,
+.input-group,
+.resume-actions button{
 
-margin-bottom:35px;
+transition:
 
-font-size:17px;
+all .35s ease;
 
 }
 
-/* Premium Placeholder */
+/* ---------- Scrollbar ---------- */
 
-.template-placeholder{
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#070b1f;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(
+180deg,
+#ff1a1a,
+#ff5c5c
+);
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#ff0000;
+
+}
+
+/* ---------- Text Selection ---------- */
+
+::selection{
+
+background:#ff1f1f;
+
+color:white;
+
+}
+
+/* ---------- Focus Glow ---------- */
+
+input:focus,
+textarea:focus{
+
+caret-color:#ff2d2d;
+
+}
+
+/* ---------- Section Spacing ---------- */
+
+.resume-card h2{
+
+margin-top:5px;
+
+margin-bottom:30px;
+
+}
+
+.input-group:last-child{
+
+margin-bottom:0;
+
+}
+
+/* ---------- Small Screen ---------- */
+
+@media(max-width:768px){
+
+.resume-page{
+
+padding:20px;
+
+}
+
+.resume-header h1{
+
+font-size:34px;
+
+}
+
+.resume-header p{
+
+font-size:15px;
+
+}
+
+.resume-card{
+
+padding:22px;
+
+border-radius:22px;
+
+}
+
+.resume-card h2{
+
+font-size:24px;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+padding:15px;
+
+font-size:15px;
+
+}
+
+}
+/* ===========================================
+   PART 6
+   Template Cards
+=========================================== */
+
+.template-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(270px,1fr));
+
+gap:28px;
+
+margin-top:35px;
+
+}
+
+.template-card{
 
 position:relative;
 
 overflow:hidden;
 
-padding:45px;
+background:#151b31;
 
 border-radius:22px;
 
-background:#171d34;
+padding:18px;
 
-border:1px solid rgba(255,255,255,.08);
+cursor:pointer;
 
 transition:.35s;
 
 }
 
-.template-placeholder::before{
+.template-card::before{
 
 content:"";
 
@@ -498,18 +568,18 @@ padding:2px;
 
 border-radius:24px;
 
-background:
-linear-gradient(
+background:linear-gradient(
 90deg,
-#ff2d2d,
-#ff4d4d,
-#ff7a00,
-#ff2d2d
+#ff0000,
+#ff5b5b,
+#ff0000,
+#ff8a8a,
+#ff0000
 );
 
-background-size:300%;
+background-size:300% 300%;
 
-animation:redGlow 5s linear infinite;
+animation:borderRotate 4s linear infinite;
 
 -webkit-mask:
 linear-gradient(#fff 0 0) content-box,
@@ -519,121 +589,470 @@ linear-gradient(#fff 0 0);
 
 mask-composite:exclude;
 
+pointer-events:none;
+
+opacity:0;
+
+transition:.3s;
+
+}
+
+.template-card:hover::before{
+
+opacity:1;
+
+}
+
+.template-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+0 20px 45px rgba(255,0,0,.18);
+
+}
+
+.template-preview{
+
+height:300px;
+
+border-radius:14px;
+
+background:#f4f4f4;
+
+margin-bottom:18px;
+
+}
+
+.template-name{
+
+font-size:20px;
+
+font-weight:700;
+
+color:#fff;
+
+margin-bottom:10px;
+
+}
+
+.template-type{
+
+display:inline-flex;
+
+padding:7px 16px;
+
+border-radius:40px;
+
+font-size:14px;
+
+font-weight:700;
+
+}
+
+.free-template{
+
+background:#12361d;
+
+color:#52ff8a;
+
+}
+
+.premium-template{
+
+background:#3b2200;
+
+color:#ffbf47;
+
+}
+
+.lock-icon{
+
+position:absolute;
+
+top:18px;
+
+right:18px;
+
+width:42px;
+
+height:42px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+background:#ff2d2d;
+
+color:white;
+
+font-size:18px;
+
+box-shadow:
+0 0 20px rgba(255,0,0,.35);
+
+}
+/* ===========================================
+   PART 7
+   Resume Preview
+=========================================== */
+
+.resume-preview{
+
+position:relative;
+
+background:#11172d;
+
+border-radius:24px;
+
+padding:25px;
+
+overflow:hidden;
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.35);
+
+}
+
+.resume-preview::before{
+
+content:"";
+
+position:absolute;
+
+inset:-2px;
+
+padding:2px;
+
+border-radius:26px;
+
+background:linear-gradient(
+90deg,
+#ff0000,
+#ff5b5b,
+#ff0000,
+#ff9a9a,
+#ff0000
+);
+
+background-size:300% 300%;
+
+animation:borderRotate 4s linear infinite;
+
+-webkit-mask:
+linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+
+-webkit-mask-composite:xor;
+
+mask-composite:exclude;
+
+pointer-events:none;
+
 opacity:0;
 
 transition:.35s;
 
 }
 
-.template-placeholder:hover::before{
+.resume-preview:hover::before{
 
 opacity:1;
 
 }
 
-.template-placeholder:hover{
+.preview-paper{
 
-transform:translateY(-6px);
+width:100%;
+
+max-width:794px;
+
+min-height:1123px;
+
+margin:auto;
+
+background:white;
+
+border-radius:12px;
+
+padding:50px;
+
+color:#111827;
 
 box-shadow:
-0 20px 50px rgba(255,60,60,.25);
+0 25px 60px rgba(0,0,0,.25);
+
+transition:.35s;
 
 }
 
-.template-placeholder h3{
+.preview-paper:hover{
 
-color:white;
-
-font-size:24px;
-
-margin-bottom:15px;
+transform:scale(1.01);
 
 }
 
-.template-placeholder p{
+.preview-paper h1{
 
-margin:0;
+font-size:34px;
 
-color:#98a2c3;
+font-weight:800;
+
+margin-bottom:8px;
 
 }
 
-/* Floating Animation */
+.preview-paper h2{
 
-@keyframes floating{
+font-size:18px;
+
+color:#ff2d2d;
+
+margin:28px 0 10px;
+
+border-bottom:2px solid #eeeeee;
+
+padding-bottom:8px;
+
+}
+
+.preview-paper p{
+
+font-size:15px;
+
+line-height:1.8;
+
+color:#374151;
+
+}
+
+.preview-paper ul{
+
+padding-left:20px;
+
+margin-top:10px;
+
+}
+
+.preview-paper li{
+
+margin-bottom:8px;
+
+line-height:1.7;
+
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+.preview-paper{
+
+padding:28px;
+
+min-height:auto;
+
+}
+
+}
+/* ===========================================
+   PART 8
+   FINAL PREMIUM POLISH
+=========================================== */
+
+/* Smooth Fade */
+
+.fade-in{
+
+animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* Floating Glow */
+
+.red-glow{
+
+position:absolute;
+
+width:250px;
+height:250px;
+
+border-radius:50%;
+
+background:rgba(255,0,0,.08);
+
+filter:blur(80px);
+
+pointer-events:none;
+
+animation:glowMove 8s ease-in-out infinite;
+
+}
+
+.red-glow.one{
+
+top:-80px;
+left:-80px;
+
+}
+
+.red-glow.two{
+
+bottom:-120px;
+right:-100px;
+
+animation-delay:3s;
+
+}
+
+@keyframes glowMove{
 
 0%{
 
-transform:translateY(0px);
+transform:translate(0,0);
 
 }
 
 50%{
 
-transform:translateY(-6px);
+transform:translate(30px,-20px);
 
 }
 
 100%{
 
-transform:translateY(0px);
+transform:translate(0,0);
 
 }
 
 }
 
-.resume-form{
+/* Hover Lift */
 
-animation:floating 5s ease-in-out infinite;
+.template-card,
+.resume-card,
+.resume-preview{
 
-}
-
-/* Border Animation */
-
-@keyframes redGlow{
-
-0%{
-
-background-position:0% 50%;
+will-change:transform;
 
 }
 
-100%{
+/* Disable ugly tap */
 
-background-position:300% 50%;
+button,
+input,
+textarea{
 
-}
-
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-
-width:8px;
+-webkit-tap-highlight-color:transparent;
 
 }
 
-::-webkit-scrollbar-thumb{
+/* Better Placeholder */
 
-background:#ff3434;
+input::placeholder,
+textarea::placeholder{
 
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:#0b1024;
+transition:.3s;
 
 }
 
-/* Selection */
+input:focus::placeholder,
+textarea:focus::placeholder{
+
+opacity:.45;
+
+}
+
+/* Better Selection */
 
 ::selection{
 
-background:#ff3434;
+background:#ff3030;
 
-color:white;
+color:#fff;
+
+}
+
+/* Ultra Responsive */
+
+@media(max-width:500px){
+
+.resume-header h1{
+
+font-size:28px;
+
+}
+
+.resume-header p{
+
+font-size:14px;
+
+}
+
+.template-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.resume-card{
+
+padding:18px;
+
+}
+
+.preview-paper{
+
+padding:18px;
+
+}
+
+.resume-actions{
+
+gap:12px;
+
+}
+
+.resume-actions button{
+
+font-size:15px;
+
+padding:14px;
+
+}
+
+}
+
+/* Luxury Shadow */
+
+.luxury-shadow{
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.45),
+
+0 0 40px rgba(255,0,0,.08);
 
 }
