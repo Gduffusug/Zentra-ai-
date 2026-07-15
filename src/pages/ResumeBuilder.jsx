@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./ResumeBuilder.css";
 
 export default function ResumeBuilder() {
+  const [step, setStep] = useState(1);
 
   const [resume, setResume] = useState({
-
     fullName: "",
     jobTitle: "",
     email: "",
@@ -15,158 +15,44 @@ export default function ResumeBuilder() {
     portfolio: "",
 
     summary: "",
-
     education: "",
     skills: "",
     experience: "",
     projects: "",
     certificates: "",
     languages: "",
-    achievements: ""
-
+    achievements: "",
   });
 
   const handleChange = (e) => {
-
     setResume({
-
       ...resume,
-
-      [e.target.name]: e.target.value
-
+      [e.target.name]: e.target.value,
     });
-
   };
-const [step, setStep] = useState(1);
-  
+
   const nextStep = () => {
+    if (step < 3) setStep(step + 1);
+  };
 
-  if (step < 5) {
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
 
-    setStep(step + 1);
-
-  }
-
-};
-
-const prevStep = () => {
-
-  if (step > 1) {
-
-    setStep(step - 1);
-
-  }
-
-};
-  const generateResume = async () => {
-
-  try {
-
-    const prompt = `
-You are a world-class ATS Resume Writer.
-
-Create a professional ATS-friendly resume using the user's information.
-
-Return ONLY valid JSON.
-
-Format:
-
-{
-  "summary": "...",
-  "skills": "...",
-  "experience": "...",
-  "projects": "...",
-  "achievements": "..."
-}
-
-User Information:
-
-Name: ${resume.fullName}
-
-Target Job:
-${resume.jobTitle}
-
-Education:
-${resume.education}
-
-Current Skills:
-${resume.skills}
-
-Experience:
-${resume.experience}
-
-Projects:
-${resume.projects}
-
-Certificates:
-${resume.certificates}
-
-Languages:
-${resume.languages}
-
-Achievements:
-${resume.achievements}
-
-Improve everything professionally.
-
-Do NOT return markdown.
-
-Do NOT return explanations.
-
-Return only JSON.
-`;
-
-   const result = await response.json();
-
-const text =
-  result.reply ||
-  result.message ||
-  result.response ||
-  result.text;
-
-const cleanText = text
-  .replace(/```json/g, "")
-  .replace(/```/g, "")
-  .trim();
-
-const data = JSON.parse(cleanText);
-
-setResume((prev) => ({
-  ...prev,
-  summary: data.summary || "",
-  education: data.education || "",
-  skills: data.skills || "",
-  experience: data.experience || "",
-  projects: data.projects || "",
-  certificates: data.certificates || "",
-  languages: data.languages || "",
-  achievements: data.achievements || "",
-}));
-    
-  } catch (error) {
-    console.error(error);
-    alert("AI generation failed.");
-  }
-
-};
   return (
-
     <div className="resume-page">
 
-      <div className="resume-header">
+  <div className="resume-header">
+    <h1>🚀 AI Resume Builder</h1>
+    <p>Create a premium ATS-friendly resume.</p>
+  </div>
 
-        <h1>📄 AI Resume Builder</h1>
+  <div className="resume-container">
 
-        <p>
-          Create a professional ATS-friendly resume in minutes.
-        </p>
+    <div className="resume-form">
 
-      </div>
-
-      <div className="resume-container">
-
-        <div className="resume-form">
-
+      {step === 1 && (
+        <>
           <h2>Personal Information</h2>
 
           <input
@@ -180,7 +66,7 @@ setResume((prev) => ({
           <input
             type="text"
             name="jobTitle"
-            placeholder="Job Title"
+            placeholder="Target Job Title"
             value={resume.jobTitle}
             onChange={handleChange}
           />
@@ -188,7 +74,7 @@ setResume((prev) => ({
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Email"
             value={resume.email}
             onChange={handleChange}
           />
@@ -196,7 +82,7 @@ setResume((prev) => ({
           <input
             type="text"
             name="phone"
-            placeholder="Phone Number"
+            placeholder="Phone"
             value={resume.phone}
             onChange={handleChange}
           />
@@ -228,51 +114,56 @@ setResume((prev) => ({
           <input
             type="text"
             name="portfolio"
-            placeholder="Portfolio Website"
+            placeholder="Portfolio URL"
             value={resume.portfolio}
             onChange={handleChange}
           />
-          <h2>Professional Summary</h2>
+
+          <div className="resume-actions">
+            <button
+              className="next-button"
+              onClick={nextStep}
+            >
+              Next →
+            </button>
+          </div>
+        </>
+      )}
+      {step === 2 && (
+        <>
+          <h2>Professional Details</h2>
 
           <textarea
             name="summary"
-            placeholder="Write a short professional summary..."
+            placeholder="Professional Summary"
             rows="5"
             value={resume.summary}
             onChange={handleChange}
           />
 
-          <h2>Education</h2>
-
           <textarea
             name="education"
             placeholder="Education"
-            rows="5"
+            rows="4"
             value={resume.education}
             onChange={handleChange}
           />
 
-          <h2>Skills</h2>
-
           <textarea
             name="skills"
             placeholder="Skills"
-            rows="5"
+            rows="4"
             value={resume.skills}
             onChange={handleChange}
           />
 
-          <h2>Work Experience</h2>
-
           <textarea
             name="experience"
-            placeholder="Work Experience"
+            placeholder="Experience"
             rows="6"
             value={resume.experience}
             onChange={handleChange}
           />
-
-          <h2>Projects</h2>
 
           <textarea
             name="projects"
@@ -282,8 +173,6 @@ setResume((prev) => ({
             onChange={handleChange}
           />
 
-          <h2>Certificates</h2>
-
           <textarea
             name="certificates"
             placeholder="Certificates"
@@ -291,8 +180,6 @@ setResume((prev) => ({
             value={resume.certificates}
             onChange={handleChange}
           />
-
-          <h2>Languages</h2>
 
           <textarea
             name="languages"
@@ -302,8 +189,6 @@ setResume((prev) => ({
             onChange={handleChange}
           />
 
-          <h2>Achievements</h2>
-
           <textarea
             name="achievements"
             placeholder="Achievements"
@@ -312,18 +197,73 @@ setResume((prev) => ({
             onChange={handleChange}
           />
 
-  <div className="resume-actions">
-<div className="resume-actions">
-    <button
-        className="next-button"
-        onClick={nextStep}
-    >
-        Next →
-    </button>
-</div>
+          <div className="resume-actions">
+            <button className="back-button" onClick={prevStep}>
+              ← Back
+            </button>
+
+            <button className="next-button" onClick={nextStep}>
+              Preview →
+            </button>
+          </div>
+        </>
+      )}
+      {step === 3 && (
+        <>
+
+          <div className="template-selection-page">
+
+            <h2>
+              🎨 Choose Your Resume Template
+            </h2>
+
+            <p>
+              In the next step you will select a professional resume template.
+            </p>
+
+            <div className="template-placeholder">
+
+              <h3>
+                Resume Template Selector
+              </h3>
+
+              <p>
+                Free Templates • Premium Templates • Live Preview
+              </p>
+
+            </div>
+
+            <div className="resume-actions">
+
+              <button
+                className="back-button"
+                onClick={prevStep}
+              >
+                ← Back
+              </button>
+
+              <button
+                className="next-button"
+              >
+                Continue →
+              </button>
+
+            </div>
+
+          </div>
+
+        </>
+      )}
+
+    </div>
+
+  </div>
 
 </div>
 
-</div>
-    
-      }
+  );
+
+}
+
+      
+      
