@@ -1,0 +1,148 @@
+const resumeTemplates = [
+  // =========================
+  // FREE TEMPLATES
+  // =========================
+
+  {
+    id: "modern-ats",
+    name: "Modern ATS",
+    type: "Free",
+    profession: "🎓 Best for Students & Freshers",
+    thumbnail: "/templates/modern-ats.png",
+    locked: false,
+    featured: true,
+  },
+  {
+    id: "minimal-professional",
+    name: "Minimal Professional",
+    type: "Free",
+    profession: "💼 Best for Office & Corporate Jobs",
+    thumbnail: "/templates/minimal-professional.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "executive-professional",
+    name: "Executive Professional",
+    type: "Free",
+    profession: "👔 Best for Managers & Team Leads",
+    thumbnail: "/templates/executive-professional.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "creative-modern",
+    name: "Creative Modern",
+    type: "Free",
+    profession: "🎨 Best for Designers & Creatives",
+    thumbnail: "/templates/creative-modern.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "student-fresher-pro",
+    name: "Student & Fresher Pro",
+    type: "Free",
+    profession: "📚 Best for Students & Internships",
+    thumbnail: "/templates/student-fresher-pro.png",
+    locked: false,
+    featured: false,
+  },
+
+  // =========================
+  // PREMIUM TEMPLATES
+  // =========================
+
+  {
+    id: "executive-elite",
+    name: "Executive Elite",
+    type: "Premium",
+    profession: "🏆 Best for CEOs & Executives",
+    thumbnail: "/templates/executive-elite.png",
+    locked: false,
+    featured: true,
+  },
+  {
+    id: "luxury-black-gold",
+    name: "Luxury Black & Gold",
+    type: "Premium",
+    profession: "💎 Best for Founders & Business Owners",
+    thumbnail: "/templates/luxury-black-gold.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "modern-corporate-blue",
+    name: "Modern Corporate Blue",
+    type: "Premium",
+    profession: "🏢 Best for Corporate Professionals",
+    thumbnail: "/templates/modern-corporate-blue.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "tech-pro",
+    name: "Tech Pro",
+    type: "Premium",
+    profession: "💻 Best for Software Engineers",
+    thumbnail: "/templates/tech-pro.png",
+    locked: false,
+    featured: true,
+  },
+  {
+    id: "startup-founder",
+    name: "Startup Founder",
+    type: "Premium",
+    profession: "🚀 Best for Startup Founders",
+    thumbnail: "/templates/startup-founder.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "international-cv",
+    name: "International CV",
+    type: "Premium",
+    profession: "🌍 Best for USA, Canada & Europe Jobs",
+    thumbnail: "/templates/international-cv.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "product-manager",
+    name: "Product Manager",
+    type: "Premium",
+    profession: "📊 Best for Product Managers",
+    thumbnail: "/templates/product-manager.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "designer-portfolio",
+    name: "Designer Portfolio",
+    type: "Premium",
+    profession: "🖌 Best for UI/UX & Graphic Designers",
+    thumbnail: "/templates/designer-portfolio.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "royal-elegant",
+    name: "Royal Elegant",
+    type: "Premium",
+    profession: "👑 Best for Luxury Executive Resumes",
+    thumbnail: "/templates/royal-elegant.png",
+    locked: false,
+    featured: false,
+  },
+  {
+    id: "glassmorphism-ultra",
+    name: "Glassmorphism Ultra",
+    type: "Premium",
+    profession: "✨ Best for Modern Professionals",
+    thumbnail: "/templates/glassmorphism-ultra.png",
+    locked: false,
+    featured: false,
+  },
+];
+
+export default resumeTemplates;
