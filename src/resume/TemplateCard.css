@@ -1,0 +1,240 @@
+/* ===========================
+   TEMPLATE CARD
+=========================== */
+
+.template-card{
+    position:relative;
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    background:#111827;
+
+    border-radius:22px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    cursor:pointer;
+
+    transition:.35s ease;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.28);
+}
+
+/* Animated Red Border */
+
+.template-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:24px;
+
+    padding:2px;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        #ff2d55,
+        #ff5f5f,
+        #ff2d55,
+        transparent
+    );
+
+    background-size:300% 300%;
+
+    animation:borderMove 4s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    opacity:0;
+
+    transition:.3s;
+}
+
+.template-card:hover::before,
+.template-card.selected::before{
+
+    opacity:1;
+}
+
+@keyframes borderMove{
+
+0%{
+
+background-position:0% 50%;
+
+}
+
+100%{
+
+background-position:300% 50%;
+
+}
+
+}
+
+.template-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+
+0 18px 45px rgba(255,45,85,.25);
+
+}
+
+.template-card.selected{
+
+transform:translateY(-8px);
+
+}
+
+
+/* ===========================
+IMAGE
+=========================== */
+
+.template-image{
+
+position:relative;
+
+height:230px;
+
+overflow:hidden;
+
+}
+
+.template-image img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+transition:.4s;
+
+}
+
+.template-card:hover img{
+
+transform:scale(1.06);
+
+}
+
+
+/* ===========================
+BADGES
+=========================== */
+
+.template-badge{
+
+position:absolute;
+
+top:15px;
+
+left:15px;
+
+padding:8px 15px;
+
+border-radius:999px;
+
+font-size:.78rem;
+
+font-weight:700;
+
+backdrop-filter:blur(10px);
+
+}
+
+.template-badge.free{
+
+background:#10b981;
+
+color:#fff;
+
+}
+
+.template-badge.premium{
+
+background:#f59e0b;
+
+color:#111;
+
+}
+
+.featured-badge{
+
+position:absolute;
+
+top:15px;
+
+right:15px;
+
+padding:8px 15px;
+
+border-radius:999px;
+
+background:#2563eb;
+
+color:white;
+
+font-size:.78rem;
+
+font-weight:700;
+
+}
+
+
+/* ===========================
+CONTENT
+=========================== */
+
+.template-content{
+
+padding:22px;
+
+}
+
+.template-content h3{
+
+color:#fff;
+
+font-size:1.25rem;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.template-content p{
+
+color:#9ca3af;
+
+font-size:.93rem;
+
+line-height:1.6;
+
+min-height:52px;
+
+}
+
+
+/* ===========================
+BUTTON
