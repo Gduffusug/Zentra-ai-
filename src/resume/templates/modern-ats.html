@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern ATS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter:wght@700&amp;display=swap');
+
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            padding: 20px 0;
+            line-height: 1.5;
+            color: #1e2937;
+            display: flex;
+            justify-content: center;
+        }
+
+        .resume {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resume-content {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 78mm 132mm;
+        }
+
+        /* LEFT SIDEBAR */
+        .sidebar {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 35px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 38px;
+        }
+
+        .photo-container {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .photo {
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2563eb;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        .name {
+            font-size: 21px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-top: 18px;
+            line-height: 1.1;
+        }
+
+        .title {
+            font-size: 13.5px;
+            font-weight: 500;
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            color: #2563eb;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 14px;
+            position: relative;
+            padding-bottom: 6px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 32px;
+            height: 2px;
+            background: #2563eb;
+        }
+
+        /* CONTACT INFO */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            margin-bottom: 11px;
+            color: #cbd5e1;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: #60a5fa;
+        }
+
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* SKILLS & LANGUAGES */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-pill {
+            background: rgba(255,255,255,0.1);
+            color: #e2e8f0;
+            font-size: 11.5px;
+            padding: 5px 13px;
+            border-radius: 9999px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        /* RIGHT COLUMN */
+        .main {
+            padding: 38px 32px 35px 35px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .header-right {
+            margin-bottom: 8px;
+        }
+
+        .summary {
+            font-size: 13.2px;
+            line-height: 1.65;
+            color: #334155;
+        }
+
+        .section {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .section-header::after {
+            flex: 1;
+            content: '';
+            height: 1px;
+            background: linear-gradient(to right, #2563eb, #e2e8f0);
+        }
+
+        /* EXPERIENCE */
+        .job {
+            margin-bottom: 22px;
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 13.5px;
+            color: #0f172a;
+        }
+
+        .company {
+            color: #2563eb;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .job-date {
+            font-size: 12px;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        .job-desc {
+            font-size: 12.8px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .job-desc ul {
+            margin-top: 7px;
+            padding-left: 18px;
+        }
+
+        .job-desc li {
+            margin-bottom: 3px;
+        }
+
+        /* PROJECTS */
+        .project {
+            margin-bottom: 20px;
+        }
+
+        .project:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-name {
+            font-weight: 600;
+            font-size: 13.5px;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 10px;
+        }
+
+        .tech-tag {
+            font-size: 10.5px;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 2px 9px;
+            border-radius: 9999px;
+        }
+
+        /* EDUCATION */
+        .edu-item {
+            margin-bottom: 20px;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            font-size: 13.5px;
+        }
+
+        .edu-school {
+            color: #2563eb;
+            font-size: 13px;
+        }
+
+        .edu-date {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* CERTIFICATES & ACHIEVEMENTS */
+        .list-item {
+            margin-bottom: 14px;
+            font-size: 13px;
+        }
+
+        .list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .achieve-item {
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 12px;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: auto;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 10px;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        /* PRINT OPTIMIZATIONS */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .resume {
+                width: 100%;
+                height: 100%;
+                box-shadow: none;
+                min-height: 0;
+            }
+            
+            .resume-content {
+                height: 100%;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .resume {
+                width: 95%;
+                max-width: 800px;
+            }
+            
+            .resume-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="resume-content">
+            
+            <!-- LEFT SIDEBAR -->
+            <div class="sidebar">
+                
+                <!-- PHOTO -->
+                <div class="photo-container">
+                    <img src="{{photo}}" alt="Profile Photo" class="photo" onerror="this.src='https://via.placeholder.com/118x118/2563eb/ffffff?text=Photo';">
+                </div>
+                
+                <!-- NAME & TITLE -->
+                <div>
+                    <div class="name">{{fullName}}</div>
+                    <div class="title">{{jobTitle}}</div>
+                </div>
+                
+                <!-- CONTACT -->
+                <div>
+                    <div class="section-title">CONTACT</div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2.01 2.01 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2" />
+                        </svg>
+                        <a href="mailto:{{email}}" class="contact-link">{{email}}</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2 2 2 0 01-2-2 2 2 0 01-2-2 2 2 0 012-2 2 2 0 01-2-2 2 2 0 012-2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 4.01V8" />
+                        </svg>
+                        <span>{{phone}}</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314-11.314z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>{{address}}</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L9 15" />
+                        </svg>
+                        <a href="{{linkedin}}" target="_blank" class="contact-link">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 4L2 8l4 4" />
+                        </svg>
+                        <a href="{{github}}" target="_blank" class="contact-link">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 4.01V8" />
+                        </svg>
+                        <a href="{{portfolio}}" target="_blank" class="contact-link">Portfolio</a>
+                    </div>
+                </div>
+                
+                <!-- SKILLS -->
+                <div>
+                    <div class="section-title">SKILLS</div>
+                    <div class="skills-list">
+                        {{skills}}
+                    </div>
+                </div>
+                
+                <!-- LANGUAGES -->
+                <div>
+                    <div class="section-title">LANGUAGES</div>
+                    <div class="skills-list">
+                        {{languages}}
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- MAIN CONTENT -->
+            <div class="main">
+                
+                <!-- SUMMARY -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Professional Summary</h2>
+                    </div>
+                    <div class="summary">
+                        {{summary}}
+                    </div>
+                </div>
+                
+                <!-- EXPERIENCE -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Experience</h2>
+                    </div>
+                    <div>
+                        {{experience}}
+                    </div>
+                </div>
+                
+                <!-- PROJECTS -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Projects</h2>
+                    </div>
+                    <div>
+                        {{projects}}
+                    </div>
+                </div>
+                
+                <!-- EDUCATION -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Education</h2>
+                    </div>
+                    <div>
+                        {{education}}
+                    </div>
+                </div>
+                
+                <!-- CERTIFICATES -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Certificates</h2>
+                    </div>
+                    <div>
+                        {{certificates}}
+                    </div>
+                </div>
+                
+                <!-- ACHIEVEMENTS -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Achievements</h2>
+                    </div>
+                    <div>
+                        {{achievements}}
+                    </div>
+                </div>
+                
+                <footer>
+                    Modern ATS Resume • Zentra AI
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
