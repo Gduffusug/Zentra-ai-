@@ -33,6 +33,32 @@ export default function ResumeBuilder() {
     });
   };
 
+  const isStepValid = () => {
+  switch (step) {
+    case 1:
+      return (
+        resume.fullName.trim() !== "" &&
+        resume.jobTitle.trim() !== "" &&
+        resume.email.trim() !== "" &&
+        resume.phone.trim() !== ""
+      );
+
+    case 2:
+      return (
+        resume.summary.trim() !== "" &&
+        resume.education.trim() !== ""
+      );
+
+    case 3:
+      return (
+        resume.skills.trim() !== "" &&
+        resume.experience.trim() !== ""
+      );
+
+    default:
+      return false;
+  }
+};
   const nextStep = () => {
     if (step < 3) setStep(step + 1);
   };
