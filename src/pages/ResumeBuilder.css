@@ -336,7 +336,12 @@ transform:scale(.97);
 flex:1;
 
 }
-
+.next-button.disabled{
+    opacity:0.45;
+    filter:blur(0.4px);
+    cursor:not-allowed;
+    pointer-events:none;
+}
 .back-button{
 
 flex:1;
