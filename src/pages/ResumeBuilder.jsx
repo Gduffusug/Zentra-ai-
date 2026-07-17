@@ -310,18 +310,11 @@ export default function ResumeBuilder() {
               In the next step you will select a professional resume template.
             </p>
 
-            <div className="template-placeholder">
-
-              <h3>
-                Resume Template Selector
-              </h3>
-
-              <p>
-                Free Templates • Premium Templates • Live Preview
-              </p>
-
-            </div>
-
+            <TemplateSelector
+  onContinue={(template) => {
+    console.log("Selected Template:", template);
+  }}
+/>
             <div className="resume-actions">
 
               <button
