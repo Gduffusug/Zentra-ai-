@@ -354,11 +354,13 @@ export default function ResumeBuilder() {
                 ← Back
               </button>
 
-              <button
-                className="next-button"
-              >
-                Continue →
-              </button>
+         <button
+  className={`next-button ${!isStepValid() ? "disabled" : ""}`}
+  onClick={nextStep}
+  disabled={!isStepValid()}
+>
+  Continue →
+</button>
 
             </div>
 
