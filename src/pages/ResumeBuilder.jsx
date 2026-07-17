@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ResumeBuilder.css";
-import TemplateSelector from "./TemplateSelector";
+import TemplateSelector from "../resume/TemplateSelector";
 
 export default function ResumeBuilder() {
   const [step, setStep] = useState(1);
