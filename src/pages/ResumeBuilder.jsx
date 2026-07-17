@@ -60,8 +60,12 @@ export default function ResumeBuilder() {
   }
 };
   const nextStep = () => {
-    if (step < 3) setStep(step + 1);
-  };
+  if (!isStepValid()) return;
+
+  if (step < 3) {
+    setStep(step + 1);
+  }
+};
 
   const prevStep = () => {
     if (step > 1) setStep(step - 1);
