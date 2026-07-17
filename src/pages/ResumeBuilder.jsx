@@ -36,12 +36,13 @@ export default function ResumeBuilder() {
   const isStepValid = () => {
   switch (step) {
     case 1:
-      return (
-        resume.fullName.trim() !== "" &&
-        resume.jobTitle.trim() !== "" &&
-        resume.email.trim() !== "" &&
-        resume.phone.trim() !== ""
-      );
+  return (
+    resume.photo &&
+    resume.fullName.trim() !== "" &&
+    resume.jobTitle.trim() !== "" &&
+    resume.email.trim() !== "" &&
+    resume.phone.trim() !== ""
+  );
 
     case 2:
       return (
