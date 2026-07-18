@@ -89,7 +89,17 @@ export default function ResumeBuilder() {
   reader.readAsDataURL(file);
 
 };
+if (showPreview) {
+  return (
+    <div style={{ padding: "40px", textAlign: "center" }}>
+      <h1>Resume Preview</h1>
 
+      <h2>{selectedTemplate?.name}</h2>
+
+      <p>🎉 Template Selected Successfully</p>
+    </div>
+  );
+}
   return (
     <div className="resume-page">
 
