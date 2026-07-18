@@ -343,7 +343,8 @@ export default function ResumeBuilder() {
 
             <TemplateSelector
   onContinue={(template) => {
-    console.log("Selected Template:", template);
+    setSelectedTemplate(template);
+    setShowPreview(true);
   }}
 />
             <div className="resume-actions">
