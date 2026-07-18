@@ -12,7 +12,7 @@ export default function TemplateCard({
     >
       <div className="template-preview">
         <img
-          src={template.preview}
+          src={template.thumbnail}
           alt={template.name}
           className="template-image"
         />
