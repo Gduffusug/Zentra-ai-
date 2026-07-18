@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ResumeBuilder.css";
 import TemplateSelector from "../resume/TemplateSelector";
+import ResumePreview from "../resume/ResumePreview";
 
 export default function ResumeBuilder() {
   const [step, setStep] = useState(1);
@@ -93,13 +94,10 @@ const [showPreview, setShowPreview] = useState(false);
 };
 if (showPreview) {
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
-      <h1>Resume Preview</h1>
-
-      <h2>{selectedTemplate?.name}</h2>
-
-      <p>🎉 Template Selected Successfully</p>
-    </div>
+    <ResumePreview
+      template={selectedTemplate}
+      resume={resume}
+    />
   );
 }
   return (
