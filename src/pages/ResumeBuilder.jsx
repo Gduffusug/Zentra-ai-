@@ -25,6 +25,8 @@ export default function ResumeBuilder() {
     languages: "",
     achievements: "",
   });
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+const [showPreview, setShowPreview] = useState(false);
 
   const handleChange = (e) => {
     setResume({
@@ -365,14 +367,6 @@ if (showPreview) {
               >
                 ← Back
               </button>
-
-         <button
-  className={`next-button ${!isStepValid() ? "disabled" : ""}`}
-  onClick={nextStep}
-  disabled={!isStepValid()}
->
-  Continue →
-</button>
 
             </div>
 
