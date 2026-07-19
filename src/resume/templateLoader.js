@@ -1,8 +1,4 @@
-import modernATS from "./templates/modern-ats/config";
 
-export const templates = [
-  modernATS,
-];
 export const templateMap = {
   "modern-ats": "/resume/templates/modern-ats.html",
 };
