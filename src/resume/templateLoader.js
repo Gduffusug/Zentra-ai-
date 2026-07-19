@@ -1,3 +1,8 @@
+import modernATS from "./templates/modern-ats/config";
+
+export const templates = [
+  modernATS,
+];
 export const templateMap = {
   "modern-ats": "/resume/templates/modern-ats.html",
 };
@@ -13,8 +18,3 @@ export async function loadTemplate(templateId) {
 
   return await response.text();
 }
-import modernATS from "./templates/modern-ats/config";
-
-export const templates = [
-  modernATS,
-];
