@@ -1,4 +1,4 @@
-hereexport const templateMap = {
+export const templateMap = {
   "modern-ats": "/resume/templates/modern-ats.html",
 };
 
