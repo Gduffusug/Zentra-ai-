@@ -8,7 +8,7 @@ export default function TemplateCard({
   return (
     <div
       className={`template-card ${selected ? "selected" : ""}`}
-      onClick={() => onSelect(template.id)}
+      onClick={() => onSelect(template)}
     >
       <div className="template-preview">
         <img
