@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./TemplateSelector.css";
 import TemplateCard from "./TemplateCard";
-import resumeTemplates from "./resumeTemplates";
+import { templates } from "./templateRegistry";
 
 function TemplateSelector({ onContinue }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -27,7 +27,7 @@ function TemplateSelector({ onContinue }) {
 
         <div className="template-grid">
 
-          {resumeTemplates
+          {templates
             .filter((t) => t.type === "Free")
             .map((template) => (
               <TemplateCard
@@ -50,7 +50,7 @@ function TemplateSelector({ onContinue }) {
 
         <div className="template-grid">
 
-          {resumeTemplates
+          {templates
             .filter((t) => t.type === "Premium")
             .map((template) => (
               <TemplateCard
