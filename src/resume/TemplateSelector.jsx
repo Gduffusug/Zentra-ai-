@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./TemplateSelector.css";
 import TemplateCard from "./TemplateCard";
-import { templates } from "./templateRegistry";
 
 function TemplateSelector({ onContinue }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
