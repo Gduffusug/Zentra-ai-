@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { loadTemplate } from "./templateLoader";
 import { replaceTemplate } from "./templateEngine";
 
 export default function ResumePreview({
