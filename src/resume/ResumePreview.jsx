@@ -9,22 +9,20 @@ export default function ResumePreview({
   const [html, setHtml] = useState("");
 
   useEffect(() => {
-const response = await fetch(`/resume/templates/${template.id}.html`);
-const templateHTML = await response.text();
-
-const finalHTML = replaceTemplate(templateHTML, resume);
-
-setHtml(finalHTML);
     async function generateResume() {
 
-      const templateHTML = await loadTemplate(template.id);
+  const response = await fetch(
+    `/resume/templates/${template.id}.html`
+  );
 
-      const finalHTML = replaceTemplate(
-        templateHTML,
-        resume
-      );
+  const templateHTML = await response.text();
 
-      setHtml(finalHTML);
+  const finalHTML = replaceTemplate(
+    templateHTML,
+    resume
+  );
+
+  setHtml(finalHTML);
 
     }
 
