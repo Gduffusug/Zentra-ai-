@@ -4,7 +4,7 @@ import "./QRGenerator.css";
 import { qrTypes } from "./qrUtils";
 
 export default function QRGenerator() {
-  const [type, setType] = useState("website");
+  const [qrType, setQrType] = useState("website");
   const [value, setValue] = useState("");
 
   return (
@@ -12,23 +12,41 @@ export default function QRGenerator() {
 
       <h1>QR Code Generator</h1>
 
-      <div className="qr-tabs">
-        {qrTypes.map((item) => (
-          <button
-            key={item.id}
-            className={type === item.id ? "active" : ""}
-            onClick={() => setType(item.id)}
-          >
-            {item.name}
-          </button>
-        ))}
+      <div className="type-selector">
+        <button
+          className={qrType === "website" ? "active" : ""}
+          onClick={() => setQrType("website")}
+        >
+          🌐 Website
+        </button>
+
+        <button
+          className={qrType === "text" ? "active" : ""}
+          onClick={() => setQrType("text")}
+        >
+          📝 Text
+        </button>
+
+        <button
+          className={qrType === "wifi" ? "active" : ""}
+          onClick={() => setQrType("wifi")}
+        >
+          📶 WiFi
+        </button>
+
+        <button
+          className={qrType === "email" ? "active" : ""}
+          onClick={() => setQrType("email")}
+        >
+          ✉️ Email
+        </button>
       </div>
 
       <div className="qr-input">
 
         <input
           type="text"
-          placeholder={`Enter ${type}`}
+          placeholder={`Enter ${qrType}`}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
