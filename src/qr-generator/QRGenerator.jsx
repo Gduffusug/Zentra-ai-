@@ -14,16 +14,14 @@ export default function QRGenerator() {
   // Customization state
   const [fgColor, setFgColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
-  const [qrSize, setQrSize] = useState(250);
+  const [qrSize, setQrSize] = useState(280);
   const [margin, setMargin] = useState(10);
   const [errorLevel, setErrorLevel] = useState("H");
-  const [roundedQR, setRoundedQR] = useState(false);
-  const [template, setTemplate] = useState("classic");
-  const [logoPreview, setLogoPreview] = useState(null);
+  
   const qrRef = useRef();
   const fileInputRef = useRef();
 
-  // Apply template styles
+  // Templates
   const templates = {
     classic: { fg: "#000000", bg: "#ffffff" },
     neon: { fg: "#00ff00", bg: "#000000" },
@@ -147,10 +145,8 @@ export default function QRGenerator() {
     setEmail("");
     setFgColor("#000000");
     setBgColor("#ffffff");
-    setQrSize(250);
+    setQrSize(280);
     setMargin(10);
-    setTemplate("classic");
-    setLogoPreview(null);
   };
 
   // Handle logo upload
@@ -159,7 +155,7 @@ export default function QRGenerator() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setLogoPreview(event.target?.result);
+        console.log("Logo uploaded");
       };
       reader.readAsDataURL(file);
     }
@@ -188,202 +184,311 @@ export default function QRGenerator() {
   };
 
   return (
-    <div className="qr-generator">
-      {/* Aurora Background */}
-      <div className="aurora-bg">
-        <div className="aurora aurora-1"></div>
-        <div className="aurora aurora-2"></div>
-        <div className="aurora aurora-3"></div>
-      </div>
-
-      {/* Mesh Gradient */}
+    <div className="qr-generator-wrapper">
+      {/* Animated Background Elements */}
+      <div className="aurora-bg"></div>
       <div className="mesh-gradient"></div>
-
-      {/* Floating Particles */}
-      <div className="particles">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 3 + i * 0.2,
-              repeat: Infinity,
-              delay: i * 0.1,
-            }}
-          />
-        ))}
-      </div>
+      
+      {/* Floating Orbs */}
+      <motion.div className="orb orb-1" animate={{ y: [0, -30, 0], x: [0, 15, 0] }} transition={{ duration: 8, repeat: Infinity }} />
+      <motion.div className="orb orb-2" animate={{ y: [0, 30, 0], x: [0, -15, 0] }} transition={{ duration: 10, repeat: Infinity, delay: 1 }} />
+      <motion.div className="orb orb-3" animate={{ y: [0, -20, 0], x: [0, 10, 0] }} transition={{ duration: 12, repeat: Infinity, delay: 2 }} />
 
       <div className="qr-container">
         {/* Hero Section */}
         <motion.div
           className="hero-section"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h1>QR Code Generator</h1>
-          <p>Generate beautiful QR Codes instantly with AI-powered customization.</p>
+          <p>Generate beautiful, customizable QR codes instantly with AI-powered design</p>
         </motion.div>
 
-        {/* Tabs Section */}
-        <motion.div
-          className="tabs-wrapper"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        >
-          <div className="premium-tabs">
-            {qrTypes.map((type) => (
-              <motion.button
-                key={type.id}
-                className={`tab-pill ${qrType === type.id ? "active" : ""}`}
-                onClick={() => setQrType(type.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                layout
-              >
-                <span className="tab-icon">{type.icon}</span>
-                <span className="tab-title">{type.title}</span>
-                {qrType === type.id && (
-                  <motion.div
-                    className="tab-indicator"
-                    layoutId="indicator"
-                    transition={{ type: "spring", stiffness: 200, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
+        {/* Main Content Grid */}
+        <div className="content-wrapper">
+          {/* Left Column - Input Section */}
+          <motion.div
+            className="input-column"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* QR Type Tabs */}
+            <div className="tabs-container">
+              <div className="tabs-grid">
+                {qrTypes.map((type, idx) => (
+                  <motion.button
+                    key={type.id}
+                    className={`tab-button ${qrType === type.id ? "active" : ""}`}
+                    onClick={() => setQrType(type.id)}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                  >
+                    <span className="tab-icon">{type.icon}</span>
+                    <span className="tab-label">{type.title}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
 
-        <div className="content-grid">
-          {/* Left Column - Input & Preview */}
-          <div className="left-column">
-            {/* Premium Input Section */}
+            {/* Input Card */}
             <motion.div
-              className="input-section"
+              className="input-card"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="glass-input-wrapper">
-                <div className="input-icon">
-                  {qrTypes.find(t => t.id === qrType)?.icon}
-                </div>
+              <div className="input-header">
+                <span className="input-title">
+                  {qrTypes.find(t => t.id === qrType)?.icon} {qrTypes.find(t => t.id === qrType)?.title}
+                </span>
+              </div>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={qrType}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="input-fields"
-                  >
-                    {qrType === "url" && (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={qrType}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="input-body"
+                >
+                  {qrType === "url" && (
+                    <input
+                      type="text"
+                      placeholder="https://example.com"
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                      className="input-field"
+                    />
+                  )}
+
+                  {qrType === "text" && (
+                    <textarea
+                      placeholder="Enter your text (max 2953 characters)"
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                      className="input-field textarea"
+                      rows={4}
+                    />
+                  )}
+
+                  {qrType === "email" && (
+                    <input
+                      type="email"
+                      placeholder="user@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="input-field"
+                    />
+                  )}
+
+                  {qrType === "phone" && (
+                    <input
+                      type="tel"
+                      placeholder="+1 (555) 000-0000"
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                      className="input-field"
+                    />
+                  )}
+
+                  {qrType === "wifi" && (
+                    <div className="wifi-inputs">
                       <input
                         type="text"
-                        placeholder="https://example.com"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="glass-input"
+                        placeholder="Network SSID"
+                        value={ssid}
+                        onChange={(e) => setSsid(e.target.value)}
+                        className="input-field"
                       />
-                    )}
-
-                    {qrType === "text" && (
-                      <textarea
-                        placeholder="Enter your text"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="glass-input"
-                        rows={3}
-                      />
-                    )}
-
-                    {qrType === "email" && (
                       <input
-                        type="email"
-                        placeholder="user@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="glass-input"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="input-field"
                       />
-                    )}
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
 
-                    {qrType === "phone" && (
-                      <input
-                        type="tel"
-                        placeholder="+91 9876543210"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="glass-input"
-                      />
-                    )}
-
-                    {qrType === "wifi" && (
-                      <>
-                        <input
-                          type="text"
-                          placeholder="Network SSID"
-                          value={ssid}
-                          onChange={(e) => setSsid(e.target.value)}
-                          className="glass-input"
-                        />
-                        <input
-                          type="password"
-                          placeholder="Password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          className="glass-input"
-                        />
-                      </>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                <div className="input-actions">
-                  <motion.button
-                    className="action-btn"
-                    onClick={pasteFromClipboard}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title="Paste from clipboard"
-                  >
-                    📋
-                  </motion.button>
-                  <motion.button
-                    className="action-btn"
-                    onClick={clearInput}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title="Clear input"
-                  >
-                    ✕
-                  </motion.button>
-                </div>
+              <div className="input-actions">
+                <motion.button
+                  className="action-icon-btn"
+                  onClick={pasteFromClipboard}
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  title="Paste from clipboard"
+                >
+                  📋
+                </motion.button>
+                <motion.button
+                  className="action-icon-btn"
+                  onClick={clearInput}
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  title="Clear input"
+                >
+                  ✕
+                </motion.button>
               </div>
             </motion.div>
 
+            {/* Customization Section */}
+            <motion.div
+              className="customization-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <h3 className="card-title">Customization</h3>
+
+              {/* Templates */}
+              <div className="setting-group">
+                <label className="setting-label">Templates</label>
+                <div className="template-grid">
+                  {Object.entries(templates).map(([name, colors]) => (
+                    <motion.button
+                      key={name}
+                      className={`template-item ${name}`}
+                      onClick={() => {
+                        setFgColor(colors.fg);
+                        setBgColor(colors.bg);
+                      }}
+                      whileHover={{ scale: 1.08 }}
+                      whileTap={{ scale: 0.95 }}
+                      title={name}
+                    >
+                      <div
+                        className="template-preview"
+                        style={{
+                          background: colors.bg,
+                          borderColor: colors.fg,
+                        }}
+                      />
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Color Pickers */}
+              <div className="setting-group">
+                <label className="setting-label">Colors</label>
+                <div className="colors-row">
+                  <div className="color-picker-item">
+                    <label className="color-label">Foreground</label>
+                    <input
+                      type="color"
+                      value={fgColor}
+                      onChange={(e) => setFgColor(e.target.value)}
+                      className="color-picker"
+                    />
+                    <span className="color-value">{fgColor}</span>
+                  </div>
+                  <div className="color-picker-item">
+                    <label className="color-label">Background</label>
+                    <input
+                      type="color"
+                      value={bgColor}
+                      onChange={(e) => setBgColor(e.target.value)}
+                      className="color-picker"
+                    />
+                    <span className="color-value">{bgColor}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Size Sliders */}
+              <div className="setting-group">
+                <label className="setting-label">Size: {qrSize}px</label>
+                <input
+                  type="range"
+                  min="150"
+                  max="400"
+                  value={qrSize}
+                  onChange={(e) => setQrSize(Number(e.target.value))}
+                  className="slider"
+                />
+              </div>
+
+              <div className="setting-group">
+                <label className="setting-label">Margin: {margin}px</label>
+                <input
+                  type="range"
+                  min="0"
+                  max="50"
+                  value={margin}
+                  onChange={(e) => setMargin(Number(e.target.value))}
+                  className="slider"
+                />
+              </div>
+
+              {/* Error Correction */}
+              <div className="setting-group">
+                <label className="setting-label">Error Correction</label>
+                <select
+                  value={errorLevel}
+                  onChange={(e) => setErrorLevel(e.target.value)}
+                  className="select-input"
+                >
+                  <option value="L">Low (7%)</option>
+                  <option value="M">Medium (15%)</option>
+                  <option value="Q">Quartile (25%)</option>
+                  <option value="H">High (30%)</option>
+                </select>
+              </div>
+
+              {/* Logo Upload */}
+              <div className="setting-group">
+                <label className="setting-label">Logo</label>
+                <motion.button
+                  className="upload-btn"
+                  onClick={() => fileInputRef.current?.click()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  📷 Upload Logo
+                </motion.button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                  style={{ display: "none" }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Preview Section */}
+          <motion.div
+            className="preview-column"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             {/* QR Preview Card */}
             <motion.div
-              className="qr-card-wrapper"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              className="qr-preview-card"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <motion.div
-                className="qr-card"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <div className="qr-display" ref={qrRef}>
-                  {qrValue ? (
+              <div className="qr-display" ref={qrRef}>
+                {qrValue ? (
+                  <motion.div
+                    key={qrValue}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                  >
                     <QRCode
                       value={qrValue}
                       size={qrSize}
@@ -392,224 +497,75 @@ export default function QRGenerator() {
                       level={errorLevel}
                       includeMargin={true}
                     />
-                  ) : (
-                    <div className="empty-state">
-                      <motion.div
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        ⚡
-                      </motion.div>
-                      <p>Enter something to generate QR</p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-
-              <div className="watermark">Made by Zentra AI 🇮🇳</div>
-
-              {/* Action Buttons */}
-              <motion.div
-                className="action-buttons"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <motion.button
-                  className="btn btn-primary"
-                  onClick={() => downloadQR("png")}
-                  disabled={!qrValue}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  📥 PNG
-                </motion.button>
-                <motion.button
-                  className="btn btn-primary"
-                  onClick={() => downloadQR("svg")}
-                  disabled={!qrValue}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  📤 SVG
-                </motion.button>
-                <motion.button
-                  className="btn btn-secondary"
-                  onClick={copyQR}
-                  disabled={!qrValue}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  📋 Copy
-                </motion.button>
-                <motion.button
-                  className="btn btn-secondary"
-                  onClick={shareQR}
-                  disabled={!qrValue}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  🔗 Share
-                </motion.button>
-                <motion.button
-                  className="btn btn-reset"
-                  onClick={resetQR}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  🔄 Reset
-                </motion.button>
-              </motion.div>
+                  </motion.div>
+                ) : (
+                  <div className="empty-state">
+                    <motion.div
+                      className="empty-icon"
+                      animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
+                      ⚡
+                    </motion.div>
+                    <p className="empty-text">Enter content to generate</p>
+                  </div>
+                )}
+              </div>
+              <div className="watermark">Zentra AI QR Generator 🇮🇳</div>
             </motion.div>
-          </div>
 
-          {/* Right Column - Customization */}
-          <motion.div
-            className="right-column customization-panel"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h2>Customization</h2>
-
-            {/* Templates */}
-            <div className="setting-group">
-              <label>Templates</label>
-              <div className="template-grid">
-                {Object.entries(templates).map(([name, colors]) => (
-                  <motion.button
-                    key={name}
-                    className={`template-btn ${template === name ? "active" : ""}`}
-                    onClick={() => {
-                      setTemplate(name);
-                      setFgColor(colors.fg);
-                      setBgColor(colors.bg);
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    title={name}
-                  >
-                    <div
-                      className="template-preview"
-                      style={{
-                        background: colors.bg,
-                        borderColor: colors.fg,
-                      }}
-                    />
-                    <span>{name}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Color Pickers */}
-            <div className="setting-group">
-              <label>Foreground Color</label>
-              <div className="color-input-wrapper">
-                <input
-                  type="color"
-                  value={fgColor}
-                  onChange={(e) => setFgColor(e.target.value)}
-                  className="color-picker"
-                />
-                <span className="color-value">{fgColor}</span>
-              </div>
-            </div>
-
-            <div className="setting-group">
-              <label>Background Color</label>
-              <div className="color-input-wrapper">
-                <input
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="color-picker"
-                />
-                <span className="color-value">{bgColor}</span>
-              </div>
-            </div>
-
-            {/* Sliders */}
-            <div className="setting-group">
-              <label>QR Size ({qrSize}px)</label>
-              <input
-                type="range"
-                min="150"
-                max="400"
-                value={qrSize}
-                onChange={(e) => setQrSize(Number(e.target.value))}
-                className="slider"
-              />
-            </div>
-
-            <div className="setting-group">
-              <label>Margin ({margin}px)</label>
-              <input
-                type="range"
-                min="0"
-                max="50"
-                value={margin}
-                onChange={(e) => setMargin(Number(e.target.value))}
-                className="slider"
-              />
-            </div>
-
-            {/* Error Correction */}
-            <div className="setting-group">
-              <label>Error Correction</label>
-              <select
-                value={errorLevel}
-                onChange={(e) => setErrorLevel(e.target.value)}
-                className="select-input"
-              >
-                <option value="L">Low (7%)</option>
-                <option value="M">Medium (15%)</option>
-                <option value="Q">Quartile (25%)</option>
-                <option value="H">High (30%)</option>
-              </select>
-            </div>
-
-            {/* Options */}
-            <div className="setting-group">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={roundedQR}
-                  onChange={(e) => setRoundedQR(e.target.checked)}
-                />
-                <span>Rounded QR</span>
-              </label>
-            </div>
-
-            {/* Logo Upload */}
-            <div className="setting-group">
-              <label>Logo</label>
+            {/* Action Buttons */}
+            <motion.div
+              className="action-buttons"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               <motion.button
-                className="btn btn-secondary full-width"
-                onClick={() => fileInputRef.current?.click()}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="btn btn-primary"
+                onClick={() => downloadQR("png")}
+                disabled={!qrValue}
+                whileHover={qrValue ? { scale: 1.05, y: -2 } : {}}
+                whileTap={qrValue ? { scale: 0.95 } : {}}
               >
-                📷 Upload Logo
+                <span>📥</span> PNG
               </motion.button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleLogoUpload}
-                style={{ display: "none" }}
-              />
-              {logoPreview && (
-                <motion.button
-                  className="btn btn-reset full-width"
-                  onClick={() => setLogoPreview(null)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  ✕ Remove Logo
-                </motion.button>
-              )}
-            </div>
+              <motion.button
+                className="btn btn-primary"
+                onClick={() => downloadQR("svg")}
+                disabled={!qrValue}
+                whileHover={qrValue ? { scale: 1.05, y: -2 } : {}}
+                whileTap={qrValue ? { scale: 0.95 } : {}}
+              >
+                <span>📤</span> SVG
+              </motion.button>
+              <motion.button
+                className="btn btn-secondary"
+                onClick={copyQR}
+                disabled={!qrValue}
+                whileHover={qrValue ? { scale: 1.05, y: -2 } : {}}
+                whileTap={qrValue ? { scale: 0.95 } : {}}
+              >
+                <span>📋</span> Copy
+              </motion.button>
+              <motion.button
+                className="btn btn-secondary"
+                onClick={shareQR}
+                disabled={!qrValue}
+                whileHover={qrValue ? { scale: 1.05, y: -2 } : {}}
+                whileTap={qrValue ? { scale: 0.95 } : {}}
+              >
+                <span>🔗</span> Share
+              </motion.button>
+              <motion.button
+                className="btn btn-reset"
+                onClick={resetQR}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>🔄</span> Reset
+              </motion.button>
+            </motion.div>
           </motion.div>
         </div>
       </div>
