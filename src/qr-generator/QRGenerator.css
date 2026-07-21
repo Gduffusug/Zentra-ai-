@@ -1,0 +1,219 @@
+:root{
+  --bg:#070b14;
+  --card:rgba(18,24,38,.75);
+  --card2:rgba(255,255,255,.05);
+  --border:rgba(255,255,255,.08);
+  --primary:#5b7cff;
+  --secondary:#8b5cf6;
+  --text:#ffffff;
+  --muted:#9aa4b2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:
+  radial-gradient(circle at top,#22316b 0%,transparent 35%),
+  radial-gradient(circle at bottom right,#5b21b6 0%,transparent 30%),
+  #070b14;
+}
+
+.qr-generator{
+
+  width:100%;
+  min-height:100vh;
+
+  padding:50px 8%;
+
+  color:var(--text);
+
+}
+
+.qr-generator h1{
+
+  font-size:48px;
+  font-weight:800;
+
+  background:linear-gradient(90deg,#fff,#6ea8ff,#9b7cff);
+
+  -webkit-background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+}
+
+.qr-generator p{
+
+  color:var(--muted);
+
+  margin-top:8px;
+
+  margin-bottom:35px;
+
+}
+
+.qr-tabs{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-bottom:35px;
+
+}
+
+.qr-tabs button{
+
+padding:13px 22px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--card2);
+
+backdrop-filter:blur(18px);
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:1px solid transparent;
+
+}
+
+.qr-tabs button:hover{
+
+transform:translateY(-4px);
+
+border:1px solid rgba(91,124,255,.5);
+
+}
+
+.qr-tabs .active{
+
+background:linear-gradient(135deg,#5b7cff,#8b5cf6);
+
+box-shadow:0 0 25px rgba(91,124,255,.35);
+
+}
+
+.qr-input{
+
+background:var(--card);
+
+backdrop-filter:blur(25px);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+padding:25px;
+
+margin-bottom:35px;
+
+}
+
+.qr-input input{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+outline:none;
+
+background:#101826;
+
+border-radius:15px;
+
+font-size:16px;
+
+color:white;
+
+}
+
+.qr-preview{
+
+margin-top:20px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:var(--card);
+
+border-radius:25px;
+
+padding:45px;
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.35),
+
+0 0 60px rgba(91,124,255,.08);
+
+transition:.4s;
+
+}
+
+.qr-preview:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+
+0 25px 70px rgba(0,0,0,.45),
+
+0 0 80px rgba(91,124,255,.18);
+
+}
+
+.qr-preview svg{
+
+padding:18px;
+
+background:white;
+
+border-radius:18px;
+
+}
+
+@media(max-width:768px){
+
+.qr-generator{
+
+padding:30px 20px;
+
+}
+
+.qr-generator h1{
+
+font-size:34px;
+
+}
+
+.qr-tabs{
+
+justify-content:center;
+
+}
+
+}
