@@ -8,6 +8,7 @@ import MergePdf from "./pages/pdf/MergePdf";
 import AgeCalculator from "./pages/AgeCalculator";
 import Login from "./components/Login";
 import ResumeBuilder from "./pages/ResumeBuilder";
+import QRGenerator from "./qr-generator/QRGenerator";
 import ProfileSetup from "./pages/ProfileSetup";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -36,6 +37,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route
   path="/resume-builder"
   element={<ResumeBuilder />}
+/>
+        <Route
+  path="/qr-generator"
+  element={<QRGenerator />}
 />
       </Routes>
     </BrowserRouter>
