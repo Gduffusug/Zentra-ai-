@@ -221,11 +221,14 @@ const handleLogout = async () => {
   <p>Merge, split and convert PDF files.</p>
 </div>
 
-  <div className="card">
-    <div className="emoji">🔳</div>
-    <h3>QR Generator</h3>
-    <p>Create QR codes instantly.</p>
-  </div>
+  <div
+  className="card"
+  onClick={() => navigate("/qr-generator")}
+>
+  <div className="emoji">🔳</div>
+  <h3>QR Generator</h3>
+  <p>Create QR codes instantly.</p>
+</div>
 
   <div className="card">
     <div className="emoji">🔑</div>
